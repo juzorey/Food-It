@@ -1,7 +1,212 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 100px;
+  padding: 0;
+  margin: 0;
+}
+
+.dots li {
+  border-radius: 2px;
+  margin: 0 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #26de81;
+}
+
+button {
+  background-color: #20bf6b;
+  border-radius: 2px;
+  color: white;
+  font-size: 16px;
+  border: none;
+  padding: 4px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+  margin-top: 24px;
+}
+
+
+
+
+
+
+
+
 .App {
   text-align: center;
 }
 
+/*Nav start*/
+.nav-holder{
+  width: 300px;
+  height: 100vh;
+  background-color: rgb(197, 223, 222);
+}
+
+.nav-bar{
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left:0px;
+  background-color: rgb(197, 223, 222);
+  z-index: 0;
+}
+.a{
+	font-size: 2em;
+	text-decoration: none;
+	letter-spacing: 2px;
+	line-height: 1em;
+	text-transform: uppercase;
+	color: transparent;
+	-webkit-text-stroke: 1px rgb(255, 255, 255);
+}
+
+
+/* Nav end*/
+
+
+/*profile start*/
+.profile-view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px ;
+  width: 1150px;
+  background-color: rgb(155, 116, 65);
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: row;
+  height: 700px ;
+  width: 1050px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: blue;
+  grid-gap:13px;
+}
+.main-profile-info{
+  height: 700px ;
+  width: 650px;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;;
+  grid-gap:13px;
+}
+.second-profile-info{
+  height: 700px ;
+  width: 650px;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;;
+  grid-gap:13px;
+}
+
+.box1{
+  height: 233px ;
+  width: 650px;
+  background-color: rgb(6, 61, 61);
+  display: flex;
+  grid-gap:13px;
+}
+.info1{
+  height: 223px ;
+  width: 375px;
+  background-color: rgb(54, 61, 6);
+  display: flex;
+  flex-direction: column;
+}
+.a1{
+  width: 375px;
+  height: 85px;
+  background-color: aliceblue;
+
+}
+.a2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+.a3{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.b1{
+  width:145px;
+  height: 42px;
+  background-color: aqua;
+}
+.underline{
+  border-right: 2px black solid;
+}
+.box2{
+  height: 470px ;
+  width: 400px;
+  background-color: rgb(171, 22, 16);
+  display: flex;
+  flex-direction: column;
+}
+.box2-title{
+  width: 400px;
+  height:60px;
+  display: flex;
+  justify-content: space-between;
+}
+.box2-sections{
+  width: 200px;
+  height:40px;
+  display: flex;
+  justify-content:space-between;
+}
+.profile-food-entries{
+  width: 400px;
+  height:89px;
+  background-color: #fff;
+  border-bottom: 2px solid grey;
+  display: flex;
+  flex-direction: row;
+}
+
+.box3{
+  height: 230px ;
+  width: 400px;
+  background-color: rgb(16, 171, 16);
+  display: flex;
+  flex-direction: column;
+}
+.cube1{
+  width: 100px;
+  height: 89px;
+  background-color: aquamarine;
+}
+.cube2{
+  width: 200px;
+  height: 89px;
+  background-color: rgb(127, 163, 255);
+}
+.cube3{
+  width: 100px;
+  height: 89px;
+  background-color: aquamarine;
+}
+/*porfile end*/
+.home{
+  display: flex;
+  justify-content: column;
+}
 #username{
   width: 280px;
 }

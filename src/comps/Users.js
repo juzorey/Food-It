@@ -20,7 +20,6 @@ const handleSubmit = async (e) => {
         email:userDetails.email,
         name:userDetails.name,
         weight:userDetails.weight
-
         };
         console.log(user)
   await axios.post('http://localhost:8000/userslist/', user);
