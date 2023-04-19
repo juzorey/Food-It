@@ -6,9 +6,8 @@ import axios from "axios";
 import {FaRegArrowAltCircleDown, FaRegArrowAltCircleUp} from "react-icons/fa"
 
 // Define the Login function.
-const Home = () => {
+const Home = (props) => {
   const [message, setMessage] = useState("");
-
   
   // useEffect(() => {
   //   if (localStorage.getItem("access_token") === null) {
@@ -29,12 +28,19 @@ const Home = () => {
   //   }
   // }, []);
 
+
+
   return (
     
     <div>
       {/* <div className="form-signin mt-5 text-center"> 
             <h3>Hi {message}</h3>
 */}
+
+
+
+
+
       <div className="home">
         <div className="nav-holder">
 
@@ -49,6 +55,8 @@ const Home = () => {
               <div className="box1">
                   <div className="info1">
                     <div className="a1 a2">Manifest 
+                    {props.name ? 'hi '+ props.name: 'you are not logged'}
+
                     </div>                    
                     <div className="a1 a2"><h2>Eat Vegetables</h2></div>
                     <div className="a1 a3">
