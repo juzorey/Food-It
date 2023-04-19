@@ -47,6 +47,10 @@ button {
 }
 
 /*Nav start*/
+.nav-content{
+  display: flex;
+  flex-direction: column;
+}
 .nav-holder{
   width: 300px;
   height: 100vh;
@@ -191,16 +195,25 @@ button {
   width: 100px;
   height: 89px;
   background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cube2{
   width: 200px;
   height: 89px;
   background-color: rgb(127, 163, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cube3{
   width: 100px;
   height: 89px;
   background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /*porfile end*/
 .home{

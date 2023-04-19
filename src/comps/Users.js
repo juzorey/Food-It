@@ -4,11 +4,10 @@ export default function Users(){
 
 
   const[userDetails, setUserDetails] = useState({
-    username:'',
-    password:'',
-    email:'j@gmail.com',
+
+    email:'j0@gmail.com',
     name:'fridge',
-    weight: 233
+
 
      })
 const handleSubmit = async (e) => {
@@ -22,7 +21,7 @@ const handleSubmit = async (e) => {
         weight:userDetails.weight
         };
         console.log(user)
-  await axios.post('http://localhost:8000/userslist/', user);
+  await axios.post('http://localhost:8000/login/', user);
   setUserDetails({
       username: "",
       password: ""

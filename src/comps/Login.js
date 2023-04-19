@@ -1,75 +1,74 @@
-// Import the react JS packages
-import axios from "axios";
-import { useState } from "react";
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import React, {SyntheticEvent, useState} from 'react';
+import {Redirect} from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
-// Define the Login function.
 export const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
-  // Create the submit method.
-  const submit = async (e) => {
-    e.preventDefault();
-    const user = {
-      username: username,
-      password: password,
-    };
 
-    // Create the POST request
-    const { data } = await axios.post("http://localhost:8000/token/", user, {
-      headers: {
-        "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": true,
-      },
-      // withCredentials: true,
-    });
+    const navigate = useNavigate()
 
-    // Initialize the access & refresh token in localstorage.
-    localStorage.clear();
-    localStorage.setItem("access_token", data.access);
-    localStorage.setItem("refresh_token", data.refresh);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
-    window.location.href = "/";
-  };
 
-  return (
-    <div className="Auth-form-container">
-      <form className="Auth-form w-50 p-4" onSubmit={submit}>
-        <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
-          <div className="form-group mt-3">
-            <label>Username</label>
-            <input
-              className="form-control mt-1"
-              placeholder="Enter Username"
-              name="username"
-              type="text"
-              value={username}
-              required
-              onChange={(e) => setUsername(e.target.value)}
+
+
+    const submit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+
+
+       await fetch('http://localhost:8000/api/login/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+            body: JSON.stringify({
+                email,
+                password
+            })
+        });
+
+
+          
+
+        //   try {
+        //     const response = await axios.post('http://localhost:8000/api/login/', {
+        //       email,
+        //       password
+        //     }, {
+        //       headers: { 'Content-Type': 'application/json' },
+        //       withCredentials: true,
+        //     }
+        //     );
+      
+        //     const token = response.data.jwt
+        //     const decodedToken = jwt_decode(token)
+        //     console.log(decodedToken)
+
+
+        // } catch (error) {
+        //   console.error(error);
+        //   console.log(error.response.data)
+        // }
+      
+
+    
+      }
+
+    return (
+        <form onSubmit={submit}>
+            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+            <input type="email" className="form-control" placeholder="Email address" required
+                   onChange={e => setEmail(e.target.value)}
             />
-          </div>
-          <div className="form-group mt-3">
-            <label>Password</label>
-            <input
-              name="password"
-              type="password"
-              className="form-control mt-1"
-              placeholder="Enter password"
-              value={password}
-              required
-              onChange={(e) => setPassword(e.target.value)}
+
+            <input type="password" className="form-control" placeholder="Password" required
+                   onChange={e => setPassword(e.target.value)}
             />
-          </div>
-          <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+
+            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
+    );
 };
 
-export default Login

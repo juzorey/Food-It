@@ -49,7 +49,6 @@ const Home = () => {
               <div className="box1">
                   <div className="info1">
                     <div className="a1 a2">Manifest 
-                      <div className="hello">Hello World</div>
                     </div>                    
                     <div className="a1 a2"><h2>Eat Vegetables</h2></div>
                     <div className="a1 a3">
@@ -83,9 +82,9 @@ const Home = () => {
                 <div className="box2-title"><div><h2>Entries</h2></div><div><h3>See all</h3></div></div>
                 <div className="box2-sections"><p>All</p><p>Breakfast</p><p>Lunch</p><p>Diner</p></div>
                 <div className="profile-food-entries">
-                  <div className="cube1"></div>
-                  <div className="cube2"></div>
-                  <div className="cube3"></div>
+                  <div className="cube1">Breakfast</div>
+                  <div className="cube2">Bread</div>
+                  <div className="cube3">120Kcal</div>
 
                 </div>
                 <div className="profile-food-entries">
