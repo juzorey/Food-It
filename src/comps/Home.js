@@ -2,6 +2,7 @@
 import Player from "./Player";
 import { useEffect, useState } from "react";
 import Nav from "./Nav";
+import { Foods } from "./Foods";
 import axios from "axios";
 import {FaRegArrowAltCircleDown, FaRegArrowAltCircleUp} from "react-icons/fa"
 
@@ -54,8 +55,8 @@ const Home = (props) => {
             <div className="main-profile-info">
               <div className="box1">
                   <div className="info1">
-                    <div className="a1 a2">Manifest 
-                    {props.name ? 'hi '+ props.name: 'you are not logged'}
+                    <div className="a1 a2"> 
+                    {props.name ? `Welcome ${props.name} Id: ${props.id}`: `you are not logged`}
 
                     </div>                    
                     <div className="a1 a2"><h2>Eat Vegetables</h2></div>
@@ -89,22 +90,15 @@ const Home = (props) => {
               <div className="box2">
                 <div className="box2-title"><div><h2>Entries</h2></div><div><h3>See all</h3></div></div>
                 <div className="box2-sections"><p>All</p><p>Breakfast</p><p>Lunch</p><p>Diner</p></div>
-                <div className="profile-food-entries">
-                  <div className="cube1">Breakfast</div>
-                  <div className="cube2">Bread</div>
-                  <div className="cube3">120Kcal</div>
 
-                </div>
-                <div className="profile-food-entries">
-                  <div className="cube1"></div>
-                  <div className="cube2"></div>
-                  <div className="cube3"></div> 
-                
-                </div>
-                <div className="profile-food-entries"> </div>
-                <div className="profile-food-entries"> </div>
+                <Foods />
+                {/* <Foods />
+                <Foods />
+                <Foods /> */} 
 
 
+
+             
               </div>
               <div className="box3">
 

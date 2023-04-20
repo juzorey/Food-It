@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import React, {SyntheticEvent, useState} from 'react';
 import jwt_decode from "jwt-decode";
 
-export const Login = () => {
+export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
@@ -18,7 +18,7 @@ export const Login = () => {
         e.preventDefault();
 
 
-       await fetch('http://localhost:8000/api/login/', {
+     const response =   await fetch('http://localhost:8000/api/login/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -26,10 +26,9 @@ export const Login = () => {
                 email,
                 password
             })
+
         });
 
-
-          
 
         //   try {
         //     const response = await axios.post('http://localhost:8000/api/login/', {
@@ -50,9 +49,13 @@ export const Login = () => {
         //   console.error(error);
         //   console.log(error.response.data)
         // }
-      
+        const content = await response.json()
+        props.setName(content.name)
 
         navigate('/')
+
+        
+          
       }
     
 

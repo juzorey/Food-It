@@ -1,9 +1,12 @@
+import Nav from './comps/Nav.js';
 import { Routes, Route } from 'react-router-dom';
 import Users from './comps/Users.js';
 import Home  from './comps/Home.js';
 import {Login}  from './comps/Login.js';
 import { useEffect, useState } from 'react';
 import './App.css'
+import { Foods } from './comps/Foods.js';
+
 
 function App() {
 
@@ -11,6 +14,8 @@ function App() {
 
  
   const[name,setName] =useState('')
+  const[id,setId] =useState('')
+
 
   useEffect(()=>{
 (
@@ -24,6 +29,8 @@ function App() {
   });
 const content = await response.json();
 setName(content.name)
+setId(content.id)
+
 
 
   }
@@ -33,32 +40,17 @@ setName(content.name)
 },[])
 
 
-// const logout = async () => {
-
-
-//   await fetch('http://localhost:8000/api/logout/', {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     credentials: 'include'
-// });
-
-// }
-// let menu
-// if(name === ''){
-//   menu = ()
-// }
-// else{
-//   menu = ()
-// }
-
 
 
   return (
     <div className="App">
-
+{/* <Nav name={name}         setName={setName}
+/> */}
     <Routes>
-      <Route path = '/' element={<Home name={name } />} />
-      <Route path = '/login' element={<Login />} />
+      <Route path = '/' element={<Home name={name} id={id} />} />
+      <Route path = '/login' element={<Login setName={setName} />} />
+      <Route path = '/foods' element={<Foods setName={setName} />} />
+
 
       {/* <Route path="/login" element={<Login />} /> */}
 

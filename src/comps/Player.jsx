@@ -35,13 +35,21 @@ const Player = () => {
 
   return (
     <div className="player">
-      <ul className="dots">
-        {ticks.map((_, i) => (
-          <li key={i} />
-        ))}
-      </ul>
-      <button onClick={handleClick}>{playing ? "Pause" : "Play"}</button>
+{/* 
+    //   <ul className="dots">
+    //     {ticks.map((_, i) => (
+    //       <li key={i} />
+    //     ))}
+    //   </ul>
+    //   <button onClick={handleClick}>{playing ? "Pause" : "Play"}</button> */}
+
+
+      <svg width='200' height="200">
+        <circle cx="200"cy="200"r="200"/>
+      </svg>
     </div>
+
+
   );
 };
 
