@@ -6,6 +6,7 @@ import {Login}  from './comps/Login.js';
 import { useEffect, useState } from 'react';
 import './App.css'
 import { Foods } from './comps/Foods.js';
+import { Register } from './comps/Register.js';
 
 
 function App() {
@@ -49,6 +50,8 @@ setId(content.id)
     <Routes>
       <Route path = '/home' element={<Home name={name} id={id} />} />
       <Route path = '/' element={<Login setName={setName} />} />
+      <Route path = '/register' element={<Register />} />
+
       <Route path = '/foods' element={<Foods setName={setName} />} />
 
 
