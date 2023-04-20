@@ -103,10 +103,12 @@ const cardTemaplate = (index)=>{
   let card = (
 
 <div key ={index}>
-  <form class="profile-food-entries" onSubmit>
+  <form class="profile-food-entries" onSubmit={submit}>
     <div className="cube1">
       {/* <button class="sign" type="click" onClick={update}>update</button>      */}
-      <button class="sign" type="button" onClick={()=>update(index)}>+</button>                  
+      <button class="sign" type="button" onClick={()=>update(index)}>update</button>    
+      <button class="sign" type="submit" onClick={()=>submit}>post</button>                  
+              
              
     </div>
     <div className="cube2">
@@ -147,13 +149,24 @@ const addCard=()=>{
 
 
 const removeCards = (index) => {
+
+  
+  (
+async()=>{
   const newFruits = fruits.filter((_, i) => i !== index);
   setFruits(newFruits);
   console.log(newFruits);
   setCount(count-1)
-  
+  let newId = index+39
 
+  const response = fetch(`http://localhost:8000/api/fooddetails/${newId}`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    credentials: 'include'
 
+});
+
+})()
 
 
 
@@ -189,8 +202,11 @@ const update =(id)=>{
   // }
 
   (
+    
     async()=>{
-  const res = fetch(`http://localhost:8000/api/fooddetails/${id}`, {
+      let newId = id+39
+
+  const res = fetch(`http://localhost:8000/api/fooddetails/${newId}`, {
             method: 'Put',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -244,7 +260,7 @@ const update =(id)=>{
 
 </div>
 
-<button className="add-card-btn" onClick={addCard}> + Add Card</button>
+<button className="add-card-btn" onClick={addCard}> + Add Food</button>
 
 
 
