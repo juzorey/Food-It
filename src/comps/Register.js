@@ -63,7 +63,7 @@ export const Register = (props) => {
     
 
       const goToSignIn=()=>{
-        navigate('/')
+        navigate('/login')
       }
     return (
        

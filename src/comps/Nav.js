@@ -29,7 +29,9 @@ let menu
           <Link to="/home" className="a">Home</Link>
           <Link to="/" className="a">Track</Link>
           <Link to="/" className="a">Profile</Link>
-          <Link to='/' className="a" >Login</Link>
+          <Link to='/login' className="a" >Login</Link>
+          <Link to='/' className="a" >Register</Link>
+
 
         </div>
 
