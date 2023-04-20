@@ -106,13 +106,13 @@ const cardTemaplate = (index)=>{
   <form class="profile-food-entries" onSubmit={submit}>
     <div className="cube1">
       {/* <button class="sign" type="click" onClick={update}>update</button>      */}
-      <button class="sign" type="button" onClick={()=>update(index)}>update</button>    
+      <button class="sign" type="button" onClick={()=>update()}>update</button>    
       <button class="sign" type="submit" onClick={()=>submit}>post</button>                  
               
              
     </div>
     <div className="cube2">
-      {foodId}{index}
+      {/* {foodId}{index} */}
       <input type="text" placeholder="food name" onChange={e => setFood(e.target.value)}/>
     </div>
     <div className="cube3">
@@ -152,12 +152,34 @@ const removeCards = (index) => {
 
   
   (
-async()=>{
+
+  async()=>{
+    try {
+      const response = await fetch('http://localhost:8000/api/foods/', {
+        headers: {'Content-Type': 'application/json'},
+       credentials: 'include',
+      
+   });
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+  
+      // ✅ call response.json() here
+      const result = await response.json();
+      console.log(result);
+      setFoodId(result.slice(-1)[0].id)
+      console.log(foodId,'yes');
+
+    } catch (err) {
+      console.log(err);
+    }
+  
+    let newId = foodId
+    
   const newFruits = fruits.filter((_, i) => i !== index);
   setFruits(newFruits);
   console.log(newFruits);
   setCount(count-1)
-  let newId = index+39
 
   const response = fetch(`http://localhost:8000/api/fooddetails/${newId}`, {
     method: 'DELETE',
@@ -185,7 +207,19 @@ const showNewCards = ()=>{
   )
 }
 
+const up2=()=>{
+}
+
 const update =(id)=>{
+
+ 
+  
+  
+ 
+  
+    
+  
+
 
 
   // e.preventDefault();
@@ -204,14 +238,37 @@ const update =(id)=>{
   (
     
     async()=>{
-      let newId = id+39
+        try {
+          const response = await fetch('http://localhost:8000/api/foods/', {
+            headers: {'Content-Type': 'application/json'},
+           credentials: 'include',
+          
+       });
+          if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+          }
+      
+          // ✅ call response.json() here
+          const result = await response.json();
+          console.log(result);
+          setFoodId(result.slice(-1)[0].id)
+          console.log(foodId,'yes');
 
-  const res = fetch(`http://localhost:8000/api/fooddetails/${newId}`, {
+        } catch (err) {
+          console.log(err);
+        }
+      
+        let newId = foodId
+        console.log(newId,'kfd')
+
+
+
+  const res =  await fetch(`http://localhost:8000/api/fooddetails/${newId}`, {
             method: 'Put',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
             body: JSON.stringify({
-              id: id,
+              id: newId,
               user,
               user_id,
               food_name,
@@ -219,7 +276,7 @@ const update =(id)=>{
             })
 
         });
-        console.log(id, 'er')
+        console.log(newId, 'er')
 }
 
 
