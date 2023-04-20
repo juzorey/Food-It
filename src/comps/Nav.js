@@ -26,10 +26,10 @@ let menu
       <div className="inner-nav">
         <div className="nav-title"><h2>Foodit</h2></div>
         <div className="nav-content">
-          <Link to="/" className="a">Home</Link>
+          <Link to="/home" className="a">Home</Link>
           <Link to="/" className="a">Track</Link>
           <Link to="/" className="a">Profile</Link>
-          <Link to='/login' className="a" >Login</Link>
+          <Link to='/' className="a" >Login</Link>
 
         </div>
 
@@ -47,10 +47,10 @@ let menu
     <div className="inner-nav">
       <div className="nav-title"><h2>Foodit</h2></div>
       <div className="nav-content">
-        <Link to="/" className="a">Home</Link>
+        <Link to="/home" className="a">Home</Link>
         <Link to="/" className="a">Track</Link>
         <Link to="/" className="a">Profile</Link>
-        <Link to='/login' className="a" onClick={logout}>Logout</Link>
+        <Link to='/' className="a" onClick={logout}>Logout</Link>
 
       </div>
 

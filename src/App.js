@@ -47,8 +47,8 @@ setId(content.id)
 {/* <Nav name={name}         setName={setName}
 /> */}
     <Routes>
-      <Route path = '/' element={<Home name={name} id={id} />} />
-      <Route path = '/login' element={<Login setName={setName} />} />
+      <Route path = '/home' element={<Home name={name} id={id} />} />
+      <Route path = '/' element={<Login setName={setName} />} />
       <Route path = '/foods' element={<Foods setName={setName} />} />
 
 

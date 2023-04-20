@@ -52,7 +52,7 @@ export const Login = (props) => {
         const content = await response.json()
         props.setName(content.name)
 
-        navigate('/')
+        navigate('/home')
 
         
           
