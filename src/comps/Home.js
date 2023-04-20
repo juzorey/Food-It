@@ -60,7 +60,7 @@ const Home = (props) => {
                     {props.name ? `Welcome ${props.name} Id: ${props.id}`: `you are not logged refresh`}
 
                     </div>                    
-                    <div className="a1 a2"><h2>Eat Vegetables</h2></div>
+                    <div className="a1 a2"><h2 className="text-xl">Refresh if nothing shows</h2></div>
                     <div className="a1 a3">
                       <div className="b1">
                         <div className="underline"><FaRegArrowAltCircleDown/>Weight</div>

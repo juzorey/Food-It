@@ -68,6 +68,7 @@ export const Login = (props) => {
 <p class="title">Login</p>
 <form class="form" onSubmit={submit}>
   <div class="input-group">
+Use username: test@test.com password: test
     <label for="username">Username</label>
     <input type="email" className="form-control"  name="username" id="username" placeholder="Email address" required
                    onChange={e => setEmail(e.target.value)}/>
