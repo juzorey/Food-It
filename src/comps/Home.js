@@ -1,4 +1,5 @@
 // Import the react JS packages
+import { AllFoods } from "./AllFoods";
 import Player from "./Player";
 import { useEffect, useState } from "react";
 import Nav from "./Nav";
@@ -56,7 +57,7 @@ const Home = (props) => {
               <div className="box1">
                   <div className="info1">
                     <div className="a1 a2"> 
-                    {props.name ? `Welcome ${props.name} Id: ${props.id}`: `you are not logged`}
+                    {props.name ? `Welcome ${props.name} Id: ${props.id}`: `you are not logged refresh`}
 
                     </div>                    
                     <div className="a1 a2"><h2>Eat Vegetables</h2></div>
@@ -82,8 +83,13 @@ const Home = (props) => {
 </div> 
 
               </div>
-              <div className="box1">b</div>
-              <div className="box1">c</div>
+              <div className="box1 fake2">
+                <AllFoods/>
+              
+              
+              
+              </div>
+              <div className="box1 fake3"></div>
 
             </div>
             <div className="second-profile-info">
@@ -100,7 +106,7 @@ const Home = (props) => {
 
              
               </div>
-              <div className="box3">
+              <div className="box3 ">
 
               </div>
 

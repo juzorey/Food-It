@@ -1,9 +1,13 @@
-svg{
-border: 1px dotted red 
-}
+
 circle{
   stroke: white;
   stroke-width: 1rem;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 400;
+  fill:none;
+  stroke-linecap: round;
+  position: relative;
+  
 }
 
 
@@ -12,6 +16,34 @@ circle{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.count{
+  border:none;
+  outline:none;
+  position:absolute;
+top:20%;
+right:-213px;
+transform:translate(-50%,-50%);
+
+font-size: 5rem;
+color:rgb(0, 0, 0);
+text-align: center;
+background-color: transparent;
+z-index:1;
+}
+.count2{
+  border:none;
+  outline:none;
+  position:absolute;
+top:27%;
+right:100px;
+transform:translate(-50%,-50%);
+
+font-size: 3rem;
+color:rgb(0, 0, 0);
+text-align: center;
+background-color: transparent;
+z-index:1;
 }
 
 .dots {
@@ -96,7 +128,7 @@ button {
   align-items: center;
   height: 800px ;
   width: 1150px;
-  background-color: rgb(155, 116, 65);
+  /* background-color: rgb(155, 116, 65); */
 }
 
 .profile-container{
@@ -105,13 +137,13 @@ button {
   height: 700px ;
   width: 1050px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0);
   grid-gap:13px;
 }
 .main-profile-info{
   height: 700px ;
   width: 650px;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0);
   display: flex;
   flex-direction: column;;
   grid-gap:13px;
@@ -119,7 +151,7 @@ button {
 .second-profile-info{
   height: 700px ;
   width: 650px;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0);
   display: flex;
   flex-direction: column;;
   grid-gap:13px;
@@ -128,14 +160,28 @@ button {
 .box1{
   height: 233px ;
   width: 650px;
-  background-color: rgb(6, 61, 61);
+  background-color: rgba(26, 117, 117, 0);
+  display: flex;
+  grid-gap:13px;
+}
+.fake2{
+  height: 233px ;
+  width: 650px;
+  background-color: rgb(65, 98, 190);
+  display: flex;
+  grid-gap:13px;
+}
+.fake3{
+  height: 233px ;
+  width: 650px;
+  background-color: rgba(90, 198, 198, 0.976);
   display: flex;
   grid-gap:13px;
 }
 .info1{
   height: 223px ;
   width: 375px;
-  background-color: rgb(54, 61, 6);
+  background-color: rgb(163, 176, 81);
   display: flex;
   flex-direction: column;
 }
@@ -160,7 +206,7 @@ button {
 .b1{
   width:145px;
   height: 42px;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0);
 }
 .underline{
   border-right: 2px black solid;
@@ -168,7 +214,7 @@ button {
 .box2{
   height: 470px ;
   width: 400px;
-  background-color: rgb(171, 22, 16);
+  background-color: rgb(149, 233, 104);
   display: flex;
   flex-direction: column;
 }
@@ -199,7 +245,7 @@ button {
 .box3{
   height: 230px ;
   width: 400px;
-  background-color: rgb(16, 171, 16);
+  background-color: rgb(224, 131, 56);
   display: flex;
   flex-direction: column;
 }
@@ -318,6 +364,23 @@ button {
   border: none;
   border-radius: 0.375rem;
   font-weight: 600;
+}
+
+.foods-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.all-foods{
+  display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+  width: 100px;
+  height: 50px;
+  background-color: rgb(213, 137, 137);
+  border-radius: 20px;
 }
 
 .social-message {
