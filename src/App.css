@@ -10,6 +10,146 @@ circle{
   
 }
 
+/* Block 2 Habits*/
+
+.h{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.habits-container-inner{
+  height: 200px;
+  width: 525px;
+  background-color: #20bf6b;
+  border-top: solid 1px white;
+}
+.second{
+  display: flex;
+  
+
+}
+.total-cals{
+  height:200px;
+  width: 200px;
+}
+.individual-macros{
+  height:200px;
+  width: 325px;
+}
+.new-habit-slot{
+  height: 40px;
+  width: 525px;
+  background-color: #71d89f89;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-size: small;
+  font-weight: 600;
+  color: grey;
+  cursor: pointer;
+}
+.habits-name-slot{
+  height: 40px;
+  width: 525px;
+  background-color: #71d89f89;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border: grey solid 1px;
+}
+.habits-boxes{
+  width:40%;
+  display:flex;
+  flex-direction: row;
+ justify-content: center;
+}
+.tes{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+.input-habit-name{
+  width: 100%;
+  border: grey solid 1px;
+  background-color: transparent;
+  outline:none;
+  height: 40px;
+}
+
+.garbage-bin{
+width: 30%;
+  border: grey solid 1px;
+  background-color: transparent;
+  outline:none;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-habit-name:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.block-2{
+  height: 500px;
+  width: 1050px;
+  background-color: papayawhip;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.habits-container{
+  height: 400px;
+  width: 525px;
+  background-color: rgb(171, 120, 39);
+}
+.block-2-display{
+  height: 400px;
+  width: 525px;
+
+  background-image: url("images/gradient-image.jpg");
+  background-repeat: no-repeat;
+  background-size: 525px 400px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.block-2-inner{
+  height: 300px;
+  width: 375px;
+  background-color: rgba(255, 255, 255, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.block-2-a{
+  height: 100px;
+  width: 375px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fake-btn{
+  border-radius: 5px;
+  width: 80px;
+  height: 50px;
+  background-color: #20bf6b;
+}
+.text{
+  font-size: 40px;
+}
+
+/* End Block 2  */
+
+
+
 
 .player {
   display: flex;
@@ -49,6 +189,7 @@ text-align: center;
 background-color: transparent;
 z-index:1;
 }
+
 
 .dots {
   display: flex;
@@ -128,9 +269,10 @@ button {
 /*profile start*/
 .profile-view{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 800px ;
+  height: auto ;
   width: 1150px;
   /* background-color: rgb(155, 116, 65); */
 }
@@ -143,7 +285,9 @@ button {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 255, 0);
   grid-gap:13px;
+  visibility: hidden;
 }
+
 .main-profile-info{
   height: 700px ;
   width: 650px;
