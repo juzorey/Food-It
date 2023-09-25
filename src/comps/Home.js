@@ -1,8 +1,12 @@
 // Import the react JS packages
+import TotalMacroCircle  from "./TotalMacroCircle"
+import EatingTime from "./EatingTimes";
 import { AllFoods } from "./AllFoods";
+import MacrosBar  from "./MacrosBar";
 // import Player from "./Player";
 import {useEffect, useState } from "react";
 import {Time} from "./Time"
+import StopWatch from "./StopWatch"
 import Nav from "./Nav";
 import { Foods } from "./Foods";
 import axios from "axios";
@@ -30,13 +34,13 @@ const Home = (props) => {
   const[firstG,setFirstG] =useState(true)
 
   const[bbox,setBox] = useState('')
-  const[a,setA] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
-  const[b,setB] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
-  const[c,setC] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
-  const[d,setD] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
-  const[e,setE] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
-  const[f,setF] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
-  const[g,setG] = useState(<MdCheckBoxOutlineBlank size="20px"/>)
+  const[a,setA] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
+  const[b,setB] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
+  const[c,setC] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
+  const[d,setD] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
+  const[e,setE] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
+  const[f,setF] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
+  const[g,setG] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
 
 
 
@@ -114,7 +118,7 @@ const habitTemplate = (index)=>{
       </ul>
   
     </div>
-    <div className="garbage-bin" onClick={()=>removeCards(index)}> <ImBin/> </div>
+    <div className="garbage-bin" onClick={()=>removeCards(index)}> <ImBin color="white"/> </div>
     </div>)
 
   return habitSlots
@@ -163,12 +167,12 @@ const removeCards = (index) => {
     console.log("click")
     if(bbox == "1"){
       if(firstA == true){
-        setA(<MdCheckBox size="20px"/>)
+        setA(<MdCheckBox size="20px" color="cyan"/>)
         setFirstA(false)
   
       } 
       else if(firstA == false){
-        setA(<MdCheckBoxOutlineBlank size="20px"/>)
+        setA(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstA(true)
   
       }
@@ -176,12 +180,12 @@ const removeCards = (index) => {
     else if(bbox == "2"){
       console.log('2')
       if(firstB == true){
-        setB(<MdCheckBox size="20px"/>)
+        setB(<MdCheckBox size="20px" color="cyan"/>)
         setFirstB(false)
   
       } 
       else if(firstB == false){
-        setB(<MdCheckBoxOutlineBlank size="20px"/>)
+        setB(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstB(true)
   
       }
@@ -189,36 +193,36 @@ const removeCards = (index) => {
     else if(bbox == "3"){
       console.log('3')
       if(firstC == true){
-        setC(<MdCheckBox size="20px"/>)
+        setC(<MdCheckBox size="20px" color="cyan"/>)
         setFirstC(false)
   
       } 
       else if(firstC == false){
-        setC(<MdCheckBoxOutlineBlank size="20px"/>)
+        setC(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstC(true)
   
       }
     } else if(bbox == "4"){
       console.log('4')
       if(firstD == true){
-        setD(<MdCheckBox size="20px"/>)
+        setD(<MdCheckBox size="20px" color="cyan"/>)
         setFirstD(false)
   
       } 
       else if(firstD == false){
-        setD(<MdCheckBoxOutlineBlank size="20px"/>)
+        setD(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstD(true)
   
       }
     } else if(bbox == "5"){
       console.log('5')
       if(firstE == true){
-        setE(<MdCheckBox size="20px"/>)
+        setE(<MdCheckBox size="20px" color="cyan"/>)
         setFirstE(false)
   
       } 
       else if(firstE == false){
-        setE(<MdCheckBoxOutlineBlank size="20px"/>)
+        setE(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstE(true)
   
       }
@@ -226,12 +230,12 @@ const removeCards = (index) => {
     else if(bbox == "6"){
       console.log('6')
       if(firstF == true){
-        setF(<MdCheckBox size="20px"/>)
+        setF(<MdCheckBox size="20px" color="cyan"/>)
         setFirstF(false)
   
       } 
       else if(firstF == false){
-        setF(<MdCheckBoxOutlineBlank size="20px"/>)
+        setF(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstF(true)
   
       }
@@ -239,12 +243,12 @@ const removeCards = (index) => {
     else if(bbox == "7"){
       console.log('7')
       if(firstG == true){
-        setG(<MdCheckBox size="20px"/>)
+        setG(<MdCheckBox size="20px" color="cyan"/>)
         setFirstG(false)
   
       } 
       else if(firstG == false){
-        setG(<MdCheckBoxOutlineBlank size="20px"/>)
+        setG(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
         setFirstG(true)
   
       }
@@ -295,7 +299,14 @@ return(<div>
 
         
         <div className="profile-view">
+
+          <div className="block-1">
+<EatingTime/>
+          </div>
+
+
           <div className="block-2">
+            <div className="habits-title">Habits</div>
             <div className="habits-container">
               <div className="habits-container-inner">
                 {/* <Svg>
@@ -312,11 +323,15 @@ return(<div>
               </div>
 
               <div className="habits-container-inner second">
-                <div className="total-cals">circle progress bar with total calories</div>
+                <div className="total-cals">
+                <TotalMacroCircle/>
+             
+
+                </div>
                 <div className="individual-macros">
-                  <div className="macro-lines"> protien with number ontop with bar underneath</div>
-                  <div className="macro-lines"> carbs with number ontop with bar underneath</div>
-                  <div className="macro-lines"> fats with number ontop with bar underneath</div>
+
+                  <MacrosBar value={20}/>
+                
                 </div>
 
 
@@ -327,17 +342,7 @@ return(<div>
             </div>
 
             <div className="block-2-display">
-              <div className="block-2-inner">
-                <div className="block-2-a">
-                  <div className="fake-btn"></div>
-                  <div className="fake-btn"></div>
-                  <div className="fake-btn"></div>
-
-                </div>
-                <div className="block-2-a text">{<Time/>}</div>
-                <div className="block-2-a">tes box</div>
-
-              </div>
+              <StopWatch/>
             </div>
           </div>
 

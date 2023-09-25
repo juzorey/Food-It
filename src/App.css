@@ -1,10 +1,10 @@
 
 circle{
-  stroke: white;
+  /* stroke: white; */
   stroke-width: 1rem;
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 400;
-  fill:none;
+  /* stroke-dasharray: 1200;
+  stroke-dashoffset: 400; */
+  fill:transparent;
   stroke-linecap: round;
   position: relative;
   
@@ -21,7 +21,7 @@ circle{
 .habits-container-inner{
   height: 200px;
   width: 525px;
-  background-color: #20bf6b;
+  background-color: transparent;
   border-top: solid 1px white;
 }
 .second{
@@ -37,10 +37,126 @@ circle{
   height:200px;
   width: 325px;
 }
+.breakfast-title{
+  margin-top: 10px;
+  height: 100%;
+
+}
+.progressbar-contatiner{
+  height:200px;
+  width: 325px;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+
+}
+.progressbar-contatiner .skills-box{
+  width: 100%;
+
+}
+
+/*Macro-circle*/
+.macro-title{
+  position:relative;
+  margin-left: -150px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.circle-background{
+  fill:none;
+  stroke:#ddd;
+
+}
+.circle-progress{
+  fill:none;
+  stroke:green;
+  stroke-linecap:round;
+  stroke-linejoin: round
+}
+
+/*END*/
+
+.progress{
+height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.progressbar{
+  width: 90%;
+  height:15px;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  align-items: stretch;
+  border-radius: 60px;
+
+  box-shadow: 0px 0px 2px #ffffff;
+  overflow: hidden;
+
+}
+
+.bar{
+  width: 0%;
+  background: rgb(105, 254, 254);
+  background: linear-gradient(
+    180deg,
+    rgb(249, 49, 49)0%,
+    rgba(249, 71, 71, 0.88)32%,
+    rgb(245, 17, 17)100%
+  );
+
+}
+/* mediaqueries for response */
+.progressbar-number-container{
+  width:30px;
+  margin-left: 30px;
+  display:flex;
+  flex-direction: row;
+  color:black;
+  font-family: sans-serif;
+  font-weight: bold;;
+}
+
+.skills-box .title{
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+  color: #333;
+}
+.skills-box .skills-bar{
+  width: 100%;
+
+  border-radius: 6px;
+  background:rgba(0, 0, 0, 0.1) ;
+
+}
+.skills-bar .skills-per{
+  display: block;
+  height: 100%;
+  width: 85%;
+  border-radius: 6px;
+  background: #4070f4;
+  animation: progress 0.4s ease-in-out forwards;
+  opacity: 0;
+}
+@keyframes progress {
+  0%{
+    width: 0;
+    opacity:0;
+  }
+  100%{
+  opacity: 1;
+  }
+}
+
 .new-habit-slot{
   height: 40px;
   width: 525px;
-  background-color: #71d89f89;
+  background-color: transparent;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -52,7 +168,7 @@ circle{
 .habits-name-slot{
   height: 40px;
   width: 525px;
-  background-color: #71d89f89;
+  background-color: transparent;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -79,6 +195,7 @@ circle{
   background-color: transparent;
   outline:none;
   height: 40px;
+  color: white;
 }
 
 .garbage-bin{
@@ -91,27 +208,205 @@ width: 30%;
   justify-content: center;
   align-items: center;
 }
+.garbage-bin-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
 .input-habit-name:hover{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.block-2{
-  height: 500px;
-  width: 1050px;
-  background-color: papayawhip;
+.block-1{
+
+    height: 500px;
+    width: 1100px;
+    background-color: rgba(95, 90, 90, 0.116);
+    border-radius: 10px;
+    box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter:blur(10px);
+    display: flex;
+    justify-content: space-around;
+  
+    align-items: center;
+    font-family:"Poppins", sans-serif;
+  
+
+}
+
+.eating-time-container{
+display: flex;
+width: 100%;
+justify-content: space-evenly;
+align-items: center;
+}
+
+.breakfast-container{
+  display:flex;
+  flex-direction: column;
+
+  width: 300px;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.add-log-btn{
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.progress-container{
+  display:flex;
+  flex-direction: column;
+
+  width: 300px;
+  height: 100px;
+  background-color: rgba(215, 215, 215, 0.116);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+  backdrop-filter:blur(10px);
+
+}
+
+
+.progress-bar-container{
+
+  margin-left: 20px;
+  width: 75%;
+  height:25px;
+  display: flex;
+  justify-content: start;
+  flex-direction: start;
+  align-items: stretch;
+  border-radius: 60px;
+
+  box-shadow: 0px 0px 2px #ffffff;
+  overflow: hidden;
+
+}
+.progress-percentage{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 600;
+  width: 100%;
+  position: absolute;
+  left: 120px;
+  top:55px;
+  color:white;
+}
+.percentage{
+  color:white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 600;
+  width: 100%;
+  position: relative;
+  left: 140px;
+  top:-20px;
+
+}
+
+.breakfast-bar{
+  width: 0%;
+  height: auto;
+  background: rgb(105, 254, 254);
+  background: linear-gradient(
+    180deg,
+    rgb(249, 49, 49)0%,
+    rgba(249, 71, 71, 0.88)32%,
+    rgb(245, 17, 17)100%
+  );
+
+}
+
+
+.breakfast-input{
+  overflow-y:auto;
+  margin-top: 10px;
+  display:flex;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(215, 215, 215, 0.116);
+  border-radius: 10px;
+  box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter:blur(10px);
+}
+
+.breakfast-log-inner-container{
+  width: 300px;
+  height: 50px;
+  background-color: #20bf6b;
+  display: flex;
+  justify-content: space-around;
+}
+.breakfast-item-name{
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+}
+.breakfast-item-container{
+
+  color: #19d9f7;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+}
+
+
+.breakfast-item-calories{
+  display: flex;
+  justify-content: end;
+  margin-top: 5px;
+  margin-bottom: -5px;
+}
+
+
+.block-2{
+  margin-top: 50px;
+  height: 500px;
+  width: 1100px;
+  background-color: rgba(95, 90, 90, 0.116);
+  border-radius: 10px;
+  box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter:blur(10px);
+  display: flex;
+  justify-content: space-around;
+
+  align-items: center;
+  font-family:"Poppins", sans-serif;
+
+}
+.habits-title{
+  position: absolute;
+  top:10px;
+  left:10px;
+  font-family:"Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(115, 53, 197);
+}
 .habits-container{
   height: 400px;
   width: 525px;
-  background-color: rgb(171, 120, 39);
+  background-color:transparent;
 }
 .block-2-display{
   height: 400px;
   width: 525px;
 
+
+  top:300px;
   background-image: url("images/gradient-image.jpg");
   background-repeat: no-repeat;
   background-size: 525px 400px;
@@ -119,6 +414,12 @@ width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.circle-text{
+  color:white;
+}
+text{
+  color:white;
 }
 .block-2-inner{
   height: 300px;
@@ -130,18 +431,51 @@ width: 30%;
 }
 .block-2-a{
   height: 100px;
-  width: 375px;
+  width: 475px;
   background-color: transparent;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.fake-btn{
-  border-radius: 5px;
-  width: 80px;
-  height: 50px;
-  background-color: #20bf6b;
+.fake-btn-2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  background-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: white;
+  font-size:40px;
+  cursor: pointer;
+
 }
+.fake-btn-2:hover{
+  color: black;
+}
+.fake-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 140px;
+  height: 40px;
+  border: 2px solid white;
+  background-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: white;
+  font-size:16px;
+  cursor: pointer;
+}
+.fake-btn:hover{
+  background-color: white;
+  color: black;
+}
+
 .text{
   font-size: 40px;
 }
@@ -244,12 +578,12 @@ button {
 }
 
 .nav-bar{
-  width: 300px;
+  width: 250px;
   height: 100vh;
   position: fixed;
   top: 0px;
   left:0px;
-  background-color: rgb(197, 223, 222);
+  background-color: rgb(32, 32, 32);
   z-index: 0;
 }
 .a{
@@ -270,10 +604,10 @@ button {
 .profile-view{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: auto ;
-  width: 1150px;
+  width: 1430px;
   /* background-color: rgb(155, 116, 65); */
 }
 

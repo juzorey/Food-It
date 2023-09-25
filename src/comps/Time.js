@@ -10,7 +10,7 @@ export const Time=()=>{
     }
 
   })
-return(<div>
+return(<div style={{color:'white', fontFamily:'Gill Sans',fontWeight:700, fontSize:70}}>
   {date.toLocaleTimeString()}
 </div>
 
