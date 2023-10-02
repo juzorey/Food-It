@@ -24,7 +24,7 @@ let menu
 
       <div className="nav-bar">
       <div className="inner-nav">
-        <div className="nav-title"><h2>Foodit</h2></div>
+        <div className="nav-title"><h2>Name of User Logged In</h2></div>
         <div className="nav-content">
           <Link to="/home" className="a">Home</Link>
           <Link to="/" className="a">Track</Link>

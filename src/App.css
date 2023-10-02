@@ -42,6 +42,12 @@ circle{
   height: 100%;
 
 }
+.name-input{
+  margin-top: 5px;
+  background: transparent;
+  border-bottom: 2px solid black;
+
+}
 .progressbar-contatiner{
   height:200px;
   width: 325px;
@@ -761,6 +767,7 @@ button {
 .home{
   display: flex;
   justify-content: column;
+  overflow-x: hidden;
 }
 #username{
   width: 280px;

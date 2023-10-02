@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import { Foods } from './comps/Foods.js';
 import { Register } from './comps/Register.js';
-
+import FakePage from './comps/FakePage.js';
+import FakeLogIn from './comps/FakeLogIn.js';
+import Headers from './comps/Headers.js';
+import PrivateRoutes from './utils/PrivateRoute.js';
+import {AuthProvider} from './contexts/AuthContext.js';
 
 function App() {
 
@@ -47,17 +51,27 @@ setId(content.id)
     <div className="App">
 {/* <Nav name={name}         setName={setName}
 /> */}
+    <AuthProvider>
+      <Headers/>
+  
+
     <Routes>
-      <Route path = '/home' element={<Home name={name} id={id} />} />
-      <Route path = '/login' element={<Login setName={setName} />} />
-      <Route path = '/' element={<Register />} />
+        <Route path = '/home' element={<Home name={name} id={id} />} />
+        <Route path = '/login' element={<Login setName={setName} />} />
+        <Route path = '/' element={<Register />} />
+        <Route element={<PrivateRoutes/>}>
+          <Route path = '/fake' element={<FakePage/>} exact/>
+        </Route>
+        <Route path = '/flogin' element={<FakeLogIn />} exact />
 
-      <Route path = '/foods' element={<Foods setName={setName} />} />
+        <Route path = '/foods' element={<Foods setName={setName} />} /> 
 
 
-      {/* <Route path="/login" element={<Login />} /> */}
-
+        <Route path="/login" element={<Login />} />
     </Routes>
+    </AuthProvider>
+
+
 
       
     </div>
