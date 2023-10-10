@@ -8,7 +8,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 
 export default function PrivateRoutes(){
-  let auth = {'token':false}
+  // let auth = {'token':false}
   let {user} = useContext(AuthContext);
   return(
 

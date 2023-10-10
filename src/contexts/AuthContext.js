@@ -39,13 +39,33 @@ export const AuthProvider = ({children})=>{
     setAuthToken(null)
     setUser(null)
     localStorage.removeItem('authTokens')
-    navigate('/flogin')
+    // navigate('/fake')
+  }
+  let RegisterUser = async(e)=>{
+    e.preventDefault()
+    console.log('RegisterUser')
+    let response = await fetch('http://localhost:8000/api/createuser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({"username":e.target.username.value,"email":e.target.email.value,"password":e.target.password.value})
+    })
+    //make this to automatically log them in or not
+    // let data = await response.json()
+
+    if(response.status==200){
+      navigate('/flogin')
+    }else{
+      alert("something went wrong");
+    }
   }
 
   let contextData ={
     user:user,
     authToken:authToken,
 
+    RegisterUser:RegisterUser,
     logInUser:LogInUser,
     logOutUser:logOutUser,
   }

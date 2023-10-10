@@ -22,52 +22,50 @@ function App() {
   const[id,setId] =useState('')
 
 
-  useEffect(()=>{
-(
-  async()=>{
+//   useEffect(()=>{
+//   (
+//   async()=>{
 
 
-    const response = await fetch('http://localhost:8000/api/user/', {
-       headers: {'Content-Type': 'application/json'},
-      credentials: 'include',
+//     const response = await fetch('http://localhost:8000/api/user/', {
+//        headers: {'Content-Type': 'application/json'},
+//       credentials: 'include',
      
-  });
-const content = await response.json();
-setName(content.name)
-setId(content.id)
+//   });
+// const content = await response.json();
+// setName(content.name)
+// setId(content.id)
 
+//   }
+// )(
 
-
-  }
-)(
-
-)
-},[])
+// )
+// },[])
 
 
 
 
   return (
     <div className="App">
-{/* <Nav name={name}         setName={setName}
-/> */}
+
     <AuthProvider>
       <Headers/>
   
 
     <Routes>
+        <Route path="/register" element ={<Register/>}/>
         <Route path = '/home' element={<Home name={name} id={id} />} />
         <Route path = '/login' element={<Login setName={setName} />} />
         <Route path = '/' element={<Register />} />
         <Route element={<PrivateRoutes/>}>
           <Route path = '/fake' element={<FakePage/>} exact/>
         </Route>
-        <Route path = '/flogin' element={<FakeLogIn />} exact />
+        <Route path = '/flogin' element={<FakeLogIn />}  />
 
         <Route path = '/foods' element={<Foods setName={setName} />} /> 
 
 
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
     </AuthProvider>
 
