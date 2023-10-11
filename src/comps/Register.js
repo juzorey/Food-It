@@ -64,7 +64,7 @@ export const Register = (props) => {
     
 
       const goToSignIn=()=>{
-        navigate('/flogin')
+        navigate('/login')
       }
 
 
@@ -93,7 +93,7 @@ export const Register = (props) => {
       <div class="forgot">
         <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
       </div>
-      <input type="submit"/>
+
     </div>
     <button class="sign" type="submit" onClick={(register.contextData.RegisterUser)}>Register</button>
     <button class="sign" onClick={goToSignIn}>

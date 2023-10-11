@@ -14,6 +14,7 @@ export const AuthProvider = ({children})=>{
   const[authToken,setAuthToken]=useState(()=>localStorage.getItem('authTokens') ?JSON.parse(localStorage.getItem('authTokens')):null)//with a function it calls it only one
   const[user,setUser]=useState(()=>localStorage.getItem('authTokens') ?jwt_decode(localStorage.getItem('authTokens')):null)
 
+
   let LogInUser= async(e)=>{
     e.preventDefault()
     console.log('form submitted')
@@ -29,17 +30,44 @@ export const AuthProvider = ({children})=>{
       setAuthToken(data)
       setUser(jwt_decode(data.access))
       localStorage.setItem('authTokens', JSON.stringify(data))
-      navigate('/fake')
+      navigate('/home')
     }else{
       alert("something went wrong");
     }
   }
 
+
+  // const foodInfo = async ()=>{
+  //   const url = 'https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=apple';
+  //   const options = {
+  //     method: 'GET',
+  //     headers: {
+  //       'X-RapidAPI-Key': '695f94a9e2mshcc83a34a2c24bf7p1d2529jsnfab0b5eddbbd',
+  //       'X-RapidAPI-Host': 'food-calorie-data-search.p.rapidapi.com'
+  //     }
+  //   };
+
+  //   try {
+	//     const response = await fetch(url, options);
+	//     const result = await response.json();
+	//     console.log(result);
+  //   } catch (error) {
+	//     console.error(error);
+  //   }
+  // }
+  // foodInfo()
+
+
+
+  
+
+
+
     const logOutUser =()=>{
     setAuthToken(null)
     setUser(null)
     localStorage.removeItem('authTokens')
-    // navigate('/fake')
+    navigate('/login')
   }
   let RegisterUser = async(e)=>{
     e.preventDefault()
@@ -61,14 +89,6 @@ export const AuthProvider = ({children})=>{
     }
   }
 
-  let contextData ={
-    user:user,
-    authToken:authToken,
-
-    RegisterUser:RegisterUser,
-    logInUser:LogInUser,
-    logOutUser:logOutUser,
-  }
 
 
   let updateToken= async()=>{
@@ -101,6 +121,15 @@ export const AuthProvider = ({children})=>{
     age:"20"
   })
  
+  let contextData ={
+    user:user,
+    authToken:authToken,
+
+    RegisterUser:RegisterUser,
+    logInUser:LogInUser,
+    logOutUser:logOutUser,
+  }
+
 
   useEffect(()=>{
 

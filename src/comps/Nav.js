@@ -1,10 +1,15 @@
 
 import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 export default function Nav(props){
 
+  let data = useContext(AuthContext)
+
+   
 
   const logout = async () => {
-
+  
 try{
   await fetch('http://localhost:8000/api/logout/', {
     method: 'POST',
@@ -52,7 +57,11 @@ let menu
         <Link to="/home" className="a">Home</Link>
         <Link to="/" className="a">Track</Link>
         <Link to="/" className="a">Profile</Link>
-        <Link to='/' className="a" onClick={logout}>Logout</Link>
+
+        {data.contextData.user?
+      (<p className="a" onClick={data.contextData.logOutUser}>Logout</p>):(<Link to="login">Login</Link>
+      )}
+        {/* <Link to='/' className="a" onClick={logout}>Logout</Link> */}
 
       </div>
 

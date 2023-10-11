@@ -2,8 +2,8 @@ import React, {useContext}from "react";
 import { AuthContext } from "../contexts/AuthContext.js";
 
 export default function FakeLogIn(){
-  const log = useContext(AuthContext);
 
+  const log  = useContext(AuthContext)
   return(
     <div>
 

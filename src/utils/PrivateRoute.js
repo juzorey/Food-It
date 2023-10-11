@@ -12,7 +12,7 @@ export default function PrivateRoutes(){
   let {user} = useContext(AuthContext);
   return(
 
-    (user? <Outlet/>: <Navigate to='/flogin'/>)
+    (user? <Outlet/>: <Navigate to='/login'/>)
   )
 
 

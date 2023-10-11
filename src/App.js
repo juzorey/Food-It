@@ -49,7 +49,7 @@ function App() {
     <div className="App">
 
     <AuthProvider>
-      <Headers/>
+      {/* <Headers/> */}
   
 
     <Routes>
@@ -58,7 +58,7 @@ function App() {
         <Route path = '/login' element={<Login setName={setName} />} />
         <Route path = '/' element={<Register />} />
         <Route element={<PrivateRoutes/>}>
-          <Route path = '/fake' element={<FakePage/>} exact/>
+          <Route path = '/home' element={<FakePage/>} exact/>
         </Route>
         <Route path = '/flogin' element={<FakeLogIn />}  />
 

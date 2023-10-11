@@ -593,6 +593,7 @@ button {
   z-index: 0;
 }
 .a{
+  cursor: pointer;
 	font-size: 2em;
 	text-decoration: none;
 	letter-spacing: 2px;
