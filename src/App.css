@@ -12,6 +12,81 @@ circle{
 
 /* Block 2 Habits*/
 
+
+.search-food-container{
+  display: flex;
+  width: 300px;
+
+  flex-direction: column;
+}
+.select-btn{
+  display: flex;
+  width: 300px;
+  height: 65px;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+  border-radius:7px;
+}
+
+.select-btn i{
+  transition: tranform .3s linear;
+}
+/* rotate the little arrow */
+.wrapper.active .select-btn i{
+  transform: rotate(-180deg) ;
+}
+.content{
+
+  background-color: white;
+  border-radius:7px;
+  margin-top: 15px;
+  padding: 20px;
+}
+.search-food-container .active{
+  display: block;
+}
+.content .options{
+  padding-top: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.options::-webkit-scrollbar{
+  width: 7px;
+}
+.options::-webkit-scrollbar-track{
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+.options::-webkit-scrollbar-thumb{
+  border-radius: 25px;
+  background-color: #ccc;
+}
+
+.options li{
+  height: 50px;
+}
+.options li:hover{
+  background-color: #19d9f7;
+}
+.select-btn, .options li{
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+
+.search input{
+  height: 40px;
+  font-size: 20px;
+  width: 100%;
+  outline:none;
+  border: 1px solid grey;
+  padding: 0 15px 0 43px;
+}
 .h{
   display: flex;
   justify-content: center;

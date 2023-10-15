@@ -12,6 +12,7 @@ import FakeLogIn from './comps/FakeLogIn.js';
 import Headers from './comps/Headers.js';
 import PrivateRoutes from './utils/PrivateRoute.js';
 import {AuthProvider} from './contexts/AuthContext.js';
+import SearchFood from './comps/SearchFood.js';
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
   
 
     <Routes>
+        <Route path="/search" element={<SearchFood/>}/>
         <Route path="/register" element ={<Register/>}/>
         <Route path = '/home' element={<Home name={name} id={id} />} />
         <Route path = '/login' element={<Login setName={setName} />} />

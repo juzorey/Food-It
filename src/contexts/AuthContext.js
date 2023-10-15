@@ -37,25 +37,8 @@ export const AuthProvider = ({children})=>{
   }
 
 
-  // const foodInfo = async ()=>{
-  //   const url = 'https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=apple';
-  //   const options = {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-RapidAPI-Key': '695f94a9e2mshcc83a34a2c24bf7p1d2529jsnfab0b5eddbbd',
-  //       'X-RapidAPI-Host': 'food-calorie-data-search.p.rapidapi.com'
-  //     }
-  //   };
 
-  //   try {
-	//     const response = await fetch(url, options);
-	//     const result = await response.json();
-	//     console.log(result);
-  //   } catch (error) {
-	//     console.error(error);
-  //   }
-  // }
-  // foodInfo()
+
 
 
 
