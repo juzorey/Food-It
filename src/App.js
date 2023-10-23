@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Users from './comps/Users.js';
 import Home  from './comps/Home.js';
 import {Login}  from './comps/Login.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import './App.css'
 import { Foods } from './comps/Foods.js';
 import { Register } from './comps/Register.js';
@@ -12,13 +12,13 @@ import FakeLogIn from './comps/FakeLogIn.js';
 import Headers from './comps/Headers.js';
 import PrivateRoutes from './utils/PrivateRoute.js';
 import {AuthProvider} from './contexts/AuthContext.js';
-import SearchFood from './comps/SearchFood.js';
+import {SearchFood }from './comps/SearchFood.js';
 
 function App() {
 
 
 
- 
+
   const[name,setName] =useState('')
   const[id,setId] =useState('')
 
@@ -50,11 +50,12 @@ function App() {
     <div className="App">
 
     <AuthProvider>
+
       {/* <Headers/> */}
   
 
     <Routes>
-        <Route path="/search" element={<SearchFood/>}/>
+        {/* <Route path="/search" element={<SearchFood/>}/> */}
         <Route path="/register" element ={<Register/>}/>
         <Route path = '/home' element={<Home name={name} id={id} />} />
         <Route path = '/login' element={<Login setName={setName} />} />
@@ -69,7 +70,11 @@ function App() {
 
         {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
+
+
     </AuthProvider>
+
+
 
 
 

@@ -2,8 +2,9 @@ import React, {useState,useEffect,useRef}from "react";
 import { motion, animate } from "framer-motion"
 import { BsNodeMinusFill } from "react-icons/bs";
 import BreakfastLog from "./BreakfastLog";
+import { set } from "animejs";
 
-export default function EatingTime()
+export default function EatingTime({props})
 
 
 
@@ -13,7 +14,7 @@ const breakfastProgressRef = useRef(null)
 const lunchProgressRef = useRef(null)
 const dinnerProgressRef = useRef(null)
 
-
+const[total,setTotal] =useState(0) 
 
 const [breakfastProgress,setBreakfastProgress]= useState(0)
 const [lunchProgress, setLunchProgress] = useState(0)
@@ -70,7 +71,7 @@ return (<div className="eating-time-container">
   <div className="breakfast-container">
 
     <div className="progress-container">
-    <text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Breakfast<span className="total-calories-log">: 454</span></text>
+    <text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Breakfast<span className="total-calories-log">: {total}</span></text>
 
 
 
@@ -94,14 +95,14 @@ return (<div className="eating-time-container">
     </div>
 
     <div className="breakfast-input">
-      <BreakfastLog/>
+      <BreakfastLog onTotal = {setTotal}/>
 
     </div>
   </div>
   <div className="breakfast-container">
 
 <div className="progress-container">
-<text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Lunch<span className="total-calories-log">: 454</span></text>
+<text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Lunch<span className="total-calories-log">: cal</span></text>
 
 
   <div className="progress-bar-container">
@@ -122,7 +123,7 @@ return (<div className="eating-time-container">
 </div>
 
 <div className="breakfast-input">
-<BreakfastLog/>
+<BreakfastLog onTotal = {setTotal}/>
 
 </div>
 </div>
@@ -150,7 +151,7 @@ return (<div className="eating-time-container">
 </div>
 
 <div className="breakfast-input">
-<BreakfastLog/>
+<BreakfastLog onTotal = {setTotal}/>
 
 </div>
 </div>
