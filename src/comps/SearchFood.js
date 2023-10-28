@@ -11,7 +11,7 @@ export const SearchFood=({children,onQuery}) =>{
 //react hook can have it render with true or false or the style conditional to toggle display none or blocks
   
 const[toggle,setToggle] = useToggle(false)
-
+const[countDown,setCountDown]=useState(true)
 
 
   const handleClick = () => {
@@ -19,6 +19,9 @@ const[toggle,setToggle] = useToggle(false)
     setToggle(!toggle);
   };
 
+  const attributes = {
+    onClick:handleClick
+  }
 
   const wrapper = document.querySelector(".search-food-container"),
   selectBtn = document.querySelector('.select-btn'),
@@ -67,12 +70,15 @@ const[toggle,setToggle] = useToggle(false)
   const[calVal,setCalVal] = useState(0)
 
 let choseFoods = []
+let change = useRef()
+
 
 onQuery(calVal)
 
 
   function updateName(event) {
     setCalVal(calVal+parseInt(event.target.getAttribute('data-calories')))
+
 
 
     setChosen(
@@ -94,8 +100,10 @@ onQuery(calVal)
     console.log(event.target.getAttribute('data-calories'))
 
 
-    setToggle(false)
-
+    setToggle(!toggle)
+    setCountDown(false)
+    // console.log(change.current.onclick)//will use useRef later for updating the index valures 
+    // change.current
 }
 
 
@@ -157,7 +165,7 @@ let searchFoodContextData = {
 
 
     <div className="search-food-container">
-      <div className="select-btn" onClick={handleClick}>{chosen}
+      <div className="select-btn" {...(countDown? {...attributes} :{})}>{chosen}
       </div>
 
 

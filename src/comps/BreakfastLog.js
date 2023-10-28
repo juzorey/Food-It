@@ -31,16 +31,24 @@ const searchFoodData = useContext(SearchFood)
   //becuase it resest or th render is delayed to keep the speed have to keep the previous dealyed version in state which is naturall delayed becuase its state iwthin state ad have the new value updated into a regualr arr with the spreaded state arrau
 
 
-  const arr = [...calorieValueArr,query]
-  const result = arr.filter((word) => word!==0);
+  let arr = [...calorieValueArr,query]
+  const result = arr.filter((zero) => zero!==0);
+  const[newArr,setNewArr] = useState([result])
 
 
 
-  function addArr(query){
+  function addArr(query,array,type) {
+      if (type==1){
+
+        console.log(array)
 
 
-      const arrTotal = arr.reduce((accumulator,currentValue)=>{return accumulator+currentValue},0)
+      }      
+      
+      const arrTotal = array.reduce((accumulator,currentValue)=>{return accumulator+currentValue},0)
       console.log(result)
+
+
    
     return arrTotal
   }
@@ -48,14 +56,15 @@ const searchFoodData = useContext(SearchFood)
 const [fake,setFake]= useState(0)
 //it does it on first renderthen on second state it second render
   useEffect(()=>{
+
       setCalorieValueArr([...calorieValueArr,query])
 
-    onTotal(    addArr(query)
+    onTotal(addArr(query,arr)
     )
 
 
   
-  },[query])
+  },[])
   // setQuery(query)
 
 
@@ -93,40 +102,90 @@ const [fake,setFake]= useState(0)
     }
 
   }
+const[newDivLog,setNewDivLog] = useState([])
 
-  const addLog=()=>{
+
+  
+const createNewlog=()=>{
+
+  newDivLog.push(breakfastLogTemplate(count))
+    console.log(newDivLog)
+}
+const queryRef = useRef(query)
+
+
+const showNewLog=()=>{
+
+// return(log.map((log,index)=>{
+//       return(
+//         <div key = {index}ref = {queryRef}>
+//         {breakfastLogTemplate(index)}
+//         </div>
+//         )
+//     })
+//   )
+    return (
+      newDivLog.map((log,index)=>log)
+   
+    )
+  }
+const addLog=()=>{
+  createNewlog()
+
+
+
+    // setNewDivLog(0)
+    setLog([...log,count])
+
 
 
       setCount(count+1) 
-      setLog([...log,count])    
-      
+      // setLog([...log,count])    
+
+
     console.log(count)
-    console.log(log)
+
+
 
 
 
     }
+    
+    let clickCount = 0
 
- 
 
-  const showNewLog=()=>{
-    return (
-      log.map((log,index)=>{
-        return(
-          <div key = {index}>
-          {breakfastLogTemplate(index)}
-          </div>
-          )
-      })
-   
-    )
-  }
     //might have to conjoin the arrays of the position and the value , 
     const removeCards = (index) => {
-      const newLog = log.filter((_,i)=> i!==index)
+      clickCount ++
+      console.log(index,'index')
+      console.log(index+'key') // key
+      const divIndex = newDivLog.findIndex((key)=>key.key ==index) // finds index
+      newDivLog.splice(divIndex,1)
+
+      // const newLog = log.filter((_,i)=> i!==index)
+      // let newIndex = index - clickCount
+      // log.splice(0,1)
+
+      // console.log(newDivLog.splice(newIndex,1))
+      // console.log(newIndex)
+      console.log(newDivLog)
 
 
-      setLog(newLog,)
+
+
+
+      // const newLog = log.reduce((p,c)=>(c[p]==index &&p.push(c),p),[]);//filtering array o(n)
+
+
+
+
+
+
+      const filteredArr = result.filter((_,i)=> i!==index)
+      const callType = 1
+      addArr(query,filteredArr,callType)
+
+
       setCount(count-1)
 
 
@@ -148,7 +207,7 @@ const breakfastLogTemplate =(index)=>{
   let newLog=(
     <div key ={index}>
       <div className='breakfast-log-inner-container'>
-      <div style={{paddingLeft:20}} value><SearchFood onQuery = {setQuery}/></div>
+      <div style={{paddingLeft:20}} ><SearchFood onQuery = {setQuery}/></div>
         <div className="garbage-bin-2" onClick={()=>removeCards(index)}> <ImBin color="white"/></div>
 
 
@@ -181,7 +240,8 @@ return newLog
 
 
       <div className='add-btn-container'>
-        <i className="add-log-btn" ref = {totalRef}onClick={addLog}> add</i>
+
+        <i className="add-log-btn" ref = {totalRef}onClick={addLog}> {log.length>0? log[0].value: 0}add</i>
       </div>
     </div>
   )
