@@ -12,6 +12,7 @@ import FakeLogIn from './comps/FakeLogIn.js';
 import Headers from './comps/Headers.js';
 import PrivateRoutes from './utils/PrivateRoute.js';
 import {AuthProvider} from './contexts/AuthContext.js';
+import { FoodNutrionApi } from './comps/FoodNutrionApi.js';
 import {SearchFood }from './comps/SearchFood.js';
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
     <AuthProvider>
 
       {/* <Headers/> */}
-  
+    <FoodNutrionApi>
 
     <Routes>
         {/* <Route path="/search" element={<SearchFood/>}/> */}
@@ -70,6 +71,7 @@ function App() {
 
         {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
+    </FoodNutrionApi>
 
 
     </AuthProvider>

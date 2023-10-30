@@ -10,7 +10,7 @@ import { set } from 'animejs'
 
 export default function BreakfastLog({onTotal}) {
 
-const searchFoodData = useContext(SearchFood)
+  const searchFoodData = useContext(SearchFood)
 
 //do the array
 
@@ -81,27 +81,7 @@ const [fake,setFake]= useState(0)
 
 
 
-  const foodInfo = async (e)=>{
-    e.preventDefault()
-    const url = `https://food-nutrition-information.p.rapidapi.com/foods/search?query=${e.target.food.value}&pageSize=1&pageNumber=1&brandOwner=Kar%20Nut%20Products%20Company`;
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '695f94a9e2mshcc83a34a2c24bf7p1d2529jsnfab0b5eddbbd',
-        'X-RapidAPI-Host': 'food-nutrition-information.p.rapidapi.com'
-      }
-    };
-    
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result.foods[0].foodNutrients[3].value);
-      setCalories(result.foods[0].foodNutrients[3].value)
-    } catch (error) {
-      console.error(error);
-    }
 
-  }
 const[newDivLog,setNewDivLog] = useState([])
 
 

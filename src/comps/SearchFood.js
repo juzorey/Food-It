@@ -1,11 +1,17 @@
 
 
-import React,{ChangeEvent,useState, createContext, useRef,useEffect} from "react";
+import React,{ChangeEvent,useState, createContext, useContext, useRef,useEffect} from "react";
 import {useToggle} from './useToggle.js'
+import {foodDataContext}from './FoodNutrionApi.js'
+
 
 // export const SearchFoodContext = createContext();
 
 export const SearchFood=({children,onQuery}) =>{
+  const foodNutrionApiData= useContext(foodDataContext)
+
+
+
 
 
 //react hook can have it render with true or false or the style conditional to toggle display none or blocks
