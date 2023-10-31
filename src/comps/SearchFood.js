@@ -83,6 +83,9 @@ onQuery(calVal)
 
 
   function updateName(event) {
+
+
+
     setCalVal(calVal+parseInt(event.target.getAttribute('data-calories')))
 
 
@@ -122,31 +125,46 @@ function caloriesAdded(){
 
   }
 }
-  function addCountry() {
 
+let dataArr =foodNutrionApiData.foodApiData.foodDataArr
+
+  function addCountry() {
+    console.log(dup(dataArr))
+    console.log(dataArr)
   
     return (
+      dataArr.length!==1? 
       
-      countryData.map((country) => (
-    <li onClick={updateName} name = {country.name} data-calories = {country.calories}>
-      <div className="options-data" name = {country.name} data-calories = {country.calories}>
-        <div className="options-name" name = {country.name} data-calories = {country.calories}>{country.name}</div>
-        <div className="options-calories" calories = {country.calories} data-calories = {country.calories}>{country.calories} cal</div>
+      dataArr.map((food) => (
+
+    <li onClick={updateName} name = {food.food.label?1:0} data-calories = {food.food.nutrients.ENERC_KCAL}>
+      <div className="options-data" name = {food.food.label} data-calories = {food.food.nutrients.ENERC_KCAL}>
+        <div className="options-name" name = {food.food.label} data-calories = {food.food.nutrients.ENERC_KCAL}>{food.food.label}</div>
+        <div className="options-calories" calories = {food.food.nutrients.ENERC_KCAL} data-calories = {food.food.nutrients.ENERC_KCAL}>{food.food.nutrients.ENERC_KCAL} cal</div>
 
 
         </div>
       </li>
 
     ))
-    
+         :0
     )
     
   }
 
+
+  function dup(data){
+    return [...new Set(data)]
+}
   function searchInput (e){
+
+
 
     let arr = []
     let searchedValue = e.target.value.toLowerCase()
+
+    foodNutrionApiData.foodApiData.foodInfo(searchedValue)// has to change for optimization
+
 
 
     arr = countries.filter((data) =>{return data.name.toLowerCase().startsWith(searchedValue)}).map(data=>data)
