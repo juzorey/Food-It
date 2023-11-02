@@ -26,13 +26,16 @@ export default function BreakfastLog({onTotal}) {
   const totalRef = useRef(10)
 
 
+const[newDivLog,setNewDivLog] = useState([])
   
   const [calorieValueArr, setCalorieValueArr]= useState([])
   //becuase it resest or th render is delayed to keep the speed have to keep the previous dealyed version in state which is naturall delayed becuase its state iwthin state ad have the new value updated into a regualr arr with the spreaded state arrau
 
 
   let arr = [...calorieValueArr,query]// this is will the latest query number into it 
-  const result = arr.filter((zero) => zero!==0);
+  let result = arr.filter((zero) => zero!==0)
+
+
   const[newArr,setNewArr] = useState([result])
 
 
@@ -40,15 +43,18 @@ export default function BreakfastLog({onTotal}) {
   function addArr(array,type) {
          
       
-      const arrTotal = array.reduce((accumulator,currentValue)=>{
+
+    if(newDivLog.length==0){
+      setCalorieValueArr([])
+    }
+
+      let arrTotal = array.reduce((accumulator,currentValue)=>{
         console.log(accumulator)
         console.log(currentValue)
 
         return accumulator+currentValue},0)
       console.log(result)
       console.log(arrTotal)//thisi doubling arrTotla means its running it twice
-
-
 
 
       if (type==1){
@@ -91,7 +97,6 @@ const [fake,setFake]= useState(0)
 
 
 
-const[newDivLog,setNewDivLog] = useState([])
 
 
   
@@ -133,7 +138,7 @@ const addLog=()=>{
       setCount(count+1) 
       // setLog([...log,count])    
 
-      console.log(result)
+      console.log(result)// this js not erasing afater the removing of all 
     console.log(count)
 
 
@@ -158,6 +163,7 @@ const addLog=()=>{
       
 
       console.log(result)
+
       // addArr(query,result)
       onTotal(addArr(arr,1))
 
