@@ -78,15 +78,16 @@ const[countDown,setCountDown]=useState(true)
 let choseFoods = []
 let change = useRef()
 
-
+// maybe use a stack
 onQuery(calVal)
+
 
 
   function updateName(event) {
 
 
+    setCalVal(9)
 
-    setCalVal(calVal+parseInt(event.target.getAttribute('data-calories')))
 
 
 
@@ -106,11 +107,18 @@ onQuery(calVal)
    
     setCountryData(countries)
     console.log(event.target.getAttribute('name'))
+    let val = parseInt(event.target.getAttribute('data-calories'))
+    console.log(val)
+    setCalVal(val)
+
+
+
     console.log(event.target.getAttribute('data-calories'))
 
 
+
     setToggle(!toggle)
-    setCountDown(false)
+    // setCountDown(false)
     // console.log(change.current.onclick)//will use useRef later for updating the index valures 
     // change.current
 }

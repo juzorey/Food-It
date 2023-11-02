@@ -1,4 +1,4 @@
-import {BsArrowCounterclockwise, BsFillPlusCircleFill} from 'react-icons/bs'
+import {BsArrowCounterclockwise, BsEmojiSmileUpsideDown, BsFillPlusCircleFill} from 'react-icons/bs'
 import {ImBin} from 'react-icons/im'
 import React, {useState,useContext,useEffect, useRef} from 'react'
 import {SearchFood} from './SearchFood.js'
@@ -23,7 +23,7 @@ export default function BreakfastLog({onTotal}) {
   const[calories,setCalories]=useState(0) 
   const[query,setQuery] =useState(0) 
   // const[total,setTotal] = useState(0)
-  const totalRef = useRef(null)
+  const totalRef = useRef(10)
 
 
   
@@ -31,40 +31,49 @@ export default function BreakfastLog({onTotal}) {
   //becuase it resest or th render is delayed to keep the speed have to keep the previous dealyed version in state which is naturall delayed becuase its state iwthin state ad have the new value updated into a regualr arr with the spreaded state arrau
 
 
-  let arr = [...calorieValueArr,query]
+  let arr = [...calorieValueArr,query]// this is will the latest query number into it 
   const result = arr.filter((zero) => zero!==0);
   const[newArr,setNewArr] = useState([result])
 
 
 
-  function addArr(query,array,type) {
+  function addArr(array,type) {
+         
+      
+      const arrTotal = array.reduce((accumulator,currentValue)=>{
+        console.log(accumulator)
+        console.log(currentValue)
+
+        return accumulator+currentValue},0)
+      console.log(result)
+      console.log(arrTotal)//thisi doubling arrTotla means its running it twice
+
+
+
+
       if (type==1){
 
-        console.log(array)
 
+        return arrTotal - query
+      }   
+      else{
+        return arrTotal
 
-      }      
-      
-      const arrTotal = array.reduce((accumulator,currentValue)=>{return accumulator+currentValue},0)
-      console.log(result)
-
-
-   
-    return arrTotal
+      }
   }
+  let clickCount = 0
 
 const [fake,setFake]= useState(0)
 //it does it on first renderthen on second state it second render
   useEffect(()=>{
 
       setCalorieValueArr([...calorieValueArr,query])
-
-    onTotal(addArr(query,arr)
-    )
+//ptoblem is its updating addArr function but not the state ontotal and only when newlog added
+    onTotal(addArr(arr,0))
 
 
   
-  },[])
+  },[query])
   // setQuery(query)
 
 
@@ -90,6 +99,8 @@ const createNewlog=()=>{
 
   newDivLog.push(breakfastLogTemplate(count))
     console.log(newDivLog)
+
+
 }
 const queryRef = useRef(query)
 
@@ -122,7 +133,7 @@ const addLog=()=>{
       setCount(count+1) 
       // setLog([...log,count])    
 
-
+      console.log(result)
     console.log(count)
 
 
@@ -131,7 +142,6 @@ const addLog=()=>{
 
     }
     
-    let clickCount = 0
 
 
     //might have to conjoin the arrays of the position and the value , 
@@ -140,7 +150,19 @@ const addLog=()=>{
       console.log(index,'index')
       console.log(index+'key') // key
       const divIndex = newDivLog.findIndex((key)=>key.key ==index) // finds index
+      
       newDivLog.splice(divIndex,1)
+
+
+      result.splice(index-1,1)
+      
+
+      console.log(result)
+      // addArr(query,result)
+      onTotal(addArr(arr,1))
+
+
+      console.log(arr)
 
       // const newLog = log.filter((_,i)=> i!==index)
       // let newIndex = index - clickCount
@@ -163,8 +185,8 @@ const addLog=()=>{
 
       const filteredArr = result.filter((_,i)=> i!==index)
       const callType = 1
-      addArr(query,filteredArr,callType)
-
+      // addArr(query,filteredArr,callType)
+      console.log(query)
 
       setCount(count-1)
 

@@ -14,7 +14,7 @@ const breakfastProgressRef = useRef(null)
 const lunchProgressRef = useRef(null)
 const dinnerProgressRef = useRef(null)
 
-const[total,setTotal] =useState(0) 
+const[total,setTotal] =useState(0) //the calorie amount
 
 const [breakfastProgress,setBreakfastProgress]= useState(0)
 const [lunchProgress, setLunchProgress] = useState(0)
@@ -71,7 +71,7 @@ return (<div className="eating-time-container">
   <div className="breakfast-container">
 
     <div className="progress-container">
-    <text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Breakfast<span className="total-calories-log">: {total}</span></text>
+    <text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Breakfast<span className="total-calories-log">: {total}</span></text>{console.log(total)}
 
 
 
