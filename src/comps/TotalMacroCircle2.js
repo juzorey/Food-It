@@ -8,7 +8,7 @@ import { EatingTimeContext } from "./EatingTimes.js";
 
 
 //if you wanna change something you do so with style as an object
-const TotalMacroCircle =({props})=>{
+const TotalMacroCircle =(props)=>{
 const eating= useContext(EatingTimeContext)
 
 const HomeData= useContext(HomeContext)
@@ -31,7 +31,7 @@ const [scope, animate] = useAnimate()
 console.log( HomeData )
 // let fun = eatingTimeData.eatingObject 
 
-let fakeNum = 123/calorieGoal
+let fakeNum = props.totalCal/calorieGoal
 
 
 // const[draw,setDraw] = useState( fuckCirclde)
@@ -53,6 +53,8 @@ let fakeNum = 123/calorieGoal
 
   fetchData(fakeNum)
   console.log(fakeNum)
+  console.log(props.totalCal, "totalCal")
+
 
 
   // call the function

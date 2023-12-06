@@ -32,7 +32,9 @@ const [dinnerProgress, setDinnerProgress] = useState(0)
 
 
 
-
+useEffect(() =>{
+  setTotalCalIntaked(parseInt(totalOne)+parseInt(totalTwo)+parseInt(totalThree))
+},[totalOne,totalTwo,totalThree])
 useEffect(()=>{ // updates the progress bar number and tells it to wait to update
   const id = setInterval(()=>{
     setBreakfastProgress(10)
@@ -84,7 +86,7 @@ let eatingObject = {
 
 return (
 
-  <EatingTimeContext.Provider value={{eatingObject}}>
+  <EatingTimeContext.Provider value={{selectedSlot, eatingObject}}>
 
 
 <div className="eating-time-container">

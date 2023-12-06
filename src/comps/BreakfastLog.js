@@ -201,7 +201,7 @@ const [fake,setFake]= useState(0)
 //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
     onTotalOne(addArr(arr,0))
 
-
+    console.log(resultOne)
   
   },[queryOne])
 

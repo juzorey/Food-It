@@ -8,3 +8,11 @@ To do:
 1.attach the progress bar to the the logs progressbar
 2. Connect the total amount of calories to the progresbars
 3. create a goals page with macros on the left and right total calories withe circle progress Selector
+
+
+
+2.Creating a daily view chart. A bar chart of the macros and a pie chart with percentages on the right .do i want the charts to get it fron the json or to get it from the backend?
+
+3. Have to create models of the data i want saved in the djanog backend/ i have to brush up on how it request info based on that user.data. 
+
+4. Can you have a context api a folder that all the shared context are and have it send out specified infromation thats called. choosing the context you what

@@ -18,7 +18,7 @@ import{ImBin} from "react-icons/im"
 import { IconContext } from "react-icons";
 import { Svg, Circle } from "react-native-svg";
 import { Dimensions} from "react-native";
-
+import Charts  from "./Charts.js"
 import {FaRegArrowAltCircleDown, FaRegArrowAltCircleUp} from "react-icons/fa"
 export const HomeContext = createContext()
 
@@ -452,7 +452,7 @@ let percentConversion = 20
             </div>
             <div className="block-half-half">
               <div className="circular-div">
-                <TotalMacroCircle2/>
+                <TotalMacroCircle2 totalCal= {totalCal}/>
               </div>
             </div>
             <div className="block-half-half">
@@ -504,8 +504,18 @@ let percentConversion = 20
             <div className="block-2-display">
               <StopWatch/>
             </div>
+
+
+            
+          </div>
+          <div className="block-2">
+                <Charts/>
+
           </div>
 
+
+
+          
           <div className="profile-container">
             <div className="main-profile-info">
               <div className="box1">
@@ -562,8 +572,9 @@ let percentConversion = 20
               </div>
               <div className="box3 ">
 
-              </div>
 
+              </div>
+              
             </div>
           </div>
         </div>
