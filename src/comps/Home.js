@@ -1,10 +1,12 @@
 // Import the react JS packages
 import TotalMacroCircle  from "./TotalMacroCircle"
+import TotalMacroCircle2 from "./TotalMacroCircle2"
+
 import EatingTime from "./EatingTimes";
 import { AllFoods } from "./AllFoods";
 import MacrosBar  from "./MacrosBar";
 // import Player from "./Player";
-import {useEffect, useState } from "react";
+import {useEffect, useState, createContext } from "react";
 import {Time} from "./Time"
 import StopWatch from "./StopWatch"
 import Nav from "./Nav";
@@ -18,6 +20,7 @@ import { Svg, Circle } from "react-native-svg";
 import { Dimensions} from "react-native";
 
 import {FaRegArrowAltCircleDown, FaRegArrowAltCircleUp} from "react-icons/fa"
+export const HomeContext = createContext()
 
 // Define the Login function.
 const{width, height} = Dimensions.get('window')
@@ -275,7 +278,86 @@ return(<div>
 </div>
 )
 }
+
+// make internationl variable
+const [inputCal, setInputCal] = useState(props?.value ?? '0');
+
+let [inputCarbs, setInputCarbs] = useState(0);
+let [inputPro, setInputPro] = useState(0);
+let [inputFat, setInputFat] = useState(0);
+
+const [input2, setInput2] = useState(props?.value ?? '0');
+const [input3, setInput3] = useState(props?.value ?? '0');
+
+const [percMac, setPercMac] = useState(props?.value ?? '0');
+const [percMac2, setPercMac2] = useState(props?.value ?? '0');
+const [percMac3, setPercMac3] = useState(props?.value ?? '0');
+let[sliderInput1, setSliderInput1] = useState(props?.value ??'0')
+const[sliderInput2, setSliderInput2] = useState(props?.value ??'0')
+const[sliderInput3, setSliderInput3] = useState(props?.value ??'0')
+const[totalCal,setTotalCal] = useState(0)
+let macrosTotal = 100
+
+
+let macroConversions ={
+  carbsToCal: 4,
+  protienToCal: 4,
+  fatToCal:9
+} 
+function CalcPercentMacros(sliderValue){
+// let sliderValue= e.target.value 
+  let percentValue = sliderValue / Math.pow(10, 2)
+  let caloriesAllocated = inputCal*percentValue 
+  let carbs = caloriesAllocated / macroConversions.carbsToCal
+  console.log(carbs)
+  console.log(percentValue)
+  console.log(sliderValue )
+
+
+  console.log("function")
+  CalPercent()
+
+  return carbs
+}
+
+function CalPercent(){
+  let totalPer = (parseInt(sliderInput1) + parseInt(sliderInput2) + parseInt(sliderInput3))
+
+  console.log(totalPer)
+}
+
+
+function HandleChange(e){ 
+  setSliderInput1(e.target.value)
+  setInputCarbs(CalcPercentMacros(e.target.value))
+  console.log(totalCal)
+  console.log("function2")
+
+}
+function HandleChange2(e) {
+  setSliderInput2(e.target.value)
+  setInputPro(CalcPercentMacros(e.target.value))
+
+  console.log("function3")
+
+
+}
+function HandleChange3(e) {
+  setSliderInput3(e.target.value)
+  setInputFat(CalcPercentMacros(e.target.value))
+
+  console.log("function3")
+
+}
+
+let homeDataObject = {
+  calorieInput:inputCal,
+  totalCal:totalCal
+}
+let percentConversion = 20
   return (
+    <HomeContext.Provider value={{homeDataObject}}>
+
     
     
     <div>
@@ -299,9 +381,87 @@ return(<div>
 
         
         <div className="profile-view">
+        <div className="block-change"> 
+            <div className="block-half">
+            <div className="macros-slots">
+                <span className="inner-macros-slots"> Calories
 
-          <div className="block-1">
-<EatingTime/>
+
+                  <span className="end"><input  style={{width:60, textAlign:"end"}}maxlength="5" value={inputCal} onInput={e=>setInputCal(e.target.value)}className="carbs"></input></span>
+                </span>
+                
+
+               
+                
+                </div>
+
+
+              <div className="macros-slots">
+                <span className="inner-macros-slots"> Carbohydrates<input maxlength="3" value={inputCarbs} className="carbs"></input>
+  
+                <span style={{marginRight:70}}>{}g</span>
+
+
+                
+                </span>
+                
+                
+                <div className="slide-container">
+                  <div className="slider">
+                  <input type="range"  step="5" min="0" max="100" value={sliderInput1} onInput={HandleChange}/>
+                  <progress className="" step="5" min="0" max="100" value={sliderInput1}></progress>
+                  </div>  
+                  <div className="slider-num">{sliderInput1}%</div>
+                </div>
+                </div>
+                <div className="macros-slots">
+                <span className="inner-macros-slots"> Protein<input maxlength="3" value={inputPro} onInput={e => setInput2(e.target.value)}className="carbs"></input>
+                <span style={{marginRight:70}}>g</span>
+
+
+                </span>
+                
+                
+                 <div className="slide-container">
+                  <div className="slider">
+                  <input type="range"  step="5"min="0" max="100" value={sliderInput2} onInput={HandleChange2}/>
+                  <progress className="" min="0" max="100" value={sliderInput2}></progress>
+                  </div>  
+                  <div className="slider-num">{sliderInput2}%</div>
+                </div>
+                </div>
+                <div className="macros-slots z">
+
+                <span className="inner-macros-slots "> Fat<input maxlength="3" value={inputFat} onInput={e => setInput3(e.target.value)}className="carbs"></input>
+                <span style={{marginRight:70}}>g</span>2
+
+
+                </span>
+                <div className="slide-container">
+                  <div className="slider">
+                  <input type="range"  step="5"min="0" max="100" value={sliderInput3} onInput={HandleChange3}/>
+                  <progress className="" min="0" max="100" value={sliderInput3}></progress>
+                  </div>  
+                  <div className="slider-num">{sliderInput3}%</div>
+                </div>
+                </div>
+                {/* <span className="inner-macros-slots "> percent{totalPer}</span> */}
+
+
+
+            </div>
+            <div className="block-half-half">
+              <div className="circular-div">
+                <TotalMacroCircle2/>
+              </div>
+            </div>
+            <div className="block-half-half">
+
+            </div>
+        </div>
+
+          <div className="block-1 first-block">
+<EatingTime onTotalCal={setTotalCal}/>
           </div>
 
 
@@ -409,6 +569,9 @@ return(<div>
         </div>
       </div>
     </div>
+
+
+    </HomeContext.Provider>
   );
 };
 export default Home

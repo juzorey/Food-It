@@ -55,7 +55,7 @@ let menu
       <div className="nav-title"><h2>Foodit</h2></div>
       <div className="nav-content">
         <Link to="/home" className="a">Home</Link>
-        <Link to="/" className="a">Track</Link>
+        <Link to="/home" className="a">Track</Link>
         <Link to="/" className="a">Profile</Link>
 
         {data.contextData.user?

@@ -18,6 +18,13 @@ export default function BreakfastLog({props,onTotalOne, selected}) {
   const searchFoodData = useContext(SearchFood)
   const eatingTimeData = useContext(EatingTimeContext)
 
+  let fun = eatingTimeData.eatingObject 
+  console.log(fun)
+  console.log(eatingTimeData)
+
+  
+
+
 //do the array
 
 const[selectedSlot,setSelectedSlot] = useState()
@@ -67,7 +74,7 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
 
   let arr = [...calorieValueArrOne,queryOne]// this is will the latest query number into it 
   let arrTwo = [...calorieValueArrTwo,queryTwo]// this is will the latest query number into it 
-  let arrThree= [...calorieValueArrThree,queryTwo]// this is will the latest query number into it 
+  let arrThree= [...calorieValueArrThree,queryThree]// this is will the latest query number into it 
 
   let resultOne = arr.filter((zero) => zero!==0)
   let resultTwo = arrTwo.filter((zero) => zero!==0)
@@ -135,34 +142,6 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
   //     }
   // }
 
-  function addArrTwo(array,type) {
-         
-      
-
-    // if(newDivLogOne.length==0){
-    //   setCalorieValueArrTwo([])
-    // }
-
-      let arrTotalTwo = array.reduce((accumulator,currentValue)=>{
-        console.log(accumulator+"accumulator two")
-        console.log(currentValue +"queryTwo")
-
-        return accumulator+currentValue},0)
-      console.log(resultTwo+"resultTwo")
-      console.log(arrTotalTwo+"arrTotalTwo")//thisi doubling arrTotla means its running it twice, this still takes in the lastquery input into the sum
-
-
-      if (type==1){
-
-
-        return arrTotalTwo - queryTwo
-      }   
-      else{
-        return arrTotalTwo
-
-      }
-  }
-
   function addArrThree(array,type) {
          
       
@@ -172,12 +151,12 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
     }
 
       let arrTotalThree = array.reduce((accumulator,currentValue)=>{
-        console.log(accumulator)
+        console.log(accumulator+"accumulator three")
         console.log(currentValue +"queryThree")
 
         return accumulator+currentValue},0)
-      console.log(resultThree)
-      console.log(arrTotalThree)//thisi doubling arrTotla means its running it twice
+      console.log(resultThree+"resultThree")
+      console.log(arrTotalThree+"arrTotalThree")//thisi doubling arrTotla means its running it twice, this still takes in the lastquery input into the sum
 
 
       if (type==1){
@@ -191,39 +170,67 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
       }
   }
 
+  // function addArrThree(array,type) {
+         
+      
+
+  //   if(newDivLogOne.length==0){
+  //     setCalorieValueArrThree([])
+  //   }
+
+  //     let arrTotalThree = array.reduce((accumulator,currentValue)=>{
+  //       console.log(accumulator)
+  //       console.log(currentValue +"queryThree")
+
+  //       return accumulator+currentValue},0)
+  //     console.log(resultThree)
+  //     console.log(arrTotalThree)//thisi doubling arrTotla means its running it twice
+
+
+  //     if (type==1){
+
+
+  //       return arrTotalThree - queryThree
+  //     }   
+  //     else{
+  //       return arrTotalThree
+
+  //     }
+  // }
+
   let clickCount = 0
 
 const [fake,setFake]= useState(0)
 //it does it on first renderthen on second state it second render
   useEffect(()=>{
 
-      setCalorieValueArrOne([...calorieValueArrOne,queryOne])
+      setCalorieValueArrThree([...calorieValueArrThree,queryThree])
 //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-    onTotalOne(addArr(arr,0))
+    onTotalOne(addArrThree(arrThree,0))
 
 
   
-  },[queryOne])
+  },[queryThree])
 
-  useEffect(()=>{
+//   useEffect(()=>{
 
-    setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
-//ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-  // onTotalTwo(addArrTwo(arrTwo,0))
-
-
-
-},[queryTwo])
-
-useEffect(()=>{
-
-  setCalorieValueArrThree([...calorieValueArrThree,queryThree])
-//ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-// onTotalThree(addArrThree(arrThree,0))
+//     setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
+// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
+//   // onTotalTwo(addArrTwo(arrTwo,0))
 
 
 
-},[queryThree])
+// },[queryTwo])
+
+// useEffect(()=>{
+
+//   setCalorieValueArrThree([...calorieValueArrThree,queryThree])
+// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
+// // onTotalThree(addArrThree(arrThree,0))
+
+
+
+// },[queryThree])
   // setQuery(query)
 
 
@@ -330,8 +337,8 @@ const addLog=()=>{
         let newIndex = index -1
         newDivLogOne.splice(divIndexOne,1)
 
-        resultOne.splice(newIndex,1)
-        onTotalOne(addArr(arr,1))
+        resultThree.splice(newIndex,1)
+        onTotalOne(addArrThree(arrThree,1))
         console.log("first container removed")
   
 

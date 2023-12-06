@@ -7,7 +7,7 @@ import {foodDataContext}from './FoodNutrionApi.js'
 
 // export const SearchFoodContext = createContext();
 
-export const SearchFood=({children,onQuery}) =>{
+export const SearchFood=({children,onQueryOne,onQueryTwo, onQueryThree}) =>{
   const foodNutrionApiData= useContext(foodDataContext)
 
 
@@ -79,7 +79,7 @@ let choseFoods = []
 let change = useRef()
 
 // maybe use a stack
-onQuery(calVal)
+onQueryOne(calVal)
 
 
 

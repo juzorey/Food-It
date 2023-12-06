@@ -1,10 +1,16 @@
-import React, {useState,useEffect,useRef}from "react";
+import React, {useState,useEffect,useRef, createContext}from "react";
 import { motion, animate } from "framer-motion"
 import { BsNodeMinusFill } from "react-icons/bs";
 import BreakfastLog from "./BreakfastLog";
+import BreakfastLog2 from "./BreakfastLog2";
+import BreakfastLog3 from "./BreakfastLog3";
+import TotalMacroCircle2 from "./TotalMacroCircle2";
 import { set } from "animejs";
 
-export default function EatingTime({props})
+
+export const EatingTimeContext = createContext()
+
+export default function EatingTime({props, onTotalCal})
 
 
 
@@ -13,9 +19,13 @@ export default function EatingTime({props})
 const breakfastProgressRef = useRef(null)
 const lunchProgressRef = useRef(null)
 const dinnerProgressRef = useRef(null)
+const [selectedSlot,setSelectedSlot]= useState(0)
 
-const[total,setTotal] =useState(0) //the calorie amount
-
+const[totalOne,setTotalOne] =useState(0) //the calorie amount
+const[totalTwo,setTotalTwo] =useState(0) //the calorie amount
+const[totalThree,setTotalThree] =useState(0) //the calorie amount
+const[totalCalIntaked,setTotalCalIntaked] = useState(parseInt(totalOne)+parseInt(totalTwo)+parseInt(totalThree))
+onTotalCal(totalCalIntaked)
 const [breakfastProgress,setBreakfastProgress]= useState(0)
 const [lunchProgress, setLunchProgress] = useState(0)
 const [dinnerProgress, setDinnerProgress] = useState(0)
@@ -64,14 +74,24 @@ useEffect(()=>{// this gets the current number animateed to the prgoressbar
     }
 },[breakfastProgress])
 
+let eatingObject = {
+  selectedSlot: selectedSlot,
+  totalCalIntaked: totalCalIntaked,
+}
 
 
 
-return (<div className="eating-time-container">
-  <div className="breakfast-container">
+
+return (
+
+  <EatingTimeContext.Provider value={{eatingObject}}>
+
+
+<div className="eating-time-container">
+  <div onClick= {()=>setSelectedSlot(1)}className="breakfast-container">
 
     <div className="progress-container">
-    <text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Breakfast<span className="total-calories-log">: {total}</span></text>{console.log(total)}
+    <text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Breakfast<span className="total-calories-log">: {!totalOne?0:totalOne} cals</span></text>
 
 
 
@@ -94,15 +114,15 @@ return (<div className="eating-time-container">
 
     </div>
 
-    <div className="breakfast-input">
-      <BreakfastLog onTotal = {setTotal}/>
-
+    <div onClick= {()=>{setSelectedSlot(1)
+  console.log(selectedSlot)}} className="breakfast-input">
+      <BreakfastLog onTotalOne = {setTotalOne}/>
     </div>
   </div>
-  <div className="breakfast-container">
+  <div onClick= {()=>setSelectedSlot(2)} className="breakfast-container">
 
 <div className="progress-container">
-<text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Lunch<span className="total-calories-log">: cal</span></text>
+<text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Lunch<span className="total-calories-log">: {!totalTwo?0:totalTwo} cals</span></text>
 
 
   <div className="progress-bar-container">
@@ -122,15 +142,16 @@ return (<div className="eating-time-container">
 
 </div>
 
-<div className="breakfast-input">
-<BreakfastLog onTotal = {setTotal}/>
+<div onClick= {()=>{setSelectedSlot(2)
+  console.log(selectedSlot)}} className="breakfast-input">
+<BreakfastLog2  onTotalOne = {setTotalTwo} />
 
 </div>
 </div>
-<div className="breakfast-container">
+<div onClick= {()=>setSelectedSlot(3)} className="breakfast-container">
 
 <div className="progress-container">
-<text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Dinner <span className="total-calories-log">: 454</span></text>
+<text style={{fontWeight:700, fontSize:20}}  className="breakfast-title">Dinner <span className="total-calories-log">: {!totalThree?0:totalThree} cals</span></text>
 
 
   <div className="progress-bar-container">
@@ -150,12 +171,16 @@ return (<div className="eating-time-container">
 
 </div>
 
-<div className="breakfast-input">
-<BreakfastLog onTotal = {setTotal}/>
+<div onClick= {()=>{setSelectedSlot(3)
+  console.log(selectedSlot)}} className="breakfast-input">
+<BreakfastLog3 onTotalOne = {setTotalThree} />
 
 </div>
 </div>
 
 
-</div>)
-}
+</div>
+
+</EatingTimeContext.Provider>
+
+)}

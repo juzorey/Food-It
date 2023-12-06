@@ -139,9 +139,9 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
          
       
 
-    // if(newDivLogOne.length==0){
-    //   setCalorieValueArrTwo([])
-    // }
+    if(newDivLogOne.length==0){
+      setCalorieValueArrTwo([])
+    }
 
       let arrTotalTwo = array.reduce((accumulator,currentValue)=>{
         console.log(accumulator+"accumulator two")
@@ -197,33 +197,33 @@ const [fake,setFake]= useState(0)
 //it does it on first renderthen on second state it second render
   useEffect(()=>{
 
-      setCalorieValueArrOne([...calorieValueArrOne,queryOne])
+      setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
 //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-    onTotalOne(addArr(arr,0))
+    onTotalOne(addArrTwo(arrTwo,0))
 
 
   
-  },[queryOne])
+  },[queryTwo])
 
-  useEffect(()=>{
+//   useEffect(()=>{
 
-    setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
-//ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-  // onTotalTwo(addArrTwo(arrTwo,0))
-
-
-
-},[queryTwo])
-
-useEffect(()=>{
-
-  setCalorieValueArrThree([...calorieValueArrThree,queryThree])
-//ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-// onTotalThree(addArrThree(arrThree,0))
+//     setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
+// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
+//   // onTotalTwo(addArrTwo(arrTwo,0))
 
 
 
-},[queryThree])
+// },[queryTwo])
+
+// useEffect(()=>{
+
+//   setCalorieValueArrThree([...calorieValueArrThree,queryThree])
+// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
+// // onTotalThree(addArrThree(arrThree,0))
+
+
+
+// },[queryThree])
   // setQuery(query)
 
 
@@ -330,8 +330,8 @@ const addLog=()=>{
         let newIndex = index -1
         newDivLogOne.splice(divIndexOne,1)
 
-        resultOne.splice(newIndex,1)
-        onTotalOne(addArr(arr,1))
+        resultTwo.splice(newIndex,1)
+        onTotalOne(addArrTwo(arrTwo,1))
         console.log("first container removed")
   
 

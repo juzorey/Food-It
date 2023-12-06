@@ -78,7 +78,7 @@ const draw ={
 
 
   return (
-    <div >
+    <div  >
 
     <motion.svg
       width="600"

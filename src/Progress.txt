@@ -1,0 +1,10 @@
+1.Issue:the divLogs is connected to one divlog so when slots are removed others the divLogs the first divlog is brought ot zero. And since its a child it will only map one slot
+the removing and adding of slotsis based of the mapping of the divlogOne. which shows the other slots but only problem when deleting
+
+solution #1 create 3 seperate files for each divLog return
+solution #2 use classes and polymorph
+
+To do:
+1.attach the progress bar to the the logs progressbar
+2. Connect the total amount of calories to the progresbars
+3. create a goals page with macros on the left and right total calories withe circle progress Selector
