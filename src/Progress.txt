@@ -16,3 +16,5 @@ To do:
 3. Have to create models of the data i want saved in the djanog backend/ i have to brush up on how it request info based on that user.data. 
 
 4. Can you have a context api a folder that all the shared context are and have it send out specified infromation thats called. choosing the context you what
+
+5.get protein/fat/carb data from the searchFood api and enter it into the object share context variable 
