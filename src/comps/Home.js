@@ -506,7 +506,6 @@ let percentConversion = 20
             </div>
 
 
-            
           </div>
           <div className="block-2">
                 <Charts/>

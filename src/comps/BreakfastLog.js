@@ -19,7 +19,7 @@ export default function BreakfastLog({props,onTotalOne, selected}) {
   const eatingTimeData = useContext(EatingTimeContext)
 
 //do the array
-
+//searchedfoodComp ->amount->queryOne->arr->caloireArr->addArr function->onTotal prop
 const[selectedSlot,setSelectedSlot] = useState()
 
 
@@ -27,7 +27,7 @@ const[selectedSlot,setSelectedSlot] = useState()
   const[count,setCount]=useState(1)
   const[foodInput,setFoodInput]=useState('')
   const[calories,setCalories]=useState(0) 
-const[amount,setAmount]=useState(0)
+const[amount,setAmount]=useState({}) // here
 
 const selectedComp =(value)=>{
   if(eatingTimeData.selectedSlot == 1){
@@ -43,7 +43,16 @@ const selectedComp =(value)=>{
 
 
 //when delete the last query will be the one connected to the slot it clicked, object, and will be conditional on the slot
-useEffect(()=>{selectedComp(amount)},[amount])
+useEffect(()=>{
+
+
+
+  if(amount.calories != undefined|| NaN){
+    selectedComp(amount.calories)
+    console.log(amount.calories)  
+
+  }
+},[amount])
   const[queryOne,setQueryOne] =useState(0) 
   const[queryTwo,setQueryTwo] =useState(0) 
   const[queryThree,setQueryThree] =useState(0) 

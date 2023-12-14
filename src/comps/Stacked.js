@@ -1,13 +1,39 @@
-import React from 'react'; 
+import React,{useContext,useState,useEffect} from 'react'; 
 import Chart from 'react-apexcharts'
 import ReactApexChart from 'react-apexcharts';
-
+import { SearchFoodContext } from './SearchFood';
 
 //create a hook for the changing of charts
 import {DailyOptions, DailySeries} from './chart.config.ts'
 import { WeeklyOptions,WeeklySeries } from './chartWeekly.config.ts'
 
 export default function  Stacked ({option}){
+
+const foodContext = useContext(SearchFoodContext)
+  console.log(foodContext)
+  let mouse = {}
+const[macrosObject,setMacrosObject] = useState()
+useEffect(()=>{
+  if(foodContext != undefined || null){
+    mouse = foodContext
+    console.log(mouse)
+
+  }
+  console.log(mouse)
+
+
+},[foodContext])
+console.log(mouse)
+
+
+function addFoodDataArr(object){
+let foodDataArr = []
+ 
+ 
+  
+
+}
+
   console.log(option)
   let options= {
     chart: {

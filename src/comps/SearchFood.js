@@ -3,9 +3,11 @@
 import React,{ChangeEvent,useState, createContext, useContext, useRef,useEffect} from "react";
 import {useToggle} from './useToggle.js'
 import {foodDataContext}from './FoodNutrionApi.js'
-
+import Stacked from "./Stacked.js";
+import { Routes,Route} from 'react-router-dom'
 
 // export const SearchFoodContext = createContext();
+export const SearchFoodContext = createContext()
 
 export const SearchFood=({children,onQueryOne,onQueryTwo, onQueryThree}) =>{
   const foodNutrionApiData= useContext(foodDataContext)
@@ -74,12 +76,13 @@ const[countDown,setCountDown]=useState(true)
   const[countryData,setCountryData] = useState(countries)
   const [inputText, setInputText] = useState("");
   const[calVal,setCalVal] = useState(0)
+  const[foodObject,setFoodObject]=useState({0:0})
 
 let choseFoods = []
 let change = useRef()
 
 // maybe use a stack
-onQueryOne(calVal)
+onQueryOne(foodObject)
 
 
 
@@ -108,7 +111,21 @@ onQueryOne(calVal)
     setCountryData(countries)
     console.log(event.target.getAttribute('name'))
     let val = parseInt(event.target.getAttribute('data-calories'))
+    let pro = parseInt(event.target.getAttribute('protein'))
+    let carb = parseInt(event.target.getAttribute('carb'))
+    let fat = parseInt(event.target.getAttribute('fat'))
+
+    let object = {
+      'serving':1,
+      'calories':val,
+      'protein':pro,
+      'carbs':carb,
+      'fat':fat,
+    } 
     console.log(val)
+    setFoodObject(object)
+    console.log(object )
+
     setCalVal(val)
 
 
@@ -125,30 +142,36 @@ onQueryOne(calVal)
 
 
 
-function caloriesAdded(){
+// function caloriesAdded(){
 
-  for(let food of choseFoods){
-    // caloriesCount +=food.calories
-    console.log(food)
+//   for(let food of choseFoods){
+//     // caloriesCount +=food.calories
+//     console.log(food)
 
-  }
-}
+//   }
+// }
 
 let dataArr =foodNutrionApiData.foodApiData.foodDataArr
-
+// per serving ( 4g)  pro: 4g carb: 4g fat: 4g
   function addCountry() {
     console.log(dup(dataArr))
-    console.log(dataArr)
+
   
     return (
       dataArr.length!==1? 
       
       dataArr.map((food) => (
 
-    <li onClick={updateName} name = {food.food.label?1:0} data-calories = {food.food.nutrients.ENERC_KCAL}>
-      <div className="options-data" name = {food.food.label} data-calories = {food.food.nutrients.ENERC_KCAL}>
-        <div className="options-name" name = {food.food.label} data-calories = {food.food.nutrients.ENERC_KCAL}>{food.food.label}</div>
-        <div className="options-calories" calories = {food.food.nutrients.ENERC_KCAL} data-calories = {food.food.nutrients.ENERC_KCAL}>{food.food.nutrients.ENERC_KCAL} cal</div>
+
+    <li onClick={updateName}  protein = {food.food.nutrients.PROCNT} carb ={food.food.nutrients.CHOCDF} 
+    fat ={food.food.nutrients.FAT} name = {food.food.label?1:0} data-calories = {food.food.nutrients.ENERC_KCAL}>
+      <div className="options-data" protein = {food.food.nutrients.PROCNT} carb ={food.food.nutrients.CHOCDF} 
+        fat ={food.food.nutrients.FAT} name = {food.food.label} data-calories = {food.food.nutrients.ENERC_KCAL}>
+        <div className="options-name"  protein = {food.food.nutrients.PROCNT} carb ={food.food.nutrients.CHOCDF} 
+        fat ={food.food.nutrients.FAT} name = {food.food.label} data-calories = {food.food.nutrients.ENERC_KCAL}>{food.food.label}</div>
+        <div className="options-calories" protein = {food.food.nutrients.PROCNT} carb ={food.food.nutrients.CHOCDF} 
+        fat ={food.food.nutrients.FAT}
+        calories = {food.food.nutrients.ENERC_KCAL} data-calories = {food.food.nutrients.ENERC_KCAL}>{food.food.nutrients.ENERC_KCAL} cal</div>
 
 
         </div>
@@ -190,11 +213,11 @@ let searchFoodContextData = {
 
 }
   return(
-
-
-    // <SearchFoodContext.Provider value={{searchFoodContextData}}>
-      // {children}
-
+    <SearchFoodContext.Provider value={foodObject}>
+      <Stacked/>
+{/* <Routes>
+  <Route path="/charts" element ={<Charts/>}/>
+</Routes> */}
 
     <div className="search-food-container">
       <div className="select-btn" {...(countDown? {...attributes} :{})}>{chosen}
@@ -218,5 +241,7 @@ let searchFoodContextData = {
 
     </div>
     // {/* </SearchFoodContext.Provider> */}
+
+    </SearchFoodContext.Provider>
   )
 }

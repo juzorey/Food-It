@@ -1,8 +1,14 @@
 
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useContext} from 'react'
 import Stacked from "./Stacked.js"
+
+
+
+
+
 export default function Charts(){
 
+  
 
   const chartOptions= {
     1:'daily',
@@ -19,6 +25,8 @@ const handleChange=(e)=>{
 
 
 setToggleValue(chartOptions[e.target.value])
+
+
 console.log(toggle)
 
 }

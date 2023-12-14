@@ -8,6 +8,8 @@ import TotalMacroCircle2 from "./TotalMacroCircle2";
 import { set } from "animejs";
 
 
+
+
 export const EatingTimeContext = createContext()
 
 export default function EatingTime({props, onTotalCal})

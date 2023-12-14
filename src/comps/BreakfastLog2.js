@@ -43,7 +43,14 @@ const selectedComp =(value)=>{
 
 
 //when delete the last query will be the one connected to the slot it clicked, object, and will be conditional on the slot
-useEffect(()=>{selectedComp(amount)},[amount])
+useEffect(()=>{
+  
+  
+  if(amount.calories != undefined|| NaN){
+    selectedComp(amount.calories)
+    console.log(amount.calories)
+  }
+},[amount])
   const[queryOne,setQueryOne] =useState(0) 
   const[queryTwo,setQueryTwo] =useState(0) 
   const[queryThree,setQueryThree] =useState(0) 
