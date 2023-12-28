@@ -11,7 +11,7 @@ Getting a class that computes and tracks the caloroic data
 
 
 ## Currently Working on:
-![](https://geps.dev/progress/100?dangerColor=800000&successColor=ff9900&warningColor=ff9900) User Auth
+![](https://geps.dev/progress/100?dangerColor=800000&successColor=ff9900&successColor=ff9900) User Auth
 ![](https://geps.dev/progress/85?dangerColor=800000&successColor=ff9900&successColor=006600) Back CRUD
 ![](https://geps.dev/progress/95?dangerColor=800000&successColor=ff9900&successColor=006600) Front CRUD
 ![](https://geps.dev/progress/65?dangerColor=800000&successColor=ff9900&successColor=006600) styling
