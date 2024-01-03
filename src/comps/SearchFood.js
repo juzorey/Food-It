@@ -82,8 +82,9 @@ let choseFoods = []
 let change = useRef()
 
 // maybe use a stack
-onQueryOne(foodObject)
 
+
+onQueryOne(foodObject.calories)
 
 
   function updateName(event) {
@@ -125,6 +126,9 @@ onQueryOne(foodObject)
     console.log(val)
     setFoodObject(object)
     console.log(object )
+    //the variable works    
+    //maybe becuase its returning undefined it doesnt duplicate
+    //but it is adding to the array
 
     setCalVal(val)
 
