@@ -29,30 +29,79 @@ const[selectedSlot,setSelectedSlot] = useState()
   const[calories,setCalories]=useState(0) 
 const[amount,setAmount]=useState(0)
 
+
+
+const [calorieValueArrTwo, setCalorieValueArrTwo]= useState([])
+
 const selectedComp =(value)=>{
-  if(eatingTimeData.selectedSlot == 1){
-    setQueryOne(value)
-  }else if(eatingTimeData.selectedSlot ==2){
-    setQueryTwo(value)
+
+ 
+
+  console.log('inputed into query')
+  if(value !=0){    
+  console.log('inputed ')
   
-  }else if(eatingTimeData.selectedSlot ==3){
-    setQueryThree(value)
+    // setQueryThree(value)
   
   }
-}
+  
+  
+    setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
+    onTotalOne(addArrTwo(arrTwo,0))
+
+  
+  
+  
+  
+  }
+  
+
+const[queryTwo,setQueryTwo] =useState(amount ) //this isnt being updated
+//have it turn zero in betweeen and erase the zeros and then add
+//orforce a rerender
+
+let arrTwo= [...calorieValueArrTwo,queryTwo]// this is will the latest query number into it 
+
+//checking if it will updaet
+useEffect(()=>{
+ 
+  selectedComp(0)
+
+},[queryTwo])
 
 
 //when delete the last query will be the one connected to the slot it clicked, object, and will be conditional on the slot
+
+
+
 useEffect(()=>{
   
-  
-  if(amount.calories != undefined|| NaN){
-    selectedComp(amount.calories)
-    console.log(amount.calories)
+  //if the same add it anyways 
+  if(amount != undefined|| NaN || amount == queryTwo)  {
+    setQueryTwo(amount)
+
+    console.log(amount,'amount')
+  }else{
+    setQueryTwo(0)
+
   }
+
+  // console.log(arr, 'arr')
+  console.log(arrTwo, 'arr two ')
+
 },[amount])
+
+
+// useEffect(()=>{
+  
+  
+//   if(amount.calories != undefined|| NaN){
+//     selectedComp(amount.calories)
+//     console.log(amount.calories)
+//   }
+// },[amount])
   const[queryOne,setQueryOne] =useState(0) 
-  const[queryTwo,setQueryTwo] =useState(0) 
+
   const[queryThree,setQueryThree] =useState(0) 
 
 
@@ -66,14 +115,13 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
 
   
   const [calorieValueArrOne, setCalorieValueArrOne]= useState([])
-  const [calorieValueArrTwo, setCalorieValueArrTwo]= useState([])
   const [calorieValueArrThree, setCalorieValueArrThree]= useState([])
 
   //becuase it resest or th render is delayed to keep the speed have to keep the previous dealyed version in state which is naturall delayed becuase its state iwthin state ad have the new value updated into a regualr arr with the spreaded state arrau
 
 
   let arr = [...calorieValueArrOne,queryOne]// this is will the latest query number into it 
-  let arrTwo = [...calorieValueArrTwo,queryTwo]// this is will the latest query number into it 
+
   let arrThree= [...calorieValueArrThree,queryTwo]// this is will the latest query number into it 
 
   let resultOne = arr.filter((zero) => zero!==0)
@@ -423,6 +471,10 @@ const addLog=()=>{
 
 
 // }
+
+
+  
+
 
 
   

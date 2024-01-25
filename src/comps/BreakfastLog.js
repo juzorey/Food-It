@@ -30,54 +30,66 @@ const[selectedSlot,setSelectedSlot] = useState()
 const[amount,setAmount]=useState() // here
 
 const selectedComp =(value)=>{
-  if(eatingTimeData.selectedSlot == 1){
-    setQueryOne(value)
-    console.log('queryOne 35:' , queryOne) 
 
-  }else if(eatingTimeData.selectedSlot ==2){
-    setQueryTwo(value)
+ 
+
+  console.log('inputed into query')
+  if(value !=0){    
+  console.log('inputed ')
   
-  }else if(eatingTimeData.selectedSlot ==3){
-    setQueryThree(value)
+    // setQueryThree(value)
   
   }
-}
+  
+  
+    setCalorieValueArr([...calorieValueArr,queryOne])
+    onTotalOne(addArr(arr,0))
+  
+  
+  
+  
+  
+  }
+  const[queryOne,setQueryOne] =useState(0) 
+
+
 const[fakeArr,setFakeArr]=useState([0])
 
 let foobArr = [...fakeArr,amount]
 let newAmount = 0
 //when delete the last query will be the one connected to the slot it clicked, object, and will be conditional on the slot
+
+const [calorieValueArr, setCalorieValueArr]= useState([])
+
+let arr= [...calorieValueArr,queryOne]// this is will the latest query number into it 
+
 useEffect(()=>{
 
 
+  selectedComp(0)
 
-  if(amount != undefined || 0 || NaN){
-    // selectedComp(amount.calories)
-    // console.log(amount.calories)  
-    console.log('amount:', amount )
-    console.log('queryOne:' , queryOne) // it thows a zero in here but not on line 220 then it can be the orderof inputs
-    // queryOne it stays the same value as before is my guess 
-    // when i save it sends another render that activates queryOne. so that means it is in but it doesnt trigger the re-render
-    // it means queryOne does get chagned but it doesnt trigger re-render.. could use another vairable or change where queryOne is updated
+},[queryOne])
 
 
-      // let arr = [...calorieValueArrTwo]
 
-    setFakeArr([...fakeArr, amount])
+useEffect(()=>{
+  
+  //if the same add it anyways 
+  if(amount != undefined|| NaN || amount == queryThree)  {
+    setQueryOne(amount)
 
-    
+    console.log(amount,'amount')
   }else{
-    console.log('wtf')
-    console.log('amount:', amount )
-    console.log('queryOne:' , queryOne) 
+    setQueryOne(0)
 
   }
 
+  // console.log(arr, 'arr')
+  console.log(arrThree, 'arr three ')
 
 },[amount])
 
 
-  const[queryOne,setQueryOne] =useState(0) 
   const[queryTwo,setQueryTwo] =useState(0) 
   const[queryThree,setQueryThree] =useState(0) 
 
@@ -90,15 +102,15 @@ const[newDivLogOne,setNewDivLogOne] = useState([])
 const[newDivLogTwo,setNewDivLogTwo] = useState([])
 const[newDivLogThree,setNewDivLogThree] = useState([])
 
-  
+
   const [calorieValueArrTwo, setCalorieValueArrTwo]= useState([])
   const [calorieValueArrThree, setCalorieValueArrThree]= useState([])
 
   //becuase it resest or th render is delayed to keep the speed have to keep the previous dealyed version in state which is naturall delayed becuase its state iwthin state ad have the new value updated into a regualr arr with the spreaded state arrau
 
 
-  let arr = [amount,...calorieValueArrTwo]// this is will the latest query number into it 
-  const [calorieValueArrOne, setCalorieValueArrOne]= useState([arr])
+  // let arr = [amount,...calorieValueArrTwo]// this is will the latest query number into it 
+  // const [calorieValueArrOne, setCalorieValueArrOne]= useState([arr])
   
   let arrTwo = [...calorieValueArrTwo,queryTwo]// this is will the latest query number into it 
   let arrThree= [...calorieValueArrThree,queryTwo]// this is will the latest query number into it 
@@ -109,16 +121,17 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
 
 
 
-  const[newArr,setNewArr] = useState([resultOne])
+  // const[newArr,setNewArr] = useState([resultOne])
   const[result,setResult] = useState(0)
 
   useEffect(()=>{
     onTotalOne(  addArr(fakeArr,0)    )
   
-  },[arr])
+  },[fakeArr])
+
   function addArr(array,type) {
-console.log(fakeArr)
-console.log(arr)
+    console.log(fakeArr)
+    // console.log(arr)
       
     // if(newDivLogOne.length==0){
     //   setCalorieValueArrOne([])
@@ -129,17 +142,17 @@ console.log(arr)
         console.log(currentValue+"currentValue")
 
         return accumulator+currentValue},0)
-      console.log(resultOne+"result One")
+      // console.log(resultOne+"result One")
       console.log(arrTotalOne+"arrTotal One")//thisi doubling arrTotla means its running it twice
 
 
       if (type==1){
 
 
-        return arrTotalOne - newAmount
+        return arrTotalOne - amount
       }   
       else{
-        setResult(arrTotalOne)
+        // setResult(arrTotalOne)
         return arrTotalOne
 
       }
@@ -174,81 +187,25 @@ console.log(arr)
   //     }
   // }
 
-  function addArrTwo(array,type) {
-         
-      
-
-    // if(newDivLogOne.length==0){
-    //   setCalorieValueArrTwo([])
-    // }
-
-      let arrTotalTwo = array.reduce((accumulator,currentValue)=>{
-        console.log(accumulator+"accumulator two")
-        console.log(currentValue +"queryTwo")
-
-        return accumulator+currentValue},0)
-      console.log(resultTwo+"resultTwo")
-      console.log(arrTotalTwo+"arrTotalTwo")//thisi doubling arrTotla means its running it twice, this still takes in the lastquery input into the sum
-
-
-      if (type==1){
-
-
-        return arrTotalTwo - queryTwo
-      }   
-      else{
-        return arrTotalTwo
-
-      }
-  }
-
-  function addArrThree(array,type) {
-         
-      
-
-    if(newDivLogOne.length==0){
-      setCalorieValueArrThree([])
-    }
-
-      let arrTotalThree = array.reduce((accumulator,currentValue)=>{
-        console.log(accumulator)
-        console.log(currentValue +"queryThree")
-
-        return accumulator+currentValue},0)
-      console.log(resultThree)
-      console.log(arrTotalThree)//thisi doubling arrTotla means its running it twice
-
-
-      if (type==1){
-
-
-        return arrTotalThree - queryThree
-      }   
-      else{
-        return arrTotalThree
-
-      }
-  }
-
   let clickCount = 0
 
 const [fake,setFake]= useState(0)
 //it does it on first renderthen on second state it second render
-  useEffect(()=>{
+//   useEffect(()=>{
 
-      setCalorieValueArrTwo([...arr])
-//ptoblem is its updating addArr function but not the state ontotal and only when newlog added
+//       // setCalorieValueArrTwo([...arr])
+// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
     
 
-    console.log(resultOne) // these get activated when it works and when its different number  and so those th addArrFunction
-    console.log(calorieValueArrOne) // this is pushing a 0 in the array but in line 316 it addes it but doesnt run the effect
-    console.log(arr)
-    console.log('queryOne:' , queryOne)
+//     // console.log(resultOne) // these get activated when it works and when its different number  and so those th addArrFunction
+//     // console.log(calorieValueArrOne) // this is pushing a 0 in the array but in line 316 it addes it but doesnt run the effect
+//     // console.log(arr)
+//     console.log('queryOne:' , queryOne)
 
 
 
   
-  },[amount])// couldf it be it only yactiavtes when queryOne changes 
+//   },[amount])// couldf it be it only yactiavtes when queryOne changes 
 
 //   useEffect(()=>{
 
@@ -345,7 +302,7 @@ const addLog=()=>{
       setCount(count+1) 
       // setLog([...log,count])    
 
-      console.log(resultOne)// this js not erasing afater the removing of all 
+      // console.log(resultOne)// this js not erasing afater the removing of all 
     console.log(count)
 
 
@@ -450,6 +407,7 @@ const addLog=()=>{
       // console.log(queryOne)
 
       setCount(count-1)
+
 
 
 
