@@ -76,14 +76,18 @@ useEffect(()=>{
 
 },[queryThree])
 
+
+
 //when delete the last query will be the one connected to the slot it clicked, object, and will be conditional on the slot
 useEffect(()=>{
   
   //if the same add it anyways 
-  if(amount != undefined|| NaN || amount == queryThree)  {
-    setQueryThree(amount)
+  if(amount.calories != undefined|| NaN || amount == queryThree)  {//potentially wont have to have amount.calories i can jsut assing that outside this file
+    setQueryThree(amount.calories)
 
     console.log(amount,'amount')
+    console.log(amount.calories,'amount.calories')
+
   }else{
     setQueryThree(0)
 
@@ -92,7 +96,7 @@ useEffect(()=>{
   // console.log(arr, 'arr')
   console.log(arrThree, 'arr three ')
 
-},[amount])
+},[amount.calories])
   const[queryOne,setQueryOne] =useState(0) 
   const[queryTwo,setQueryTwo] =useState(0) 
 
@@ -475,7 +479,7 @@ const breakfastLogTemplate =(index)=>{
   let newLog=(
     <div key ={index}>
       <div className='breakfast-log-inner-container'>
-      <div style={{paddingLeft:20}} ><SearchFood onQueryOne = {setAmount}/></div>
+      <div style={{paddingLeft:20}} ><SearchFood onQueryOne= {setAmount}/></div>
         <div className="garbage-bin-2" onClick={()=>removeCards(index, eatingTimeData.selectedSlot)}> <ImBin color="white"/></div>
 
 

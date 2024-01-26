@@ -77,8 +77,8 @@ useEffect(()=>{
 useEffect(()=>{
   
   //if the same add it anyways 
-  if(amount != undefined|| NaN || amount == queryTwo)  {
-    setQueryTwo(amount)
+  if(amount.calories != undefined|| NaN || amount == queryTwo)  {
+    setQueryTwo(amount.calories)
 
     console.log(amount,'amount')
   }else{
@@ -89,7 +89,7 @@ useEffect(()=>{
   // console.log(arr, 'arr')
   console.log(arrTwo, 'arr two ')
 
-},[amount])
+},[amount.calories])
 
 
 // useEffect(()=>{

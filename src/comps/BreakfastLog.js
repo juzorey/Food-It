@@ -73,10 +73,10 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-  
+
   //if the same add it anyways 
-  if(amount != undefined|| NaN || amount == queryThree)  {
-    setQueryOne(amount)
+  if(amount  != undefined|| NaN || amount == queryThree)  {
+    setQueryOne(amount.calories)
 
     console.log(amount,'amount')
   }else{
@@ -149,7 +149,7 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
       if (type==1){
 
 
-        return arrTotalOne - amount
+        return arrTotalOne - queryOne
       }   
       else{
         // setResult(arrTotalOne)

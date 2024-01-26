@@ -76,7 +76,13 @@ const[countDown,setCountDown]=useState(true)
   const[countryData,setCountryData] = useState(countries)
   const [inputText, setInputText] = useState("");
   const[calVal,setCalVal] = useState(0)
-  const[foodObject,setFoodObject]=useState({0:0})
+  const[foodObject,setFoodObject]=useState(
+    { 'serving':1,
+    'calories':0,
+    'protein':0,
+    'carbs':0,
+    'fat':0, }
+  )
 
 let choseFoods = []
 let change = useRef()
@@ -84,7 +90,7 @@ let change = useRef()
 // maybe use a stack
 
 
-onQueryOne(foodObject.calories)
+onQueryOne(foodObject)
 
 
   function updateName(event) {
