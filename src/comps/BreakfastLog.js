@@ -59,16 +59,9 @@ console.log(arr,'arr one')
   
   const[queryOne,setQueryOne] =useState(0) 
 
+  const [calorieValueArr, setCalorieValueArr]= useState([])
 
-const[fakeArr,setFakeArr]=useState([0])
-
-let foobArr = [...fakeArr,amount]
-let newAmount = 0
-//when delete the last query will be the one connected to the slot it clicked, object, and will be conditional on the slot
-
-const [calorieValueArr, setCalorieValueArr]= useState([])
-
-let arr= [...calorieValueArr,queryOne]// this is will the latest query number into it 
+  let arr= [...calorieValueArr,queryOne]// this is will the latest query number into it 
 
 
 
@@ -146,13 +139,13 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
   // const[newArr,setNewArr] = useState([resultOne])
   const[result,setResult] = useState(0)
 
-  useEffect(()=>{
-    onTotalOne(  addArr(fakeArr,0)    )
+  // useEffect(()=>{
+  //   onTotalOne(  addArr(fakeArr,0)    )
   
-  },[fakeArr])
+  // },[fakeArr])
 
   function addArr(array,type) {
-    console.log(fakeArr)
+    // console.log(fakeArr)
     // console.log(arr)
       
     // if(newDivLogOne.length==0){
