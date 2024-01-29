@@ -31,7 +31,11 @@ const[amount,setAmount]=useState() // here
 
 const selectedComp =(value)=>{
 
+let resultOne = arr.filter((zero) => zero!==0)
  
+console.log(resultOne,'result one')
+console.log(arr,'arr one')
+
 
   console.log('inputed into query')
   if(value !=0){    
@@ -40,9 +44,11 @@ const selectedComp =(value)=>{
     // setQueryThree(value)
   
   }
+
+
   
-  
-    setCalorieValueArr([...calorieValueArr,queryOne])
+    setCalorieValueArr([...resultOne])
+  console.log(calorieValueArr,'calorieValueArr')
     onTotalOne(addArr(arr,0))
   
   
@@ -50,6 +56,7 @@ const selectedComp =(value)=>{
   
   
   }
+  
   const[queryOne,setQueryOne] =useState(0) 
 
 
@@ -62,6 +69,8 @@ let newAmount = 0
 const [calorieValueArr, setCalorieValueArr]= useState([])
 
 let arr= [...calorieValueArr,queryOne]// this is will the latest query number into it 
+
+
 
 useEffect(()=>{
 
@@ -76,16 +85,29 @@ useEffect(()=>{
 
   //if the same add it anyways 
   if(amount  != undefined|| NaN || amount == queryThree)  {
-    setQueryOne(amount.calories)
+    if(amount.calories != 0 ){
+      console.log(arr, 'arr  first ')
+      setQueryOne(amount.calories)
+      console.log(amount,'amount')
 
-    console.log(amount,'amount')
+
+
+    }
+    else{
+      setQueryOne(0)
+
+    }
+
   }else{
-    setQueryOne(0)
+    console.log('the oher women')
+    setQueryOne(0)//changin thisn helps with maintaing it
+    console.log(amount,'amount else')
+
 
   }
 
   // console.log(arr, 'arr')
-  console.log(arrThree, 'arr three ')
+  console.log(arr, 'arr  second')
 
 },[amount])
 
@@ -115,7 +137,7 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
   let arrTwo = [...calorieValueArrTwo,queryTwo]// this is will the latest query number into it 
   let arrThree= [...calorieValueArrThree,queryTwo]// this is will the latest query number into it 
 
-  let resultOne = arr.filter((zero) => zero!==0)
+ 
   let resultTwo = arrTwo.filter((zero) => zero!==0)
   let resultThree = arrThree.filter((zero) => zero!==0)
 
@@ -149,7 +171,7 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
       if (type==1){
 
 
-        return arrTotalOne - queryOne
+        return arrTotalOne  - queryOne
       }   
       else{
         // setResult(arrTotalOne)
@@ -316,6 +338,9 @@ const addLog=()=>{
 
 
     //might have to conjoin the arrays of the position and the value , 
+    console.log(arr,'arr solo')// its being fully erased the fuck
+    console.log(calorieValueArr,'calorie arr solo') // it is being fully removed 
+
     const removeCards = (index, containerNum) => {
 
 
@@ -331,10 +356,22 @@ const addLog=()=>{
         const divIndexOne = newDivLogOne.findIndex((key)=>key.key ==index) // finds index
         let newIndex = index -1
         newDivLogOne.splice(divIndexOne,1)
+       
+        let newArr = arr.toSpliced(newIndex,1)
+        console.log(newArr)
 
-        resultOne.splice(newIndex,1)
+        setCalorieValueArr(newArr)
+
+
         onTotalOne(addArr(arr,1))
-        console.log("first container removed")
+        console.log("container removed")
+        console.log(newIndex,'newIndex')
+        console.log(newDivLogOne, 'newdivlog one')
+        console.log(arr,'arr removed')
+        console.log(calorieValueArr,'cal arr removed')
+
+        // console.log(resultOne,'result one removed')
+
   
 
       // }else if(containerNum == 2){
@@ -406,7 +443,7 @@ const addLog=()=>{
       // // addArr(query,filteredArr,callType)
       // console.log(queryOne)
 
-      setCount(count-1)
+      setCount(count)
 
 
 

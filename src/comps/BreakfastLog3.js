@@ -39,35 +39,35 @@ const[count2,setCount2]=useState(0)
 
 
 const [calorieValueArrThree, setCalorieValueArrThree]= useState([])
+const[carbValueArrThree, setCarbValueArrThree]= useState([])
 
 const selectedComp =(value)=>{
+  console.log('inputed into query')
+  if(value !=0){    
+    console.log('inputed ')
 
- 
+    // setQueryThree(value)
 
-console.log('inputed into query')
-if(value !=0){    
-console.log('inputed ')
-
-  // setQueryThree(value)
-
-}
+    }
 
 
   setCalorieValueArrThree([...calorieValueArrThree,queryThree])
+
+  setCarbValueArrThree([...carbValueArrThree, queryCarbThree])
+  // addArrThree(arrCarbThree,0)
   onTotalOne(addArrThree(arrThree,0))
-
-
-
 
 
 }
 
+
+const[queryCarbThree,setQueryCarbThree]= useState(amount)
 const[queryThree,setQueryThree] =useState(amount ) //this isnt being updated
 //have it turn zero in betweeen and erase the zeros and then add
 //orforce a rerender
 
 let arrThree= [...calorieValueArrThree,queryThree]// this is will the latest query number into it 
-
+let arrCarbThree = [...carbValueArrThree, queryCarbThree]
 //checking if it will updaet
 useEffect(()=>{
   setCount2(count2+1)
@@ -84,9 +84,12 @@ useEffect(()=>{
   //if the same add it anyways 
   if(amount.calories != undefined|| NaN || amount == queryThree)  {//potentially wont have to have amount.calories i can jsut assing that outside this file
     setQueryThree(amount.calories)
+    setQueryCarbThree(amount.carbs)
 
     console.log(amount,'amount')
     console.log(amount.calories,'amount.calories')
+    console.log(amount.carbs,'amount.carbs')
+
 
   }else{
     setQueryThree(0)
@@ -95,10 +98,10 @@ useEffect(()=>{
 
   // console.log(arr, 'arr')
   console.log(arrThree, 'arr three ')
+  console.log(arrCarbThree, ' arr carb three ')
 
 },[amount.calories])
-  const[queryOne,setQueryOne] =useState(0) 
-  const[queryTwo,setQueryTwo] =useState(0) 
+
 
 
   // const[total,setTotal] = useState(0)
@@ -106,22 +109,21 @@ useEffect(()=>{
 
 
 const[newDivLogOne,setNewDivLogOne] = useState([])
-const[newDivLogTwo,setNewDivLogTwo] = useState([])
-const[newDivLogThree,setNewDivLogThree] = useState([])
+
 
   
-  const [calorieValueArrOne, setCalorieValueArrOne]= useState([])
+
   const [calorieValueArrTwo, setCalorieValueArrTwo]= useState([])
 
 
   //becuase it resest or th render is delayed to keep the speed have to keep the previous dealyed version in state which is naturall delayed becuase its state iwthin state ad have the new value updated into a regualr arr with the spreaded state arrau
 
 
-  // let arr = [...calorieValueArrOne,queryOne]// this is will the latest query number into it 
-  let arrTwo = [...calorieValueArrTwo,queryTwo]// this is will the latest query number into it 
+
+
 
   // let resultOne = arr.filter((zero) => zero!==0)
-  let resultTwo = arrTwo.filter((zero) => zero!==0)
+
   let resultThree = arrThree.filter((zero) => zero!==0)
 
 
@@ -129,33 +131,6 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
   // const[newArr,setNewArr] = useState([resultOne])
 
 
-
-  function addArr(array,type) {
-         
-      
-    // if(newDivLogOne.length==0){
-    //   setCalorieValueArrOne([])
-    // }
-
-      let arrTotalOne = array.reduce((accumulator,currentValue)=>{
-        console.log(accumulator+"accumulator")
-        console.log(currentValue+"currentValue")
-
-        return accumulator+currentValue},0)
-      // console.log(resultOne+"result One")
-      console.log(arrTotalOne+"arrTotal One")//thisi doubling arrTotla means its running it twice
-
-
-      if (type==1){
-
-
-        return arrTotalOne - queryOne
-      }   
-      else{
-        return arrTotalOne
-
-      }
-  }
 
   //result one is the one getting affected when deleteing in the other slots
   // function addArr(array,type) {
@@ -191,6 +166,8 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
 
     if(newDivLogOne.length==0){
       setCalorieValueArrThree([])
+      setCarbValueArrThree([])
+
     }
 
       let arrTotalThree = array.reduce((accumulator,currentValue)=>{
@@ -198,6 +175,7 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
         console.log(currentValue +"queryThree")
 
         return accumulator+currentValue},0)
+        
       console.log(resultThree+"resultThree")
       console.log(arrTotalThree+"arrTotalThree")//thisi doubling arrTotla means its running it twice, this still takes in the lastquery input into the sum
 
@@ -209,7 +187,10 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
 
 
         return arrTotalThree - queryThree
-      }   
+      }
+      else if (type ==2){
+        return arrTotalThree - queryCarbThree
+      }
       else{
         return arrTotalThree
 
@@ -252,47 +233,14 @@ const [fake,setFake]= useState(0)
 
 //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
     console.log(arrThree, 'arr three ')
+    console.log(arrCarbThree, 'arr carb three ')
+
     console.log(calorieValueArrThree, 'caloriearr three ')
 
 
 
   
   },[queryThree])//triggers with change in vairebl query three that depends on amount 
-
-//   useEffect(()=>{
-
-//     setCalorieValueArrTwo([...calorieValueArrTwo,queryTwo])
-// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-//   // onTotalTwo(addArrTwo(arrTwo,0))
-
-
-
-// },[queryTwo])
-
-// useEffect(()=>{
-
-//   setCalorieValueArrThree([...calorieValueArrThree,queryThree])
-// //ptoblem is its updating addArr function but not the state ontotal and only when newlog added
-// // onTotalThree(addArrThree(arrThree,0))
-
-
-
-// },[queryThree])
-  // setQuery(query)
-
-
-
-
-
-
-  
-// calTrack += calories
-
-
-
-
-
-
 
 
 
@@ -306,10 +254,6 @@ console.log(eatingTimeData.selectedSlot)
     console.log(newDivLogOne)
 
 
-// }
-// if(eatingTimeData.selectedSlot == 2){
-//   newDivLogTwo.push(breakfastLogTemplate(count))
-//     console.log(newDivLogTwo)
 
 
 // }
@@ -386,6 +330,7 @@ const addLog=()=>{
 
         resultThree.splice(newIndex,1)
         onTotalOne(addArrThree(arrThree,1))
+        addArrThree(arrCarbThree,2)
         console.log("first container removed")
   
 
