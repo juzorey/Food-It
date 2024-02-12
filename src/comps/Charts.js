@@ -1,6 +1,6 @@
 
-import React, {useState,useEffect, useContext} from 'react'
-import Stacked from "./Stacked.js"
+import React, {useState,useEffect, useContext,useForceUpdate} from 'react'
+import {Stacked }from "./Stacked.js"
 
 
 
@@ -28,6 +28,8 @@ setToggleValue(chartOptions[e.target.value])
 
 
 console.log(toggle)
+console.log(<Stacked></Stacked>)
+
 
 }
   return (

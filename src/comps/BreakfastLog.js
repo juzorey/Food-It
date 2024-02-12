@@ -1,19 +1,22 @@
 import {BsArrowCounterclockwise, BsEmojiSmileUpsideDown, BsFillPlusCircleFill} from 'react-icons/bs'
 import {ImBin} from 'react-icons/im'
-import React, {useState,useContext,useEffect, useRef} from 'react'
+import React, {useState,useContext,useEffect, useRef, createContext} from 'react'
 import {SearchFood} from './SearchFood.js'
 import {useToggle} from './useToggle.js'
 import { queryByTestId } from '@testing-library/react'
 import { set } from 'animejs'
 import { EatingTimeContext } from './EatingTimes.js'
-
+import {Stacked }from './Stacked.js'
 
 // make it into classes then polymorph
 //or make the values different for each component
 
 
+export const BreakFastContext = createContext()
 
-export default function BreakfastLog({props,onTotalOne, selected}) {
+
+
+export const  BreakfastLog=({props,onTotalOne, selected}) =>{
 
   const searchFoodData = useContext(SearchFood)
   const eatingTimeData = useContext(EatingTimeContext)
@@ -48,30 +51,52 @@ console.log(arr,'arr one')
 
   
     setCalorieValueArr([...resultOne])
-  console.log(calorieValueArr,'calorieValueArr')
+    console.log(calorieValueArr,'calorieValueArr')
     onTotalOne(addArr(arr,0))
-  
-  
-  
-  
+
+
+    
   
   }
   
   const[queryOne,setQueryOne] =useState(0) 
+  const[queryCarbThree,setQueryCarbThree]= useState(0)
+
 
   const [calorieValueArr, setCalorieValueArr]= useState([])
+  const[carbValueArrThree, setCarbValueArrThree]= useState([])
 
   let arr= [...calorieValueArr,queryOne]// this is will the latest query number into it 
 
+  let arrCarbThree = [...carbValueArrThree]
+  if(carbValueArrThree[0]==0){
 
+    console.log(arrCarbThree.shift(),'shifted')
+   }
 
+const[totalCarbs,setTotalCarbs]= useState(20)
+   let breakObject = {
+    news:'succes',
+    carbs:totalCarbs
+   }
 useEffect(()=>{
 
 
   selectedComp(0)
 
 },[queryOne])
+useEffect(()=>{
 
+
+  setCarbValueArrThree([...carbValueArrThree,queryCarbThree])
+  
+
+},[queryCarbThree])
+useEffect(()=>{
+
+setTotalCarbs(addArr(arrCarbThree,0))
+ console.log(carbValueArrThree,'carb effect')
+},[carbValueArrThree])
 
 
 useEffect(()=>{
@@ -83,7 +108,11 @@ useEffect(()=>{
       setQueryOne(amount.calories)
       console.log(amount,'amount')
 
-
+   
+      setQueryCarbThree(amount.carbs)
+      
+    
+      console.log(amount.carbs,'amount.carbs')
 
     }
     else{
@@ -101,6 +130,8 @@ useEffect(()=>{
 
   // console.log(arr, 'arr')
   console.log(arr, 'arr  second')
+  console.log(arrCarbThree, ' arr carb three ')
+
 
 },[amount])
 
@@ -166,6 +197,9 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
 
         return arrTotalOne  - queryOne
       }   
+      else if (type ==2){
+        return arrTotalOne - queryCarbThree
+      }
       else{
         // setResult(arrTotalOne)
         return arrTotalOne
@@ -262,7 +296,7 @@ const [fake,setFake]= useState(0)
 
   
 const createNewlog=()=>{
-console.log(eatingTimeData.selectedSlot)
+console.log(eatingTimeData)
 
 // if(eatingTimeData.selectedSlot == 1){
   newDivLogOne.push(breakfastLogTemplate(count))
@@ -333,6 +367,9 @@ const addLog=()=>{
     //might have to conjoin the arrays of the position and the value , 
     console.log(arr,'arr solo')// its being fully erased the fuck
     console.log(calorieValueArr,'calorie arr solo') // it is being fully removed 
+    console.log(arrCarbThree, ' arr carb solo ')
+    console.log(carbValueArrThree, ' value carb solo ')
+
 
     const removeCards = (index, containerNum) => {
 
@@ -355,6 +392,7 @@ const addLog=()=>{
 
         setCalorieValueArr(newArr)
 
+        addArr(arrCarbThree,2)
 
         onTotalOne(addArr(arr,1))
         console.log("container removed")
@@ -482,11 +520,17 @@ const breakfastLogTemplate =(index)=>{
 )
 return newLog
 } 
+let news = 'exported successfully'
+
  
 
 
   return(
+    <BreakFastContext.Provider value = {{breakObject}}>
+
     <div className='fake-container'>
+{<Stacked/>}
+      
      {showNewLog()}
 
 
@@ -495,5 +539,7 @@ return newLog
         <i className="add-log-btn" onClick={addLog}> {log.length>0? log[0].value: 0}add</i>
       </div>
     </div>
+    </BreakFastContext.Provider>
+
   )
 }

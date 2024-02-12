@@ -3,7 +3,7 @@
 import React,{ChangeEvent,useState, createContext, useContext, useRef,useEffect} from "react";
 import {useToggle} from './useToggle.js'
 import {foodDataContext}from './FoodNutrionApi.js'
-import Stacked from "./Stacked.js";
+import {Stacked} from "./Stacked.js";
 import { Routes,Route} from 'react-router-dom'
 
 // export const SearchFoodContext = createContext();
@@ -223,7 +223,7 @@ let searchFoodContextData = {
 
 }
   return(
-    <SearchFoodContext.Provider value={foodObject}>
+    <SearchFoodContext.Provider value={{foodObject}}>
       <Stacked/>
 {/* <Routes>
   <Route path="/charts" element ={<Charts/>}/>

@@ -1,9 +1,9 @@
 import React, {useState,useEffect,useRef, createContext}from "react";
 import { motion, animate } from "framer-motion"
 import { BsNodeMinusFill } from "react-icons/bs";
-import BreakfastLog from "./BreakfastLog";
-import BreakfastLog2 from "./BreakfastLog2";
-import BreakfastLog3 from "./BreakfastLog3";
+import {BreakfastLog} from "./BreakfastLog";
+import {BreakfastLog2 }from "./BreakfastLog2";
+import {BreakfastLog3} from "./BreakfastLog3";
 import TotalMacroCircle2 from "./TotalMacroCircle2";
 import { set } from "animejs";
 
