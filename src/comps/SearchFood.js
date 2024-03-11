@@ -1,19 +1,26 @@
 
 
-import React,{ChangeEvent,useState, createContext, useContext, useRef,useEffect} from "react";
+import React,{ChangeEvent,useState, createContext, useContext, useRef,useEffect,useMemo} from "react";
 import {useToggle} from './useToggle.js'
 import {foodDataContext}from './FoodNutrionApi.js'
-import {Stacked} from "./Stacked.js";
-import { Routes,Route} from 'react-router-dom'
+import searchFoodContextData1 from "./SearchFoodDataContext.js";
 
+import {Stacked} from "./Stacked.js";
+import Charts from "./Charts.js";
+import { Routes,Route} from 'react-router-dom'
 // export const SearchFoodContext = createContext();
 export const SearchFoodContext = createContext()
+
 
 export const SearchFood=({children,onQueryOne,onQueryTwo, onQueryThree}) =>{
   const foodNutrionApiData= useContext(foodDataContext)
 
+  // const handleClickContext = () => {
+  //   setData('new test data');
+  // };
 
 
+  // const {setData} = useContext(searchFoodContextData1);
 
 
 //react hook can have it render with true or false or the style conditional to toggle display none or blocks
@@ -222,9 +229,13 @@ let searchFoodContextData = {
   toggle:toggle
 
 }
+
+const arr = useMemo(() => [1,2,3], []);
+
   return(
     <SearchFoodContext.Provider value={{foodObject}}>
-      <Stacked/>
+      {/* <Stacked arr={arr}/> */}
+      {/* {<Charts/>} */}
 {/* <Routes>
   <Route path="/charts" element ={<Charts/>}/>
 </Routes> */}

@@ -7,6 +7,8 @@ import { queryByTestId } from '@testing-library/react'
 import { set } from 'animejs'
 import { EatingTimeContext } from './EatingTimes.js'
 import {Stacked }from './Stacked.js'
+import Charts from './Charts.js'
+import searchFoodContextData1 from "./SearchFoodDataContext.js";
 
 // make it into classes then polymorph
 //or make the values different for each component
@@ -17,6 +19,14 @@ export const BreakFastContext = createContext()
 
 
 export const  BreakfastLog=({props,onTotalOne, selected}) =>{
+
+  const {setChartData} = useContext(searchFoodContextData1);
+  const {carbData} = useContext(searchFoodContextData1);
+  const {setCarbData} = useContext(searchFoodContextData1);
+  const {chartData1} = useContext(searchFoodContextData1);
+
+
+
 
   const searchFoodData = useContext(SearchFood)
   const eatingTimeData = useContext(EatingTimeContext)
@@ -95,8 +105,30 @@ useEffect(()=>{
 useEffect(()=>{
 
 setTotalCarbs(addArr(arrCarbThree,0))
+
+
  console.log(carbValueArrThree,'carb effect')
 },[carbValueArrThree])
+const[counter,setCounter]=useState(200)
+//take verything from 133
+useEffect(()=>{
+  if(totalCarbs !=0){
+console.log(totalCarbs,'totalcarbs')
+
+  setChartData({
+    series: [
+      {
+        name: 'Today',
+        data: [100, 50, totalCarbs],
+      },
+    ],
+  })
+}
+},[totalCarbs])
+useEffect(()=>{
+  console.log(chartData1,'chartData1')
+   
+  },[chartData1])
 
 
 useEffect(()=>{
@@ -529,8 +561,7 @@ let news = 'exported successfully'
     <BreakFastContext.Provider value = {{breakObject}}>
 
     <div className='fake-container'>
-{<Stacked/>}
-      
+
      {showNewLog()}
 
 

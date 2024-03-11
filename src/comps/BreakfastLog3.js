@@ -529,7 +529,7 @@ let news = 'exported successfully'
     <BreakFastContext.Provider value = {{breakObject}}>
 
     <div className='fake-container'>
-{<Stacked/>}
+{/* {<Stacked/>} */}
       
      {showNewLog()}
 

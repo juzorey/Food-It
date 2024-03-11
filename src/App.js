@@ -15,7 +15,7 @@ import {AuthProvider} from './contexts/AuthContext.js';
 import {EatingTimeContext} from './comps/EatingTimes.js';
 import { FoodNutrionApi } from './comps/FoodNutrionApi.js';
 import {SearchFood }from './comps/SearchFood.js';
-
+import SearchFoodProvider from './comps/SearchFoodProvider.js'
 function App() {
 
 
@@ -72,6 +72,7 @@ function App() {
 
         {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
+
     </FoodNutrionApi>
 
     </AuthProvider>

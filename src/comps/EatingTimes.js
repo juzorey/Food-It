@@ -6,7 +6,7 @@ import {BreakfastLog2 }from "./BreakfastLog2";
 import {BreakfastLog3} from "./BreakfastLog3";
 import TotalMacroCircle2 from "./TotalMacroCircle2";
 import { set } from "animejs";
-
+import Charts from "./Charts";
 
 
 
@@ -120,7 +120,9 @@ return (
 
     <div onClick= {()=>{setSelectedSlot(1)
   console.log(selectedSlot)}} className="breakfast-input">
-      <BreakfastLog onTotalOne = {setTotalOne}/>
+      <BreakfastLog onTotalOne = {setTotalOne}>
+      {/* <Charts/> */}
+      </BreakfastLog>
     </div>
   </div>
   <div onClick= {()=>setSelectedSlot(2)} className="breakfast-container">
