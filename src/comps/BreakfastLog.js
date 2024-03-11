@@ -71,20 +71,28 @@ console.log(arr,'arr one')
   
   const[queryOne,setQueryOne] =useState(0) 
   const[queryCarbThree,setQueryCarbThree]= useState(0)
+  const [queryFat,setQueryFat] = useState(0)
+  const[queryPro,setQueryPro] = useState(0)
 
 
   const [calorieValueArr, setCalorieValueArr]= useState([])
-  const[carbValueArrThree, setCarbValueArrThree]= useState([])
-
+  const[carbValueArrThree, setCarbValueArrThree]= useState([])// these should be a class for the 3 macros
+  const[fatValueArr, setFatValueArr]= useState([])
+  const[proValueArr,setProValueArr]= useState([])
   let arr= [...calorieValueArr,queryOne]// this is will the latest query number into it 
 
   let arrCarbThree = [...carbValueArrThree]
+  let arrFat = [...fatValueArr]
+  let arrPro = [...proValueArr]
   if(carbValueArrThree[0]==0){
 
     console.log(arrCarbThree.shift(),'shifted')
    }
 
 const[totalCarbs,setTotalCarbs]= useState(20)
+const[totalFat,setTotalFat]= useState(25)
+const[totalPro,setTotalPro]= useState(30)
+
    let breakObject = {
     news:'succes',
     carbs:totalCarbs
@@ -99,21 +107,34 @@ useEffect(()=>{
 
 
   setCarbValueArrThree([...carbValueArrThree,queryCarbThree])
+  setFatValueArr([...fatValueArr,queryFat])
+  setProValueArr([...proValueArr,queryPro])
   
 
 },[queryCarbThree])
+
 useEffect(()=>{
 
 setTotalCarbs(addArr(arrCarbThree,0))
+setTotalFat(addArr(arrFat,0))
+setTotalPro(addArr(arrPro,0))
 
 
  console.log(carbValueArrThree,'carb effect')
 },[carbValueArrThree])
-const[counter,setCounter]=useState(200)
-//take verything from 133
+
+
+
+
+//take verything from 133 amount
+
+
+
 useEffect(()=>{
   if(totalCarbs !=0){
 console.log(totalCarbs,'totalcarbs')
+console.log(totalFat,'total fat')
+console.log(totalPro,'total pro')
 
   setChartData({
     series: [
@@ -125,6 +146,9 @@ console.log(totalCarbs,'totalcarbs')
   })
 }
 },[totalCarbs])
+
+
+
 useEffect(()=>{
   console.log(chartData1,'chartData1')
    
@@ -142,6 +166,8 @@ useEffect(()=>{
 
    
       setQueryCarbThree(amount.carbs)
+      setQueryFat(amount.fat)
+      setQueryPro(amount.protein)
       
     
       console.log(amount.carbs,'amount.carbs')
@@ -231,6 +257,14 @@ const[newDivLogThree,setNewDivLogThree] = useState([])
       }   
       else if (type ==2){
         return arrTotalOne - queryCarbThree
+      }
+      else if(type ==3){
+        return arrTotalOne - queryFat
+
+      }
+      else if (type ==4){
+        return arrTotalOne - queryPro
+
       }
       else{
         // setResult(arrTotalOne)
@@ -425,6 +459,8 @@ const addLog=()=>{
         setCalorieValueArr(newArr)
 
         addArr(arrCarbThree,2)
+        addArr(arrFat,3)
+        addArr(arrPro,4)
 
         onTotalOne(addArr(arr,1))
         console.log("container removed")
