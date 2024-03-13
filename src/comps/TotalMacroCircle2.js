@@ -188,27 +188,28 @@ let caloriesToCircularProgress = 1
 
   return (
     <div>
-      <div>
+      <div className="svg-container">
 
     <motion.svg
-      width="620"
-      height="600"
-      viewBox="0 -10 600 600"
+      width="520"
+      height="500"
+      
+      viewBox="-10 -50 630 400"
       initial="hidden"
       animate="visible"
 
 
     >
-    <text x="16.5%" y="18%" dy="0.2rem" style={{fontWeight:700, fontSize:30, color:"white"}} textAnchor="middle" className="circle-text">{calorieGoal}</text>
+    <text x="16.5%" y="18%" dy="0.2rem" style={{fontWeight:700, fontSize:30,}} textAnchor="middle" >{calorieGoal}</text>
 
 
     <motion.circle
   className="placer"
   ref={scope}
 
-    cx="100"
+    cx="300"
     cy="100"
-    r="80"
+    r="180"
     stroke="#ff0055"
     variants=
   {

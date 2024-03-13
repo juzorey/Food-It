@@ -20,6 +20,8 @@ import { Svg, Circle } from "react-native-svg";
 import { Dimensions} from "react-native";
 import Charts  from "./Charts.js"
 import {FaRegArrowAltCircleDown, FaRegArrowAltCircleUp} from "react-icons/fa"
+import { FaChartBar } from "react-icons/fa";
+
 export const HomeContext = createContext()
 
 // Define the Login function.
@@ -382,71 +384,100 @@ let percentConversion = 20
         
         <div className="profile-view">
         <div className="block-change"> 
+
             <div className="block-half">
-            <div className="macros-slots">
-                <span className="inner-macros-slots"> Calories
+              <div className="macro-container-2">
 
+              <div className="inner-macro-container-2">
 
-                  <span className="end"><input  style={{width:60, textAlign:"end"}}maxlength="5" value={inputCal} onInput={e=>setInputCal(e.target.value)}className="carbs"></input></span>
-                </span>
-                
+                <div className="calories">
+                    <span className="calories-logo"><FaChartBar size='20px'/></span>
+                    <span className="calories-name">Calories</span>
 
-               
-                
                 </div>
 
-
-              <div className="macros-slots">
-                <span className="inner-macros-slots"> Carbohydrates<input maxlength="3" value={inputCarbs} className="carbs"></input>
-  
-                <span style={{marginRight:70}}>{}g</span>
+                <div className="macros-slots-cal">
+                    <span className="inner-macros-slots-2"> 
 
 
-                
-                </span>
-                
-                
-                <div className="slide-container">
-                  <div className="slider">
-                  <input type="range"  step="5" min="0" max="100" value={sliderInput1} onInput={HandleChange}/>
-                  <progress className="" step="5" min="0" max="100" value={sliderInput1}></progress>
-                  </div>  
-                  <div className="slider-num">{sliderInput1}%</div>
+                      <span className="end"><input placeholder="input calories" style={{width:260, textAlign:"middle"}}maxlength="5" value={inputCal} onInput={e=>setInputCal(e.target.value)}className="carbs"></input></span>
+                    </span>
+                    
+
+                  
+                    
+                  </div>
                 </div>
+
+              
+                <div className="inner-macro-container-2">
+
+                  <div className="macros-slots">
+                    <span className="inner-macros-slots"> Carbohydrates<input maxlength="3" value={inputCarbs} className="carbs"></input>
+      
+                    <span style={{marginRight:10}}>{}g</span>
+
+
+                    
+                    </span> 
+                    
+
+                    <div className="slide-container">
+                      <div className="slider">
+                      <input type="range"  step="5" min="0" max="100" value={sliderInput1} onInput={HandleChange}/>
+                      <progress className="" step="5" min="0" max="100" value={sliderInput1}></progress>
+                      </div>  
+                      <div className="slider-num">{sliderInput1}%</div>
+                    </div>
+                    
+                    </div>
+
+
+                    </div>
                 </div>
-                <div className="macros-slots">
-                <span className="inner-macros-slots"> Protein<input maxlength="3" value={inputPro} onInput={e => setInput2(e.target.value)}className="carbs"></input>
-                <span style={{marginRight:70}}>g</span>
+
+                <div className="macro-container-1">
+                  <div className="inner-macro-container-2">
+                  
+                      <div className="macros-slots">
+                    <span className="inner-macros-slots"> Protein<input maxlength="3" value={inputPro} onInput={e => setInput2(e.target.value)}className="carbs"></input>
+                    <span style={{marginRight:70}}>g</span>
 
 
-                </span>
-                
-                
-                 <div className="slide-container">
-                  <div className="slider">
-                  <input type="range"  step="5"min="0" max="100" value={sliderInput2} onInput={HandleChange2}/>
-                  <progress className="" min="0" max="100" value={sliderInput2}></progress>
-                  </div>  
-                  <div className="slider-num">{sliderInput2}%</div>
+                    </span>
+                    
+                    
+                    <div className="slide-container">
+                      <div className="slider">
+                      <input type="range"  step="5"min="0" max="100" value={sliderInput2} onInput={HandleChange2}/>
+                      <progress className="" min="0" max="100" value={sliderInput2}></progress>
+                      </div>  
+                      <div className="slider-num">{sliderInput2}%</div>
+                    </div>
+                    </div>
                 </div>
+
+                <div className="inner-macro-container-2">
+
+                  <div className="macros-slots z">
+
+                  <span className="inner-macros-slots "> Fat<input maxlength="3" value={inputFat} onInput={e => setInput3(e.target.value)}className="carbs"></input>
+                  <span style={{marginRight:70}}>g</span>
+
+
+                  </span>
+                  <div className="slide-container">
+                    <div className="slider">
+                    <input type="range"  step="5"min="0" max="100" value={sliderInput3} onInput={HandleChange3}/>
+                    <progress className="" min="0" max="100" value={sliderInput3}></progress>
+                    </div>  
+                    <div className="slider-num">{sliderInput3}%</div>
+                  </div>
+                  </div>
+                  {/* <span className="inner-macros-slots "> percent{totalPer}</span>  */}
+
+                  </div>
                 </div>
-                <div className="macros-slots z">
-
-                <span className="inner-macros-slots "> Fat<input maxlength="3" value={inputFat} onInput={e => setInput3(e.target.value)}className="carbs"></input>
-                <span style={{marginRight:70}}>g</span>2
-
-
-                </span>
-                <div className="slide-container">
-                  <div className="slider">
-                  <input type="range"  step="5"min="0" max="100" value={sliderInput3} onInput={HandleChange3}/>
-                  <progress className="" min="0" max="100" value={sliderInput3}></progress>
-                  </div>  
-                  <div className="slider-num">{sliderInput3}%</div>
-                </div>
-                </div>
-                {/* <span className="inner-macros-slots "> percent{totalPer}</span> */}
-
 
 
             </div>
@@ -454,10 +485,9 @@ let percentConversion = 20
               <div className="circular-div">
                 <TotalMacroCircle2 totalCal= {totalCal}/>
               </div>
+              <span className="roger">Calories Consumed</span>
             </div>
-            <div className="block-half-half">
-
-            </div>
+           
         </div>
 
           <div className="block-1 first-block">
