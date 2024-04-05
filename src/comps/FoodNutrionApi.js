@@ -25,7 +25,7 @@ const foodInfo = async (info)=>{
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result.hints);
+    console.log(result.hints,'result hints');
     dataArr = result.hints
     //maybe i do  a setinternval
      if(dataArr.length!=0)setfoodDataArr(dataArr)

@@ -9,6 +9,8 @@ import { EatingTimeContext } from './EatingTimes.js'
 import {Stacked }from './Stacked.js'
 import Charts from './Charts.js'
 import searchFoodContextData1 from "./SearchFoodDataContext.js";
+import { AiOutlineConsoleSql } from 'react-icons/ai'
+import { DragControls } from 'framer-motion'
 
 // make it into classes then polymorph
 //or make the values different for each component
@@ -18,13 +20,15 @@ export const BreakFastContext = createContext()
 
 
 
-export const  BreakfastLog=({props,onTotalOne, selected}) =>{
+export const  BreakfastLog=({props, selected}) =>{
 
   const {setChartData} = useContext(searchFoodContextData1);
   const {carbData} = useContext(searchFoodContextData1);
   const {setCarbData} = useContext(searchFoodContextData1);
   const {chartData1} = useContext(searchFoodContextData1);
-
+  const { head }  = useContext(searchFoodContextData1);
+  const {objextA} = useContext(searchFoodContextData1)
+  const{globalDivCalArr,setGlobalDivCalArr  } = useContext(searchFoodContextData1)
 
 
 
@@ -41,7 +45,9 @@ const[selectedSlot,setSelectedSlot] = useState()
   const[foodInput,setFoodInput]=useState('')
   const[calories,setCalories]=useState(0) 
 const[amount,setAmount]=useState() // here
+  const[totalCal,setTotalCal]=useState(0)
 
+ 
 const selectedComp =(value)=>{
 
 let resultOne = arr.filter((zero) => zero!==0)
@@ -62,12 +68,27 @@ console.log(arr,'arr one')
   
     setCalorieValueArr([...resultOne])
     console.log(calorieValueArr,'calorieValueArr')
-    onTotalOne(addArr(arr,0))
+  //  setTotalCal(addArr(arr,0))
+    setTotalCal(addArr(arr,0))
+
 
 
     
   
   }
+  
+// to  update  ontotal is getting the daved cal consumed 
+
+// might have to change the ontotal and have it only change itslef and others places have the total consumed from the global provider
+  // useEffect(()=>{
+
+   
+  // onTotalOne(objextA[head][0].calConsumed)
+
+  // },[head])
+
+//to update the total calroites in the specific date
+
   
   const[queryOne,setQueryOne] =useState(0) 
   const[queryCarbThree,setQueryCarbThree]= useState(0)
@@ -158,8 +179,14 @@ useEffect(()=>{
 useEffect(()=>{
 
   //if the same add it anyways 
+
+  
   if(amount  != undefined|| NaN || amount == queryThree)  {
+
     if(amount.calories != 0 ){
+
+setDivCalArr(newDivLogOne)
+
       console.log(arr, 'arr  first ')
       setQueryOne(amount.calories)
       console.log(amount,'amount')
@@ -404,6 +431,189 @@ const showNewLog=()=>{
 
 
   }
+
+  // const{fakeChosen,setFakeChosen} = useContext(searchFoodContextData1)
+
+  //might be able to chnage the onquery and call it from there
+//   useEffect(()=>{
+
+// let newFakeChosen = fakeChosen.filter(item => item !== 'Select Food')
+
+// objextA[head][1](prev => ({...prev, breakfastLog: {...prev, loglog: newFakeChosen}}));
+
+// console.log(fakeChosen,'chosen')
+// console.log(newDivLogOne,'newDivLogOne')
+// // objextA[head][1](prev => ({...prev, breakfastLog: {...prev.breakfastLog, loglog: fakeChosen}}));
+
+
+
+
+
+//   },[fakeChosen])
+
+
+
+// const [prevLoglog, setPrevLoglog] = useState(objextA[head][0].breakfastLog.loglog);
+
+// useEffect(() => {
+// console.log(fakeChosen, 'chosen fake  prev');  
+// }, [fakeChosen]);
+
+
+// useEffect(() => {
+// objextA[head][1](prev => ({...prev, breakfastLog: {...prev.breakfastLog, loglog: prevLoglog}}));
+// console.log(prevLoglog,'chosen prev')
+// }, [prevLoglog]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// useEffect(() => {
+//   console.log(objextA[head][0].calorieArrayLog, 'chosen log');
+
+
+
+// }, [objextA[head][0].loglog]);
+
+
+
+useEffect(() => {
+  if (totalCal !== undefined) {
+    objextA[head][1](prev => ({ ...prev, calConsumed: totalCal }));
+  }
+}, [totalCal]);
+
+// Update loglog state while keeping previous state
+
+useEffect(() => {
+  if (totalCal !== undefined) {
+    objextA[head][1](prev => ({...prev, calConsumed: totalCal}));
+  }
+}, [totalCal]);
+
+
+useEffect(() => {
+  objextA[head][1](prev => ({...prev, breakfastLog: {...prev.breakfastLog, calorieArray: calorieValueArr}}));
+}, [calorieValueArr]);
+// i will have to make it use the heads object states when it changes
+
+
+
+
+
+
+
+
+
+  // useEffect(()=>{
+  //   console.log(newDivLogOne,'divCalArr new div')
+   
+
+  //     console.log(objextA[head][0].breakfastLog.calorieArrayLog,'caloireArray');
+  //     objextA[head][1](prev => ({...prev, breakfastLog: {...prev.breakfastLog, calorieArrayLog: newDivLogOne}}));
+
+
+  // },[log]);
+
+    
+  const[divCalArr, setDivCalArr] = useState([])
+
+
+
+  useEffect(()=>{
+ 
+
+    setGlobalDivCalArr(divCalArr)
+
+
+
+  },[divCalArr]);
+
+
+  // useEffect(()=>{
+
+  //     objextA[head][1](prev => ({...prev, calorieArrayLog: globalDivCalArr}));
+
+
+
+
+  // },[globalDivCalArr]);
+  
+
+
+let fuckyou = [...globalDivCalArr]
+
+  useEffect(()=>{
+
+
+
+    console.log(fuckyou,'fuck ')
+    setNewDivLogOne(globalDivCalArr)
+  
+
+    // objextA[head][1](prev => ({...prev, calorieArrayLog: fuckyou}));
+
+    
+  
+  
+  
+  },[head])
+
+  // useEffect(()=>{
+
+
+
+  //   console.log(fuckyou,'fuck ')
+  //   setNewDivLogOne(objextA[head][0].calorieArrayLog)
+  
+
+
+
+
+    
+  
+  
+  
+  // },[objextA[head][0].calorieArrayLog])
+  
+
+
+  useEffect(()=>{
+    console.log(objextA[head][0].calorieArrayLog,'global log')
+    console.log(objextA);
+    console.log(head);
+    console.log(objextA[head]);
+    console.log(objextA[head][0]);
+    console.log(objextA[head][0].calorieArrayLog);
+    // console.log(objextA[head][0].breakfastLog.breakfastLog);
+  },[objextA[head][0].calorieArrayLog]);
+  
+
+
+
+  // this attaches the amount of search components that need to be displayed to the head object
+
+//show updated objexta log
+
+
+
+
+
+
+
+
 const addLog=()=>{
   createNewlog()
 
@@ -452,7 +662,7 @@ const addLog=()=>{
         const divIndexOne = newDivLogOne.findIndex((key)=>key.key ==index) // finds index
         let newIndex = index -1
         newDivLogOne.splice(divIndexOne,1)
-       
+       //this will be used to updated objextA calorie array
         let newArr = arr.toSpliced(newIndex,1)
         console.log(newArr)
 
@@ -462,7 +672,7 @@ const addLog=()=>{
         addArr(arrFat,3)
         addArr(arrPro,4)
 
-        onTotalOne(addArr(arr,1))
+        setTotalCal(addArr(arr,1))
         console.log("container removed")
         console.log(newIndex,'newIndex')
         console.log(newDivLogOne, 'newdivlog one')
@@ -557,7 +767,6 @@ const addLog=()=>{
 // }
 
 
-  
 
 
 const breakfastLogTemplate =(index)=>{
@@ -586,6 +795,7 @@ const breakfastLogTemplate =(index)=>{
       </div>
     </div>
 )
+console.log(newLog,'newLog')
 return newLog
 } 
 let news = 'exported successfully'
@@ -603,7 +813,7 @@ let news = 'exported successfully'
 
       <div className='add-btn-container'>
 
-        <i className="add-log-btn" onClick={addLog}> {log.length>0? log[0].value: 0}add</i>
+        <i className="add-log-btn" onClick={addLog}> add</i>
       </div>
     </div>
     </BreakFastContext.Provider>

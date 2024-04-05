@@ -536,7 +536,7 @@ let news = 'exported successfully'
 
       <div className='add-btn-container'>
 
-        <i className="add-log-btn" onClick={addLog}> {log.length>0? log[0].value: 0}add</i>
+        <i className="add-log-btn" onClick={addLog}>add</i>
       </div>
     </div>
     </BreakFastContext.Provider>

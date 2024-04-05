@@ -194,13 +194,15 @@ let caloriesToCircularProgress = 1
       width="520"
       height="500"
       
-      viewBox="-10 -50 630 400"
+      viewBox="-20 -45 630 400"
       initial="hidden"
       animate="visible"
 
 
     >
-    <text x="16.5%" y="18%" dy="0.2rem" style={{fontWeight:700, fontSize:30,}} textAnchor="middle" >{calorieGoal}</text>
+    <text x="48.5%" y="18%" dy="0.2rem" style={{fontWeight:700, fontSize:28,}} textAnchor="middle" >calories consumed</text>
+
+    <text x="47.5%" y="35%" dy="0.2rem" style={{fontWeight:700, fontSize:50,}} textAnchor="middle" >{props.totalCal}/{calorieGoal}</text>
 
 
     <motion.circle

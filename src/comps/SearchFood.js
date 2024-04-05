@@ -8,13 +8,17 @@ import searchFoodContextData1 from "./SearchFoodDataContext.js";
 import {Stacked} from "./Stacked.js";
 import Charts from "./Charts.js";
 import { Routes,Route} from 'react-router-dom'
+
 // export const SearchFoodContext = createContext();
 export const SearchFoodContext = createContext()
 
 
 export const SearchFood=({children,onQueryOne,onQueryTwo, onQueryThree}) =>{
   const foodNutrionApiData= useContext(foodDataContext)
-
+  const {displayLog} = useContext(searchFoodContextData1)
+  const{loglog} = useContext(searchFoodContextData1)
+  const{head} = useContext(searchFoodContextData1)
+  const{objextA} = useContext(searchFoodContextData1)
   // const handleClickContext = () => {
   //   setData('new test data');
   // };
@@ -78,8 +82,23 @@ const[countDown,setCountDown]=useState(true)
 },
 
   ]
-
+const {fakeChosen,setFakeChosen} = useContext(searchFoodContextData1)
+//try updating the object after it was been chosen
+//or take the name and cal only and edit the div
   const[chosen,setChosen] = useState('Select Food')
+
+//   useEffect(()=>{
+//     setFakeChosen(prevFakeChosen => ([...prevFakeChosen, chosen ]));
+
+
+
+
+// },[chosen])
+// useEffect(()=>{
+//   console.log(objextA[head][0].breakfastLog.loglog,'loglog')
+// },[objextA[head][0].breakfastLog.loglog])
+
+
   const[countryData,setCountryData] = useState(countries)
   const [inputText, setInputText] = useState("");
   const[calVal,setCalVal] = useState(0)
@@ -170,6 +189,8 @@ onQueryOne(foodObject)
 
 let dataArr =foodNutrionApiData.foodApiData.foodDataArr
 // per serving ( 4g)  pro: 4g carb: 4g fat: 4g
+
+
   function addCountry() {
     console.log(dup(dataArr))
 
@@ -211,7 +232,7 @@ let dataArr =foodNutrionApiData.foodApiData.foodDataArr
     let arr = []
     let searchedValue = e.target.value.toLowerCase()
 
-    foodNutrionApiData.foodApiData.foodInfo(searchedValue)// has to change for optimization
+    foodNutrionApiData.foodApiData.foodInfo(searchedValue) // has to change for optimization
 
 
 
@@ -261,7 +282,7 @@ const arr = useMemo(() => [1,2,3], []);
      {}
 
     </div>
-    // {/* </SearchFoodContext.Provider> */}
+     {/* </SearchFoodContext.Provider> */}
 
     </SearchFoodContext.Provider>
   )

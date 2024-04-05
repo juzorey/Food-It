@@ -6,7 +6,7 @@ import EatingTime from "./EatingTimes";
 import { AllFoods } from "./AllFoods";
 import MacrosBar  from "./MacrosBar";
 // import Player from "./Player";
-import {useEffect, useState, createContext } from "react";
+import {useEffect, useState, createContext,useContext } from "react";
 import {Time} from "./Time"
 import StopWatch from "./StopWatch"
 import Nav from "./Nav";
@@ -21,6 +21,11 @@ import { Dimensions} from "react-native";
 import Charts  from "./Charts.js"
 import {FaRegArrowAltCircleDown, FaRegArrowAltCircleUp} from "react-icons/fa"
 import { FaChartBar } from "react-icons/fa";
+import DateMenu from "./DateMenu.js";
+import searchFoodContextData1 from "./SearchFoodDataContext.js";
+import { set } from "animejs";
+import Calender from "./Calender.jsx";
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export const HomeContext = createContext()
 
@@ -37,7 +42,6 @@ const Home = (props) => {
   const[firstE,setFirstE] =useState(true)
   const[firstF,setFirstF] =useState(true)
   const[firstG,setFirstG] =useState(true)
-
   const[bbox,setBox] = useState('')
   const[a,setA] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
   const[b,setB] = useState(<MdCheckBoxOutlineBlank size="20px" color="white"/>)
@@ -49,7 +53,9 @@ const Home = (props) => {
 
 
 
-
+const {objextA} = useContext(searchFoodContextData1)
+const {head} = useContext(searchFoodContextData1)
+const {DateValue, setDateValue} = useContext(searchFoodContextData1)
 
   
   // useEffect(() => {
@@ -282,7 +288,21 @@ return(<div>
 }
 
 // make internationl variable
-const [inputCal, setInputCal] = useState(props?.value ?? '0');
+const [inputCal, setInputCal] = useState(props?.value ?? objextA[3][0].calGoal);
+
+useEffect(()=>{
+
+objextA[head][1](prev => ({...prev,calGoal:inputCal}) // this is how you keep all of the other values the same while only chaning the one i want, i can have it all in one object state instea of different ones
+)
+},[inputCal])
+
+useEffect(()=>{
+  setInputCal(objextA[head][0].calGoal)
+
+},[head])
+useEffect(()=>{
+  console.log(objextA[head][0].calGoal,'calGoal')
+},[objextA[head][0].calGoal])
 
 let [inputCarbs, setInputCarbs] = useState(0);
 let [inputPro, setInputPro] = useState(0);
@@ -344,6 +364,9 @@ function HandleChange2(e) {
 
 
 }
+useEffect(()=>{
+  console.log(DateValue)
+},[DateValue])
 function HandleChange3(e) {
   setSliderInput3(e.target.value)
   setInputFat(CalcPercentMacros(e.target.value))
@@ -383,9 +406,16 @@ let percentConversion = 20
 
         
         <div className="profile-view">
-        <div className="block-change"> 
+
+        {/* <DateMenu/> */}
+        <DatePicker   
+
+        views={['year', 'month', 'day']}
+        value={DateValue} onChange={(newValue) => setDateValue(newValue)}/>
+        <div className="block-change" > 
 
             <div className="block-half">
+              <div className ="macro-goal">Macro-Nutrients Goal</div>
               <div className="macro-container-2">
 
               <div className="inner-macro-container-2">
@@ -485,7 +515,7 @@ let percentConversion = 20
               <div className="circular-div">
                 <TotalMacroCircle2 totalCal= {totalCal}/>
               </div>
-              <span className="roger">Calories Consumed</span>
+
             </div>
            
         </div>

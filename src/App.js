@@ -16,10 +16,14 @@ import {EatingTimeContext} from './comps/EatingTimes.js';
 import { FoodNutrionApi } from './comps/FoodNutrionApi.js';
 import {SearchFood }from './comps/SearchFood.js';
 import SearchFoodProvider from './comps/SearchFoodProvider.js'
+import DateData from './comps/DateData.jsx';
+
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 function App() {
 
-
-
+  
   const[name,setName] =useState('')
   const[id,setId] =useState('')
 
@@ -49,7 +53,9 @@ function App() {
 
   return (
     <div className="App">
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
 
+<DateData/>
     <AuthProvider>
 
 
@@ -63,7 +69,9 @@ function App() {
         <Route path = '/login' element={<Login setName={setName} />} />
         <Route path = '/' element={<Register />} />
         <Route element={<PrivateRoutes/>}>
-          <Route path = '/home' element={<FakePage/>} exact/>
+          {/* <Route path = '/home' element={<FakePage/>} exact/> */}
+          <Route path = '/fhome' element={<FakePage/>} exact/>
+
         </Route>
         <Route path = '/flogin' element={<FakeLogIn />}  />
 
@@ -76,6 +84,7 @@ function App() {
     </FoodNutrionApi>
 
     </AuthProvider>
+    </LocalizationProvider>
 
 
 

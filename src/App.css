@@ -577,7 +577,7 @@ align-content: center;
 
 
   
-height: 400px;
+height: 420px;
 width:520px;
 /* background-color: red; */
 }
@@ -745,10 +745,29 @@ flex-direction: column;
     font-family:"Poppins", sans-serif;
 
 }
+.macro-goal{
+  font-size: 50px;
+  color: white;
+
+  height: 100px;
+
+  width:530px;
+  border-radius: 10px;
+display: flex;
+flex-direction: column;
+  /* background-color: blue; */
+  background-color: rgba(95, 90, 90, 0.116);
+
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+  backdrop-filter:blur(10px);
+
+
+  font-family:"Poppins", sans-serif;
+}
 .block-half{
   grid-gap: 10px;
 
-  height: 300px;
+  height: 400px;
   width:520px;
   /* background-color: rgba(95, 90, 90, 0.116); */
   border-radius: 10px;
@@ -832,8 +851,8 @@ justify-content: center;
 color: white;
 }
 .block-change{
-  margin-top: 50px;
-  height: 300px;
+
+  height: 450px;
   width: 1100px;
   /* background-color: rgba(95, 90, 90, 0.116);
    */
@@ -901,7 +920,7 @@ color: white;
   font-size: large;
 }
 .placer{
-  stroke-width:100px;
+  stroke-width:70px;
 
 
 }
@@ -1399,3 +1418,96 @@ flex-direction: column;
   line-height: 1rem;
   color: rgba(156, 163, 175, 1);
 }
+
+
+
+
+/* START OF DATE MENU CSS */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.menu-container {
+    display: flex;
+    font-size: 14px;
+    height: 20vh;
+    width: 1100px;
+    /* background: #d8d8d8; */
+}
+
+.menu-navbar {
+    margin: auto;
+    padding: 0.5rem 1.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.menu-nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.menu-nav-link, .drop-down li {
+    list-style: none;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+.drop-down {
+    position: absolute;
+    padding: 0.5rem 0;
+    margin: 0.5rem -0.5rem;
+    background: antiquewhite;
+    color: black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 12px;
+    display: none;
+}
+
+.menu-nav-link:hover {
+    background-color: black;
+    color: #fff;
+    border-radius: 0.5rem;
+}
+
+.services:hover .drop-down {
+    display: block;
+}
+
+.services a {
+    display: flex;
+    align-items: center;
+}
+
+.services .dropdown-icon {
+    font-size: 18px;
+    position: relative;
+    right: -5px;
+    transform: rotate(0deg);
+    transition: 0.3s ease-in-out all;
+}
+
+.services:hover .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.drop-down li:hover {
+    background: black;
+    color: #fff;
+    border-radius: 0.5rem;
+}
+
+
+
+/* END OF DATE MENY CSS */

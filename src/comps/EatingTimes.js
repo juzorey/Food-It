@@ -1,4 +1,4 @@
-import React, {useState,useEffect,useRef, createContext}from "react";
+import React, {useState,useEffect,useRef, createContext, useContext}from "react";
 import { motion, animate } from "framer-motion"
 import { BsNodeMinusFill } from "react-icons/bs";
 import {BreakfastLog} from "./BreakfastLog";
@@ -7,6 +7,7 @@ import {BreakfastLog3} from "./BreakfastLog3";
 import TotalMacroCircle2 from "./TotalMacroCircle2";
 import { set } from "animejs";
 import Charts from "./Charts";
+import searchFoodContextData1 from "./SearchFoodDataContext";
 
 
 
@@ -31,8 +32,14 @@ onTotalCal(totalCalIntaked)
 const [breakfastProgress,setBreakfastProgress]= useState(0)
 const [lunchProgress, setLunchProgress] = useState(0)
 const [dinnerProgress, setDinnerProgress] = useState(0)
+const {head} = useContext(searchFoodContextData1)
+const { objextA } = useContext(searchFoodContextData1)
+ useEffect(()=>{
 
+   
+setTotalOne(objextA[head][0].calConsumed)
 
+  },[objextA[head][0].calConsumed])
 
 useEffect(() =>{
   setTotalCalIntaked(parseInt(totalOne)+parseInt(totalTwo)+parseInt(totalThree))
@@ -120,7 +127,7 @@ return (
 
     <div onClick= {()=>{setSelectedSlot(1)
   console.log(selectedSlot)}} className="breakfast-input">
-      <BreakfastLog onTotalOne = {setTotalOne}>
+      <BreakfastLog>
       {/* <Charts/> */}
       </BreakfastLog>
     </div>
