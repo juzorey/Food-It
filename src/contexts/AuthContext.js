@@ -13,6 +13,9 @@ export const AuthProvider = ({children})=>{
   const[authToken,setAuthToken]=useState(()=>localStorage.getItem('authTokens') ?JSON.parse(localStorage.getItem('authTokens')):null)//with a function it calls it only one
   const[user,setUser]=useState(()=>localStorage.getItem('authTokens') ?jwt_decode(localStorage.getItem('authTokens')):null)
 
+  useEffect(()=>{
+console.log(user.user_id,'user')
+  },[user])
 
   let LogInUser= async(e)=>{
     e.preventDefault()

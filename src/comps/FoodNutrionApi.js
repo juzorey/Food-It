@@ -31,8 +31,8 @@ const foodInfo = async (info)=>{
      if(dataArr.length!=0)setfoodDataArr(dataArr)
 
     console.log(foodDataArr)
-    console.log(result.parsed[0].food.nutrients);
-    console.log(result.parsed[0].food.nutrients.ENERC_KCAL);
+    // console.log(result.parsed[0].food.nutrients);
+    // console.log(result.parsed[0].food.nutrients.ENERC_KCAL);
     setFoodData(result.parsed[0].food.nutrients.ENERC_KCAL);
     console.log(foodData +' cals')
 

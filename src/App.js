@@ -15,7 +15,9 @@ import {AuthProvider} from './contexts/AuthContext.js';
 import {EatingTimeContext} from './comps/EatingTimes.js';
 import { FoodNutrionApi } from './comps/FoodNutrionApi.js';
 import {SearchFood }from './comps/SearchFood.js';
-import SearchFoodProvider from './comps/SearchFoodProvider.js'
+
+import SearchFoodProvider from './comps/SearchFoodProvider';
+
 import DateData from './comps/DateData.jsx';
 
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -55,21 +57,21 @@ function App() {
     <div className="App">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
 
-<DateData/>
     <AuthProvider>
+    <SearchFoodProvider>
+    <DateData/>
 
-
-      {/* <Headers/> */}
-    <FoodNutrionApi>
+      <Headers/>
+    {/* <FoodNutrionApi> */}
 
     <Routes>
         {/* <Route path="/search" element={<SearchFood/>}/> */}
         <Route path="/register" element ={<Register/>}/>
-        <Route path = '/home' element={<Home name={name} id={id} />} />
+        {/* <Route path = '/home' element={<Home name={name} id={id} />} /> */}
         <Route path = '/login' element={<Login setName={setName} />} />
         <Route path = '/' element={<Register />} />
         <Route element={<PrivateRoutes/>}>
-          {/* <Route path = '/home' element={<FakePage/>} exact/> */}
+          <Route path = '/home' element={<FakePage/>} exact/>
           <Route path = '/fhome' element={<FakePage/>} exact/>
 
         </Route>
@@ -81,7 +83,8 @@ function App() {
         {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
 
-    </FoodNutrionApi>
+    {/* </FoodNutrionApi> */}
+    </SearchFoodProvider>
 
     </AuthProvider>
     </LocalizationProvider>
