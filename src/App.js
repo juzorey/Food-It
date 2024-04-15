@@ -62,12 +62,12 @@ function App() {
     <DateData/>
 
       <Headers/>
-    {/* <FoodNutrionApi> */}
+    <FoodNutrionApi>
 
     <Routes>
         {/* <Route path="/search" element={<SearchFood/>}/> */}
         <Route path="/register" element ={<Register/>}/>
-        {/* <Route path = '/home' element={<Home name={name} id={id} />} /> */}
+        <Route path = '/home' element={<Home name={name} id={id} />} />
         <Route path = '/login' element={<Login setName={setName} />} />
         <Route path = '/' element={<Register />} />
         <Route element={<PrivateRoutes/>}>
@@ -83,7 +83,7 @@ function App() {
         {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
 
-    {/* </FoodNutrionApi> */}
+    </FoodNutrionApi>
     </SearchFoodProvider>
 
     </AuthProvider>

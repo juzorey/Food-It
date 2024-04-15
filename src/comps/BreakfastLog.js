@@ -769,6 +769,114 @@ const addLog=()=>{
 
 
 
+const { day } = useContext(searchFoodContextData1);
+const {inputDate } = useContext(searchFoodContextData1)
+
+let firstData = []
+let [oldData,setOldData] = useState([])
+
+
+useEffect(()=>{
+
+  console.log(oldData,'data unique')
+
+
+},[oldData])
+
+// const showDayFoods = ()=>{
+//   if(day.length == 0){
+//     return(
+//       <li>no notes</li>
+//     )
+//   }else{
+
+
+//     const index = day.findIndex(note => note.date == inputDate)
+//     const food = day[index].food_list
+//     console.log(food,'data food')
+
+//     if(food !== undefined){
+
+//         food.forEach((foodItem) => {
+//           firstData.push(
+//             <div className="search-food-container">
+//               <div className="select-btn">
+//               <div key={foodItem.id} className="space-between">
+//                 <span className="">{foodItem.name}</span>
+//                 <span className="">{foodItem.calories} cal</span>
+//             </div>
+//         </div>
+//         </div>
+//           );
+//         });
+//         console.log(oldData,'data')
+
+//     }else{
+//       return(
+//         <li>no notes</li>
+//       )
+//     }
+//   }
+// }
+
+
+
+useEffect(() => {
+  showDayFoods();
+}, [day, inputDate]); // Re-run effect when either day or inputDate changes
+
+const showDayFoods = () => {
+  if (day.length === 0) {
+    return <li>no notes</li>;
+  } else {
+    const index = day.findIndex(note => note.date === inputDate);
+    const food = day[index]?.food_list; // Using optional chaining to avoid errors if day[index] is undefined
+    console.log(food, 'data food');
+
+    if (food) {
+      const uniqueFoods = Array.from(new Set(food.map(item =>item.id
+        
+        ))); // this makes it unique 
+        console.log(uniqueFoods,'data unqieueee')
+        let newArr = uniqueFoods.map(id => food.find(item => item.id === id))
+        // setOldData(newArr.map(item => (
+        //     <div className="search-food-container">
+        //       <div className="select-btn">
+        //         <div key={item.id} className="space-between">
+        //           <span className="">{item.name}</span>
+        //           <span className="">{item.calories} cal</span>
+        //         </div>
+        //       </div>
+        //     </div>
+        // )));
+
+        return (
+
+          newArr.map(item => (
+            <div className='breakfast-log-inner-container'>
+            <div className="search-food-container">
+              <div className="select-btn">
+                <div key={item.id} className="space-between">
+                  <span className="">{item.name}</span>
+                  <span className="">{item.calories} cal</span>
+                </div>
+              </div>
+            </div>
+            </div>
+          
+        ))
+
+        )
+
+      
+      // You may not need to push items into firstData array directly, as we're updating oldData state
+    } else {
+      return <li>no notes</li>;
+    }
+  }
+};
+
+
 const breakfastLogTemplate =(index)=>{
   let newLog=(
     <div key ={index}>
@@ -809,6 +917,7 @@ let news = 'exported successfully'
     <div className='fake-container'>
 
      {showNewLog()}
+     {showDayFoods()}
 
 
       <div className='add-btn-container'>

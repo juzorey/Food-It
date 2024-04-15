@@ -14,7 +14,7 @@ export const AuthProvider = ({children})=>{
   const[user,setUser]=useState(()=>localStorage.getItem('authTokens') ?jwt_decode(localStorage.getItem('authTokens')):null)
 
   useEffect(()=>{
-console.log(user.user_id,'user')
+// console.log(user.user_id,'user')
   },[user])
 
   let LogInUser= async(e)=>{

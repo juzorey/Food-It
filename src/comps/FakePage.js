@@ -159,7 +159,7 @@ const {curDayID} = useContext(searchFoodContextData1)
       <p>you are logged in as</p>
       <ul>
         <button onClick={()=>
-          {createFood([curDayID],'pendojo', 400, 40,400,300,400)
+          {createFood([curDayID],'pendd', 23, 40,400,300,400)
             console.log(curDayID,'curDayID')
 }}> click</button>
       {showDayFoods()} 

@@ -75,6 +75,7 @@ useEffect(()=>{
 //  this will give you a new date check if its alreayd in days
 if(day.length>1){
     setCurDayId(day[day.findIndex(note => note.date == inputDate)].id)
+    console.log('changed curday')
 }
 
   },[DateValue])
@@ -441,7 +442,7 @@ const objextA = {
 
 
   return (
-    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood, curDayID}}>
+    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood, curDayID, inputDate,day}}>
       {children}
     </searchFoodContextData1.Provider>
   );
