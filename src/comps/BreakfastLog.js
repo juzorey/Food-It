@@ -29,9 +29,14 @@ export const  BreakfastLog=({props, selected}) =>{
   const { head }  = useContext(searchFoodContextData1);
   const {objextA} = useContext(searchFoodContextData1)
   const{globalDivCalArr,setGlobalDivCalArr  } = useContext(searchFoodContextData1)
-
-
-
+  const { backendArray,setBackendArray } = useContext(searchFoodContextData1)
+  const{ update } = useContext(searchFoodContextData1)
+  const{ newData } = useContext(searchFoodContextData1)
+  const{getDayNew} = useContext(searchFoodContextData1)
+  const{setTotalCal} = useContext(searchFoodContextData1)
+  const{displayFoodArr,setDisplayFoodArr} = useContext(searchFoodContextData1)
+  const{DeleteFood} = useContext(searchFoodContextData1)
+  const{curDayID,setCurDayId} = useContext(searchFoodContextData1)
   const searchFoodData = useContext(SearchFood)
   const eatingTimeData = useContext(EatingTimeContext)
 
@@ -39,13 +44,15 @@ export const  BreakfastLog=({props, selected}) =>{
 //searchedfoodComp ->amount->queryOne->arr->caloireArr->addArr function->onTotal prop
 const[selectedSlot,setSelectedSlot] = useState()
 
-
+  const[divLogState,setDivLogState] = useState([])
   const [log, setLog] = useState([]);
   const[count,setCount]=useState(1)
   const[foodInput,setFoodInput]=useState('')
   const[calories,setCalories]=useState(0) 
-const[amount,setAmount]=useState() // here
-  const[totalCal,setTotalCal]=useState(0)
+  const[amount,setAmount]=useState() // here
+  // const[totalCal,setTotalCal]=useState(0)
+  const[divLog, setDivLog] = useState([])
+
 
  
 const selectedComp =(value)=>{
@@ -68,8 +75,12 @@ console.log(arr,'arr one')
   
     setCalorieValueArr([...resultOne])
     console.log(calorieValueArr,'calorieValueArr')
+    console.log(calorieValueArr,'calorieValueArr divLogState added')
+    console.log(arr,'arr divLogState added')
+
+
   //  setTotalCal(addArr(arr,0))
-    setTotalCal(addArr(arr,0))
+    // setTotalCal(addArr(arr,0))
 
 
 
@@ -95,7 +106,7 @@ console.log(arr,'arr one')
   const [queryFat,setQueryFat] = useState(0)
   const[queryPro,setQueryPro] = useState(0)
 
-
+  const[holderArr,setHolderArr]= useState([])
   const [calorieValueArr, setCalorieValueArr]= useState([])
   const[carbValueArrThree, setCarbValueArrThree]= useState([])// these should be a class for the 3 macros
   const[fatValueArr, setFatValueArr]= useState([])
@@ -123,7 +134,9 @@ useEffect(()=>{
 
   selectedComp(0)
 
-},[queryOne])
+},[queryOne,holderArr])
+
+
 useEffect(()=>{
 
 
@@ -392,8 +405,8 @@ const createNewlog=()=>{
 console.log(eatingTimeData)
 
 // if(eatingTimeData.selectedSlot == 1){
-  newDivLogOne.push(breakfastLogTemplate(count))
-    console.log(newDivLogOne)
+  divLog.push(breakfastLogTemplate(count))
+    console.log(newDivLogOne,'newDivLogOne pushed created')
 
 
 // }
@@ -420,7 +433,7 @@ const showNewLog=()=>{
 //   )
 
     return (
-      newDivLogOne.map((log,index)=>log)
+      divLog.map((log,index)=>log)
 
 
    
@@ -488,20 +501,18 @@ const showNewLog=()=>{
 // }, [objextA[head][0].loglog]);
 
 
+// this dictates the total Cal
+// useEffect(() => {
+//   if (totalCal !== undefined) {
+//     objextA[head][1](prev => ({ ...prev, calConsumed: totalCal }));
+//   }
 
-useEffect(() => {
-  if (totalCal !== undefined) {
-    objextA[head][1](prev => ({ ...prev, calConsumed: totalCal }));
-  }
-}, [totalCal]);
+  
+// }, [totalCal]);
 
 // Update loglog state while keeping previous state
 
-useEffect(() => {
-  if (totalCal !== undefined) {
-    objextA[head][1](prev => ({...prev, calConsumed: totalCal}));
-  }
-}, [totalCal]);
+
 
 
 useEffect(() => {
@@ -659,12 +670,16 @@ const addLog=()=>{
 
 
       // if( containerNum == 1){
-        const divIndexOne = newDivLogOne.findIndex((key)=>key.key ==index) // finds index
+        const divIndexOne = newDivLogOne.findIndex((key)=>key.key == index) // finds index
+        console.log(divIndexOne,' new index find')
         let newIndex = index -1
+
         newDivLogOne.splice(divIndexOne,1)
        //this will be used to updated objextA calorie array
         let newArr = arr.toSpliced(newIndex,1)
-        console.log(newArr)
+        console.log(newArr,'spliced divLogState for arr')
+        console.log(arr,'spliced divLogState arr for totalCal')
+
 
         setCalorieValueArr(newArr)
 
@@ -672,9 +687,11 @@ const addLog=()=>{
         addArr(arrFat,3)
         addArr(arrPro,4)
 
-        setTotalCal(addArr(arr,1))
+        // setTotalCal(addArr(arr,1))
         console.log("container removed")
         console.log(newIndex,'newIndex')
+        console.log(index,'normal index')
+        DeleteFood(index)
         console.log(newDivLogOne, 'newdivlog one')
         console.log(arr,'arr removed')
         console.log(calorieValueArr,'cal arr removed')
@@ -822,10 +839,41 @@ useEffect(()=>{
 
 
 useEffect(() => {
-  showDayFoods();
-}, [day, inputDate]); // Re-run effect when either day or inputDate changes
+  getDayNew()
 
-const showDayFoods = () => {
+  console.log('getting new day on date change')
+  //add arr of the backend to the current array to get calories or can add it to the local array
+  // if taking from backend arr
+
+  // on first looad show and calucalte total calories  DONE  
+  // after creation of food,  take the calcuation from the back end array againn DONE
+  // Delete the food from the back end DONE
+  // when delete happens get a new data DONE
+  // when the date changes display backend array DONE
+
+  // GRAPH
+  // on first load get from backend array and calculate the macros CURRENT
+
+//fix : the refresh causes more things to be added
+
+console.log(inputDate,'inputDate')
+}, [inputDate]); // Re-run effect when either day or inputDate changes
+
+useEffect(()=>{
+  showDayFoods();
+  console.log('showing day foods on data change')
+
+},[newData])
+// useEffect(() => {
+//   getBackendArr()
+// }, [update]); //occurs when something is created
+
+useEffect(() => {
+console.log(backendArray,'backendArray update')
+}, [backendArray]); 
+
+// when a new added gets added into the backend then this array will be filled 
+const getBackendArr = ()=>{
   if (day.length === 0) {
     return <li>no notes</li>;
   } else {
@@ -839,22 +887,49 @@ const showDayFoods = () => {
         ))); // this makes it unique 
         console.log(uniqueFoods,'data unqieueee')
         let newArr = uniqueFoods.map(id => food.find(item => item.id === id))
-        // setOldData(newArr.map(item => (
-        //     <div className="search-food-container">
-        //       <div className="select-btn">
-        //         <div key={item.id} className="space-between">
-        //           <span className="">{item.name}</span>
-        //           <span className="">{item.calories} cal</span>
-        //         </div>
-        //       </div>
-        //     </div>
-        // )));
+      
 
-        return (
+        setBackendArray(prev => [...prev, ...newArr])
+        console.log('done on update')
 
+      
+    } else {
+      return <li>no notes</li>;
+    }
+  }
+
+}
+
+const showDayFoods = () => {
+  if (day.length === 0) {
+    return <li>no notes</li>;
+  } else {
+    const index = day.findIndex(note => note.date === inputDate);
+
+    const food = day[index]?.food_list; // Using optional chaining to avoid errors if day[index] is undefined
+    setCurDayId(day[index].id)
+    console.log(day[index].id,'localDay')
+    console.log(food, 'data food');
+    console.log(index, 'data index');
+    console.log(day, 'data day');
+
+
+
+    if (food) {
+      const uniqueFoods = Array.from(new Set(food.map(item =>item.id
+        
+        ))); // this makes it unique 
+        console.log(uniqueFoods,'data unqieueee')
+        let newArr = uniqueFoods.map(id => food.find(item => item.id === id))
+    
+        let caloriesArr = newArr.map((item) => item.calories)
+        setDisplayFoodArr(caloriesArr)
+        
+        let holderArr =(
           newArr.map(item => (
+            <div key ={item.id}>
             <div className='breakfast-log-inner-container'>
-            <div className="search-food-container">
+            <div  style={{paddingLeft:20}} className="search-food-container">
               <div className="select-btn">
                 <div key={item.id} className="space-between">
                   <span className="">{item.name}</span>
@@ -862,11 +937,22 @@ const showDayFoods = () => {
                 </div>
               </div>
             </div>
+            <div className="garbage-bin-2" onClick={()=>removeCards(item.id, eatingTimeData.selectedSlot)}> <ImBin color="white"/></div>
             </div>
-          
+          </div>
         ))
-
         )
+        
+        setDivLog(holderArr)
+    
+
+        // newDivLogOne.push(...holderArr)
+        console.log(holderArr,'holderArr')
+
+     
+        
+        console.log(newDivLogOne,'newDivLogOne')
+
 
       
       // You may not need to push items into firstData array directly, as we're updating oldData state
@@ -875,6 +961,16 @@ const showDayFoods = () => {
     }
   }
 };
+
+useEffect(()=>{
+  console.log(backendArray,'data food unique backend')
+},[backendArray])
+useEffect(()=>{
+  console.log(divLogState,'divLogState')
+},[divLogState])
+useEffect(()=>{
+  console.log(calorieValueArr,'divLogState calorieValueArr')
+},[divLogState])
 
 
 const breakfastLogTemplate =(index)=>{
@@ -917,7 +1013,7 @@ let news = 'exported successfully'
     <div className='fake-container'>
 
      {showNewLog()}
-     {showDayFoods()}
+
 
 
       <div className='add-btn-container'>

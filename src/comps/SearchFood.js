@@ -19,6 +19,12 @@ export const SearchFood=({children,onQueryOne,onQueryTwo, onQueryThree}) =>{
   const{loglog} = useContext(searchFoodContextData1)
   const{head} = useContext(searchFoodContextData1)
   const{objextA} = useContext(searchFoodContextData1)
+  const{createFood} = useContext(searchFoodContextData1)
+  const{getNewFoods} = useContext(searchFoodContextData1)
+  const {curDayID} = useContext(searchFoodContextData1)
+  const{setDisplayFoodArr} = useContext(searchFoodContextData1)
+  const{getDayNew} = useContext(searchFoodContextData1)
+
   // const handleClickContext = () => {
   //   setData('new test data');
   // };
@@ -117,6 +123,23 @@ let change = useRef()
 
 
 onQueryOne(foodObject)
+
+  useEffect(()=>{
+
+if(chosen !== 'Select Food'){
+console.log(chosen,'chosen bs')
+console.log(chosen.props.children[0].props.children,'chosen bs')
+console.log(curDayID,'chosen bs id')
+
+
+createFood([curDayID],chosen.props.children[0].props.children, foodObject.calories, foodObject.protein, foodObject.carbs, foodObject.fat)
+getDayNew()
+
+}
+
+},[foodObject])
+
+
 
 
   function updateName(event) {

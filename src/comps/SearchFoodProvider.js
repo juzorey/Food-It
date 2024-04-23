@@ -6,10 +6,13 @@ import { ConnectingAirportsOutlined, IndeterminateCheckBoxOutlined } from '@mui/
 
 const SearchFoodProvider = ({ children }) => {
 
+
+  const[backendArray,setBackendArray] = useState([])
   const [head, setHead] = useState(3);
   const [fakeChosen, setFakeChosen] = useState([]); // Initialize with an empty array
   const[globalDivCalArr,setGlobalDivCalArr] = useState([])
-
+  const[update,setUpdate]=useState([])
+  const[newData,setNewData]=useState([])
 
   const[DateValue,setDateValue] = useState(dayjs())
 
@@ -65,23 +68,34 @@ useEffect(()=>{
 
 
   useEffect(()=>{
-
-    setInputDate(`${DateValue.$y}-${changeNum(DateValue.$M+1)}-${changeNum(DateValue.$D)}`,'plan')
+    let datIndex = `${DateValue.$y}-${changeNum(DateValue.$M+1)}-${changeNum(DateValue.$D)}`
+    setInputDate(`${DateValue.$y}-${changeNum(DateValue.$M+1)}-${changeNum(DateValue.$D)}`)
     console.log(`${DateValue.$y}-${changeNum(DateValue.$M+1)}-${changeNum(DateValue.$D)}`,'plan')
     console.log(day,'plan')
     console.log(day.findIndex(note => note.date == inputDate),'plan')
 
-
+    let index = day.findIndex(note => note.date == datIndex) 
 //  this will give you a new date check if its alreayd in days
 if(day.length>1){
-    setCurDayId(day[day.findIndex(note => note.date == inputDate)].id)
+    setCurDayId(day[index].id)
     console.log('changed curday')
 }
 
   },[DateValue])
 
+  useEffect(()=>{// 
+
+
+    console.log(curDayID,'plan curday')
+
+  },[curDayID])
+
+
+
   useEffect(()=>{ // on first load
-    getDay()
+
+        getDay() 
+    console.log('getday function called') // this doesnt occurin on page load or there is a delay or it happens ever render
     },[])
 
   useEffect(()=>{// 
@@ -156,6 +170,28 @@ console.log(curDayID,'curDayID')
 //issues data doesnt get pulled from the day api, and the data doesn display in json for days 
   }
 
+  let getDayNew = async()=>{ // this are to retrive data from backend
+    console.log(auth.contextData.authToken.access)
+    let response =  await fetch('http://localhost:8000/api/day',{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json', //thisis sending data
+        'Authorization':'Bearer '+ String(auth.contextData.authToken.access)}//can customize in the backedn //sends the auth token to acess data of sepcific usef
+    })
+    let data = await response.json()//gets data and puts into state
+    console.log(data,'data')
+
+    if(response.status == 200){
+        setNewData(data)
+      console.log(data,'new data')
+    }else if(response.statusText == 'Unauthorized'){
+      auth.contextData.logOutUser()
+      console.log(data,'fuck you data')
+
+    }
+    console.log(data,'data')
+//issues data doesnt get pulled from the day api, and the data doesn display in json for days 
+  }
 
   const createFood = async (date, name, calories, protein, carbs,fat) => {
     try {
@@ -188,8 +224,72 @@ console.log(curDayID,'curDayID')
     }
   };
 
+useEffect(()=>{
+
+  getNewFoods()
+console.log('get new foods')
+console.log(newData, 'get newData foods')
+
+},[newData])
 
 
+
+  const getNewFoods = ()=>{
+    if(newData.length == 0){
+      return(
+        <li>no notes</li>
+      )
+    }else{
+      const index = newData.findIndex(note => note.date === inputDate);
+
+      const food = newData[index]?.food_list; // Using optional chaining to avoid errors if day[index] is undefined
+
+      console.log(newData[index].id,'localDay newData Foods')
+      console.log(food, 'data food newData Foods');
+      console.log(index, 'data index');
+      console.log(day, 'data day newData Foods');
+  
+  
+  
+      if (food) {
+        const uniqueFoods = Array.from(new Set(food.map(item =>item.id))); // this makes it unique 
+
+        let newArr = uniqueFoods.map(id => food.find(item => item.id === id))
+      
+        let caloriesArr = newArr.map((item) => item.calories)
+        setDisplayFoodArr(caloriesArr)
+        console.log(newArr,'new foods')
+        }
+  
+      
+    }
+  }
+
+  const DeleteFood = async(foodId)=>{ 
+
+
+      let response =  await fetch(`http://127.0.0.1:8000/api/foods/${foodId}`,{
+        method: 'DELETE',
+  })
+  
+      if(response.status == 204){
+
+        getDayNew()
+      }else if(response.statusText == 'Unauthorized'){
+        // auth.contextData.logOutUser()
+
+  
+      }
+
+  //issues data doesnt get pulled from the day api, and the data doesn display in json for days 
+    }
+    
+
+      
+
+
+
+  
 
 const showDayFoods = ()=>{
   if(day.length == 0){
@@ -201,7 +301,7 @@ const showDayFoods = ()=>{
 
     const index = day.findIndex(note => note.date == inputDate)
     const food = day[index].food_list
-
+    console.log(food,'fake food')
     if(food !== undefined){
       return(  
         food.map((food)=>(
@@ -219,8 +319,68 @@ const showDayFoods = ()=>{
 
 
 //////// END talking to backend
+const[displayFoodArr,setDisplayFoodArr]=useState([])
+const[totalCal,setTotalCal]=useState(0)
+useEffect(() => {
+  if (displayFoodArr !== undefined) {
+
+    setTotalCal(addArr(displayFoodArr,0))
+
+  }
+
+  console.log(displayFoodArr, 'displayFoodArr new ');
+  
+}, [displayFoodArr]);
+
+useEffect(() => {
+
+  console.log(totalCal, 'displayFoodArr totalCal');
+  
+}, [totalCal]);
 
 
+
+
+
+function addArr(array,type) {
+  // console.log(fakeArr)
+  // console.log(arr)
+    
+  // if(newDivLogOne.length==0){
+  //   setCalorieValueArrOne([])
+  // }
+
+    let arrTotalOne = array.reduce((accumulator,currentValue)=>{
+      console.log(accumulator+"accumulator")
+      console.log(currentValue+"currentValue")
+
+      return accumulator+currentValue},0)
+    // console.log(resultOne+"result One")
+    console.log(arrTotalOne+"arrTotal One")//thisi doubling arrTotla means its running it twice
+
+
+    // if (type==1){
+
+
+    //   return arrTotalOne  - queryOne
+    // }   
+    // else if (type ==2){
+    //   return arrTotalOne - queryCarbThree
+    // }
+    // else if(type ==3){
+    //   return arrTotalOne - queryFat
+
+    // }
+    // else if (type ==4){
+    //   return arrTotalOne - queryPro
+
+    // }
+    // else{
+      // setResult(arrTotalOne)
+      return arrTotalOne
+
+    // }
+}
 
 
 
@@ -442,7 +602,7 @@ const objextA = {
 
 
   return (
-    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood, curDayID, inputDate,day}}>
+    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood,setCurDayId, curDayID, inputDate,day,backendArray,setBackendArray,update,setDisplayFoodArr,totalCal,setTotalCal,getNewFoods, getDayNew, DeleteFood, newData}}>
       {children}
     </searchFoodContextData1.Provider>
   );

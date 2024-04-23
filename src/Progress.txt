@@ -20,4 +20,21 @@ To do:
 5.get protein/fat/carb data from the searchFood api and enter it into the object share context variable 
 
 
-CURRENT 6. its not deleting from the array and its only updateing on the add arr 
+ 6. its not deleting from the array and its only updateing on the add arr 
+
+CURRENT 7. added total calories on first load  
+
+it has a local array that intakes from backend
+and it sends to backend when a new one is added
+then takes it from backend same time
+
+then takes all full array from back end and adds it for 
+
+8.  make sures it loads current day id on load and the current food array on load
+
+error: it addes into backend array the foods from other dates, there is going to have to be a cleanup.
+error: do i need it to get after every create or is using a local arrayenough
+first option is easiest
+
+have the total array add up when the creation of the food happens in the searchFood component 
+ 

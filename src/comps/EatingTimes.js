@@ -33,13 +33,13 @@ const [breakfastProgress,setBreakfastProgress]= useState(0)
 const [lunchProgress, setLunchProgress] = useState(0)
 const [dinnerProgress, setDinnerProgress] = useState(0)
 const {head} = useContext(searchFoodContextData1)
-const { objextA } = useContext(searchFoodContextData1)
+const { totalCal } = useContext(searchFoodContextData1)
  useEffect(()=>{
 
    
-setTotalOne(objextA[head][0].calConsumed)
+setTotalOne(totalCal)
 
-  },[objextA[head][0].calConsumed])
+  },[totalCal])
 
 useEffect(() =>{
   setTotalCalIntaked(parseInt(totalOne)+parseInt(totalTwo)+parseInt(totalThree))
