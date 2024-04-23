@@ -61,7 +61,7 @@ function App() {
     <SearchFoodProvider>
     <DateData/>
 
-      <Headers/>
+      {/* <Headers/> */}
     <FoodNutrionApi>
 
     <Routes>

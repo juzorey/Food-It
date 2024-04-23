@@ -12,6 +12,14 @@ const SearchFoodProvider = ({ children }) => {
   const [fakeChosen, setFakeChosen] = useState([]); // Initialize with an empty array
   const[globalDivCalArr,setGlobalDivCalArr] = useState([])
   const[update,setUpdate]=useState([])
+
+  const[displayFoodArr,setDisplayFoodArr]=useState([])
+  const[displayCarbsArr,setDisplayCarbsArr]=useState([])
+  const[displayProArr,setDisplayProArr]=useState([])
+  const[displayFatArr,setDisplayFatArr]=useState([])
+
+
+  const [day,setDay]=useState([]) 
   const[newData,setNewData]=useState([])
 
   const[DateValue,setDateValue] = useState(dayjs())
@@ -24,7 +32,6 @@ const SearchFoodProvider = ({ children }) => {
 
 //make it so it creates a new day when a new day starts
 
-  const [day,setDay]=useState([]) 
   let [curDayID,setCurDayId]=useState() 
   const[inputDate,setInputDate]=useState('')
 
@@ -257,6 +264,13 @@ console.log(newData, 'get newData foods')
         let newArr = uniqueFoods.map(id => food.find(item => item.id === id))
       
         let caloriesArr = newArr.map((item) => item.calories)
+        let carbsArr = newArr.map((item) => item.carbs)
+        let proArr = newArr.map((item) => item.protein)
+        let fatArr = newArr.map((item) => item.fat)
+
+        setDisplayCarbsArr(carbsArr)
+        setDisplayProArr(proArr)
+        setDisplayFatArr(fatArr)
         setDisplayFoodArr(caloriesArr)
         console.log(newArr,'new foods')
         }
@@ -319,22 +333,56 @@ const showDayFoods = ()=>{
 
 
 //////// END talking to backend
-const[displayFoodArr,setDisplayFoodArr]=useState([])
-const[totalCal,setTotalCal]=useState(0)
+const [totalCal,setTotalCal]=useState(0)
+const [totalCarb,setTotalCarb]=useState(0) 
+const [totalPro,setTotalPro]=useState(0)
+const [totalFat,setTotalFat]=useState(0)
+
+
+useEffect(()=>{
+  if(totalCal !=0){
+
+
+  setChartData({
+    series: [
+      {
+        name: 'Today',
+        data: [totalCarb,totalFat,totalPro],
+      },
+    ],
+  })
+}
+},[totalCal])
+
+
+
 useEffect(() => {
   if (displayFoodArr !== undefined) {
 
     setTotalCal(addArr(displayFoodArr,0))
+    setTotalCarb(addArr(displayCarbsArr,0))
+    setTotalPro(addArr(displayProArr,0))
+    setTotalFat(addArr(displayFatArr,0))
 
   }
 
+
   console.log(displayFoodArr, 'displayFoodArr new ');
+  console.log(displayCarbsArr, 'displayFoodArr  carbs new ');
+  console.log(displayProArr, 'displayFoodArr  pro new ');
+  console.log(displayFatArr, 'displayFoodArr  fat new ');
+
   
 }, [displayFoodArr]);
+
 
 useEffect(() => {
 
   console.log(totalCal, 'displayFoodArr totalCal');
+  console.log(totalCarb, 'displayFoodArr  totalCarb');
+  console.log(totalPro, 'displayFoodArr  totalPro');
+  console.log(totalFat, 'displayFoodArr  totalFat');
+  
   
 }, [totalCal]);
 
@@ -602,7 +650,7 @@ const objextA = {
 
 
   return (
-    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood,setCurDayId, curDayID, inputDate,day,backendArray,setBackendArray,update,setDisplayFoodArr,totalCal,setTotalCal,getNewFoods, getDayNew, DeleteFood, newData}}>
+    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood,setCurDayId, curDayID, inputDate,day,backendArray,setBackendArray,update,setDisplayFoodArr,totalCal,setTotalCal,getNewFoods, getDayNew, DeleteFood, newData, totalCarb, totalFat, totalPro}}>
       {children}
     </searchFoodContextData1.Provider>
   );

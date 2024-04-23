@@ -26,6 +26,7 @@ import searchFoodContextData1 from "./SearchFoodDataContext.js";
 import { set } from "animejs";
 import Calender from "./Calender.jsx";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import TaskBar from "./TaskBar.jsx";
 
 export const HomeContext = createContext()
 
@@ -386,9 +387,9 @@ let percentConversion = 20
     
     
     <div>
-      <IconContext.Provider value={{ className:"myReact-icons", size:'70px'}}>
+      {/* <IconContext.Provider value={{ className:"myReact-icons", size:'70px'}}>
       <MdCheckBoxOutlineBlank />
-    </IconContext.Provider>
+    </IconContext.Provider> */}
       {/* <div className="form-signin mt-5 text-center"> 
             <h3>Hi {message}</h3>
 */}
@@ -398,20 +399,17 @@ let percentConversion = 20
 
 
       <div className="home">
-        <div className="nav-holder">
+        {/* <div className="nav-holder">
 
         <Nav/>
-        </div>
+        </div> */}
 
 
         
         <div className="profile-view">
-
+        <TaskBar/>
         {/* <DateMenu/> */}
-        <DatePicker   
-
-        views={['year', 'month', 'day']}
-        value={DateValue} onChange={(newValue) => setDateValue(newValue)}/>
+   
         <div className="block-change" > 
 
             <div className="block-half">
@@ -567,7 +565,7 @@ let percentConversion = 20
 
 
           </div>
-          <div className="block-2">
+          <div className="block-2" id='charts-div'>
                 <Charts/>
 
           </div>

@@ -164,22 +164,22 @@ setTotalPro(addArr(arrPro,0))
 
 
 
-useEffect(()=>{
-  if(totalCarbs !=0){
-console.log(totalCarbs,'totalcarbs')
-console.log(totalFat,'total fat')
-console.log(totalPro,'total pro')
+// useEffect(()=>{
+//   if(totalCarbs !=0){
+// console.log(totalCarbs,'totalcarbs')
+// console.log(totalFat,'total fat')
+// console.log(totalPro,'total pro')
 
-  setChartData({
-    series: [
-      {
-        name: 'Today',
-        data: [100, 50, totalCarbs],
-      },
-    ],
-  })
-}
-},[totalCarbs])
+//   setChartData({
+//     series: [
+//       {
+//         name: 'Today',
+//         data: [100, 50, totalCarbs],
+//       },
+//     ],
+//   })
+// }
+// },[totalCarbs])
 
 
 
@@ -852,16 +852,26 @@ useEffect(() => {
   // when the date changes display backend array DONE
 
   // GRAPH
-  // on first load get from backend array and calculate the macros CURRENT
+  // on first load get from backend array and calculate the macros  total DONE
+  // on first load connect the macros total to the graphs  DONE
+  // on new creation of food correct the calcualtion of macros DONE
+  // on deletion of food correct the calculation of macros DONE
 
+
+  // remove task bar on the right make date look better a long bar on top? DONE
+  // date in the middle , logout on the right, track on the left  with logos on the left of box DONE
+  // change the fake page route
+
+ 
+  //code the weekly data 
 //fix : the refresh causes more things to be added
 
 console.log(inputDate,'inputDate')
 }, [inputDate]); // Re-run effect when either day or inputDate changes
 
 useEffect(()=>{
-  showDayFoods();
-  console.log('showing day foods on data change')
+  showNewFoods();
+  console.log(newData,'showing day foods on data change')
 
 },[newData])
 // useEffect(() => {
@@ -900,6 +910,70 @@ const getBackendArr = ()=>{
 
 }
 
+
+const showNewFoods = ()=>{
+  if(newData.length == 0){
+    return(
+      <li>no notes</li>
+    )
+  }else{
+    const index = newData.findIndex(note => note.date === inputDate);
+
+    const food = newData[index]?.food_list; // Using optional chaining to avoid errors if day[index] is undefined
+
+    console.log(newData[index].id,'localDay newData Foods')
+    console.log(food, 'data food newData Foods');
+    console.log(index, 'data index');
+    console.log(day, 'data day newData Foods');
+
+
+
+    if (food) {
+      const uniqueFoods = Array.from(new Set(food.map(item =>item.id
+        
+      ))); // this makes it unique 
+      console.log(uniqueFoods,'data unqieueee')
+      let newArr = uniqueFoods.map(id => food.find(item => item.id === id))
+  
+      let caloriesArr = newArr.map((item) => item.calories)
+      setDisplayFoodArr(caloriesArr)
+      
+      let holderArr =(
+        newArr.map(item => (
+          <div key ={item.id}>
+          <div className='breakfast-log-inner-container'>
+          <div  style={{paddingLeft:20}} className="search-food-container">
+            <div className="select-btn">
+              <div key={item.id} className="space-between">
+                <span className="">{item.name}</span>
+                <span className="">{item.calories} cal</span>
+              </div>
+            </div>
+          </div>
+          <div className="garbage-bin-2" onClick={()=>removeCards(item.id, eatingTimeData.selectedSlot)}> <ImBin color="white"/></div>
+          </div>
+        </div>
+      ))
+      )
+      
+      setDivLog(holderArr)
+  
+
+      // newDivLogOne.push(...holderArr)
+      console.log(holderArr,'holderArr')
+
+   
+      
+      console.log(newDivLogOne,'newDivLogOne')
+
+
+    
+    // You may not need to push items into firstData array directly, as we're updating oldData state
+  } else {
+    return <li>no notes</li>;
+  }
+}
+}
 const showDayFoods = () => {
   if (day.length === 0) {
     return <li>no notes</li>;
