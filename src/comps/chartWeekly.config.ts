@@ -15,6 +15,7 @@ export const WeeklySeries = [
   },
 ];
 
+
 export const WeeklyOptions: ApexOptions= {
   chart: {
     type: 'bar',

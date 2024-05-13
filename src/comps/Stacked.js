@@ -17,7 +17,7 @@ const foodContext = useContext(SearchFoodContext)
 const breakContext = useContext(BreakFastContext)
 
 
-
+const { weeklyData  } = useContext(searchFoodContextData);
 const { chartData1 } = useContext(searchFoodContextData);
 
 
@@ -593,19 +593,19 @@ console.log(changeState(charState),'bust ')
     //   return fakeDisplay
     // }
 
-  
+
 return(
   <div>
  <Chart
-           options={DailyOptions}
-           series={chartData1.series}              
+           options={option =='daily' ? DailyOptions:WeeklyOptions}
+           series={option =='daily' ?chartData1.series:weeklyData.series }              
            type='bar'
            height={"100%"}
            width={1100 }/>
 
 
        
-<button type="button" onClick={submit}>submit</button>
+{/* <button type="button" onClick={submit}>submit</button> */}
 </div>
 
 

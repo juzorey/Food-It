@@ -11,6 +11,7 @@ import Charts from './Charts.js'
 import searchFoodContextData1 from "./SearchFoodDataContext.js";
 import { AiOutlineConsoleSql } from 'react-icons/ai'
 import { DragControls } from 'framer-motion'
+import { ContactlessOutlined } from '@mui/icons-material'
 
 // make it into classes then polymorph
 //or make the values different for each component
@@ -841,30 +842,11 @@ useEffect(()=>{
 useEffect(() => {
   getDayNew()
 
+
   console.log('getting new day on date change')
   //add arr of the backend to the current array to get calories or can add it to the local array
   // if taking from backend arr
 
-  // on first looad show and calucalte total calories  DONE  
-  // after creation of food,  take the calcuation from the back end array againn DONE
-  // Delete the food from the back end DONE
-  // when delete happens get a new data DONE
-  // when the date changes display backend array DONE
-
-  // GRAPH
-  // on first load get from backend array and calculate the macros  total DONE
-  // on first load connect the macros total to the graphs  DONE
-  // on new creation of food correct the calcualtion of macros DONE
-  // on deletion of food correct the calculation of macros DONE
-
-
-  // remove task bar on the right make date look better a long bar on top? DONE
-  // date in the middle , logout on the right, track on the left  with logos on the left of box DONE
-  // change the fake page route
-
- 
-  //code the weekly data 
-//fix : the refresh causes more things to be added
 
 console.log(inputDate,'inputDate')
 }, [inputDate]); // Re-run effect when either day or inputDate changes
@@ -974,6 +956,8 @@ const showNewFoods = ()=>{
   }
 }
 }
+
+
 const showDayFoods = () => {
   if (day.length === 0) {
     return <li>no notes</li>;

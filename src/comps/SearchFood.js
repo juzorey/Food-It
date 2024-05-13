@@ -133,6 +133,7 @@ console.log(curDayID,'chosen bs id')
 
 
 createFood([curDayID],chosen.props.children[0].props.children, foodObject.calories, foodObject.protein, foodObject.carbs, foodObject.fat)
+console.log(curDayID, 'created Food')
 getDayNew()
 
 }

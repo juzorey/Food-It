@@ -38,3 +38,41 @@ first option is easiest
 
 have the total array add up when the creation of the food happens in the searchFood component 
  
+
+
+  // on first looad show and calucalte total calories  DONE  
+  // after creation of food,  take the calcuation from the back end array againn DONE
+  // Delete the food from the back end DONE
+  // when delete happens get a new data DONE
+  // when the date changes display backend array DONE
+
+  // GRAPH
+  // on first load get from backend array and calculate the macros  total DONE
+  // on first load connect the macros total to the graphs  DONE
+  // on new creation of food correct the calcualtion of macros DONE
+  // on deletion of food correct the calculation of macros DONE
+
+
+  // remove task bar on the right make date look better a long bar on top? DONE
+  // date in the middle , logout on the right, track on the left  with logos on the left of box DONE
+  // change the fake page route DONE
+
+  //take  out he mini bar leave it blank DONE
+
+
+
+
+
+//FILM VIDEO
+
+  //code the weekly data  CURRENT
+  // the post of a new day may need a totalcal value
+  // PUT everytime a new creation of food  DONE
+  // PUT evrytime on deletion DONE
+WEEKLY DATA
+  //  take todays index- then minus 7 days from there and take the totalCal and put into the array CURRENT
+
+FIX: mkaing the weekly actually render when it has to, not having to click todays date for shit to load
+FIX: WHY DOES IT CONSTANTLY DO A PUT  and it doesnt find it
+  FIX the textcontext error
+//fix : the refresh causes more things to be added

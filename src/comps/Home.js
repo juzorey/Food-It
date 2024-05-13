@@ -541,7 +541,7 @@ let percentConversion = 20
               </div>
 
               <div className="habits-container-inner second">
-                <div className="total-cals">
+                {/* <div className="total-cals">
                 <TotalMacroCircle/>
              
 
@@ -552,7 +552,7 @@ let percentConversion = 20
                 
                 </div>
 
-
+ */}
 
 
               </div>

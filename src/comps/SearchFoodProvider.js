@@ -2,7 +2,8 @@ import React, { useState,useEffect, useContext } from 'react';
 import searchFoodContextData1 from './SearchFoodDataContext';
 import dayjs from 'dayjs';
 import { AuthContext } from '../contexts/AuthContext';
-import { ConnectingAirportsOutlined, IndeterminateCheckBoxOutlined } from '@mui/icons-material';
+import { ConnectingAirportsOutlined, ControlPointSharp, IndeterminateCheckBoxOutlined } from '@mui/icons-material';
+import { get } from 'animejs';
 
 const SearchFoodProvider = ({ children }) => {
 
@@ -53,25 +54,37 @@ useEffect(()=>{
   let today = `${todayDefaultDate.$y}-${changeNum(todayDefaultDate.$M+1)}-${changeNum(todayDefaultDate.$D)}`
   console.log(today,'today1')
   let todayDate = `${DateValue.$y}-${changeNum(DateValue.$M+1)}-${changeNum(DateValue.$D)}`
-  console.log(todayDate,'today2')
-  console.log(day, 'today day week')
   const index = day.some(note => note.date == todayDate)
+//problem the times are differnt when creating one on django22
 
-
-
-
-
+    console.log(todayDate,'today 2 ')
+    console.log(day, 'today day week')
     console.log(index,'index today')
+    console.log(day,'day today')
 
+    const found = day.find((element) => element.date == todayDate)
+// issue is the day created is differnt for django and react
+    const dateIndex = day.findIndex(note => note.date === inputDate);
+    const fucktoday = day.findIndex(note => note.date == todayDate);
+    console.log(fucktoday,'fuckday today')
 
-  if(today == todayDate && index == false && day.length >1){
+    console.log(found,'found')
 
-        console.log('today')
+if(day.length !==0){
+  console.log(dateIndex,'fuck')
+    // setCurDayId(day[dateIndex]?.id)
+}
+
+  if(day.length !== 0 && today == todayDate && index == false){
+
+        console.log('created when the day data is not empty, todays day matches, todays data is not found in the day array today')
 
     createDay()
 
+
   }
 },[day])
+
 
 
   useEffect(()=>{
@@ -84,7 +97,7 @@ useEffect(()=>{
     let index = day.findIndex(note => note.date == datIndex) 
 //  this will give you a new date check if its alreayd in days
 if(day.length>1){
-    setCurDayId(day[index].id)
+    setCurDayId(day[index]?.id)
     console.log('changed curday')
 }
 
@@ -102,18 +115,12 @@ if(day.length>1){
   useEffect(()=>{ // on first load
 
         getDay() 
+
+
     console.log('getday function called') // this doesnt occurin on page load or there is a delay or it happens ever render
     },[])
 
-  useEffect(()=>{// 
-
-    const index = day.findIndex(note => note.date == inputDate)
-
-    // setCurDayId(day[index].id)
-    console.log(day,'day')
-
-  },[day])
-
+ 
 
 
 
@@ -153,10 +160,14 @@ console.log(curDayID,'curDayID')
       // Handle error case here
     }
   };
+  const[newShit,setNewShit]=useState([])
+  useEffect(()=>{console.log(newShit,'day fuck')},[newShit])
 
+  
+console.log(day,'fuckyou')
   let getDay = async()=>{ // this are to retrive data from backend
     console.log(auth.contextData.authToken.access)
-    let response =  await fetch('http://localhost:8000/api/day',{
+    let response =  await fetch('http://localhost:8000/api/days',{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json', //thisis sending data
@@ -165,8 +176,23 @@ console.log(curDayID,'curDayID')
     let data = await response.json()//gets data and puts into state
     console.log(data,'data')
 
+
     if(response.status == 200){
-      setDay(data)
+      setNewShit(['fuck you '])
+      
+
+
+      if(data.length!== 0){
+        console.log(data,'sent data')
+        setDay(data)
+
+
+      }else{
+        console.log('created on first load when day data is empty today ')
+        createDay()
+        // setDay(['fuck you '])
+
+      }
       console.log(data,'data')
     }else if(response.statusText == 'Unauthorized'){
       auth.contextData.logOutUser()
@@ -200,6 +226,88 @@ console.log(curDayID,'curDayID')
 //issues data doesnt get pulled from the day api, and the data doesn display in json for days 
   }
 
+
+const[weeklyData, setWeeklyData]= useState({
+  series: [
+    {
+      name: 'TotalCal',
+      data: [183, 124, 115, 85, 143, 143, 96],
+    },
+    
+  // {
+  //   name: 'Carbs',
+  //   data: [183, 124, 115, 85, 143, 143, 96],
+  // },
+  // {
+  //   name: 'Fat',
+  //   data: [95, 84, 72, 44, 108, 108, 47],
+  // },
+  // {
+  //   name: 'Protein',
+  //   data: [95, 84, 72, 44, 108, 108, 47],
+  // }
+],
+})
+
+// useEffect(()=>{
+//   showWeeklyData()
+// },[newData,day])
+
+const showWeeklyData = ()=>{
+  console.log(day,'weekly popped day')
+
+  let newArr = []
+  for(let i = 7; i>0;i--){
+    
+    newArr.push(newData.pop())
+    console.log(newArr,'weekly popped')
+  }
+
+  if(newArr[0] !== undefined){
+
+
+    // let newArrCarbs = newArr.map((item)=>item.food_list)
+    // console.log(newArrCarbs,'weekly popped carbs')
+    // console.log(newArr,'weekly popped carbs new arr')
+
+    // newArrCarbs.forEach((item)=>{
+    //   if(item.length <! 0){
+    //     console.log('empty array')
+
+    //   } else if(item.legnth >!0 ){
+    //     item.forEach((macro)=>{
+    //       macro.carbs
+    //     })
+    //   }
+    // })
+
+
+  }
+
+  //definietly could be easier if i have it calculated and saved per day as its own data and have it called 
+
+
+
+  // setWeeklyData(
+  //   {
+  //     name: 'Carbs',
+  //     data: newArrCarbs,
+  //   },
+  //   {
+  //     name: 'Fat',
+  //     data: newArrCarbs,
+  //   },
+  //   {
+  //     name: 'Protein',
+  //     data: newArrCarbs,
+  //   },
+  // )
+
+
+
+}
+
+
   const createFood = async (date, name, calories, protein, carbs,fat) => {
     try {
       const response = await fetch('http://127.0.0.1:8000/api/foods/', {
@@ -231,6 +339,34 @@ console.log(curDayID,'curDayID')
     }
   };
 
+
+  const updateTotalCal = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/days/${curDayID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'totalCal':totalCal
+
+        }),
+      });
+
+      if (response.ok) {
+        console.log(curDayID,'updated total cal successfully');
+        // Handle success case here
+      } else {
+        console.log('Failed to update totalCal');
+        // Handle error case here
+      }
+    } catch (error) {
+      console.error('Error updating totalCal:', error);
+      // Handle error case here
+    }
+  };
+
+
 useEffect(()=>{
 
   getNewFoods()
@@ -251,7 +387,7 @@ console.log(newData, 'get newData foods')
 
       const food = newData[index]?.food_list; // Using optional chaining to avoid errors if day[index] is undefined
 
-      console.log(newData[index].id,'localDay newData Foods')
+      // console.log(newData[index].id,'localDay newData Foods')
       console.log(food, 'data food newData Foods');
       console.log(index, 'data index');
       console.log(day, 'data day newData Foods');
@@ -340,6 +476,39 @@ const [totalFat,setTotalFat]=useState(0)
 
 
 useEffect(()=>{
+  let todayDate = `${DateValue.$y}-${changeNum(DateValue.$M+1)}-${changeNum(DateValue.$D)}`
+
+  day.sort((a, b) => new Date(a.date) - new Date(b.date)); // crazy idk how this works
+
+  console.log(day,'day sorted')
+  const fucktoday = day.findIndex(note => note.date == todayDate);
+    let i =  7
+    let newIndex = fucktoday
+//this bullshit cant find totalCal sometimes
+    let weeklyTotalCal= []
+    while(i>0){
+       weeklyTotalCal.unshift(day[newIndex]?.totalCal)
+
+       console.log(weeklyTotalCal,'week total')
+       console.log(newIndex,'week total')
+
+       newIndex--
+      i--
+    }
+
+
+  setWeeklyData({
+    series: [
+      {
+        name: 'TotalCal',
+        data: weeklyTotalCal,
+      }
+  ],
+  }
+
+  )
+},[day, totalCal]) // this sucks
+useEffect(()=>{
   if(totalCal !=0){
 
 
@@ -383,7 +552,7 @@ useEffect(() => {
   console.log(totalPro, 'displayFoodArr  totalPro');
   console.log(totalFat, 'displayFoodArr  totalFat');
   
-  
+  updateTotalCal()
 }, [totalCal]);
 
 
@@ -650,7 +819,7 @@ const objextA = {
 
 
   return (
-    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood,setCurDayId, curDayID, inputDate,day,backendArray,setBackendArray,update,setDisplayFoodArr,totalCal,setTotalCal,getNewFoods, getDayNew, DeleteFood, newData, totalCarb, totalFat, totalPro}}>
+    <searchFoodContextData1.Provider value={{ chartData1, setChartData,carbData, setCarbData,head,setHead, objextA,fakeChosen,setFakeChosen,globalDivCalArr,setGlobalDivCalArr,DateValue,setDateValue,showDayFoods,createFood,setCurDayId, curDayID, inputDate,day,backendArray,setBackendArray,update,setDisplayFoodArr,totalCal,setTotalCal,getNewFoods, getDayNew, DeleteFood, newData, totalCarb, totalFat, totalPro,weeklyData}}>
       {children}
     </searchFoodContextData1.Provider>
   );
